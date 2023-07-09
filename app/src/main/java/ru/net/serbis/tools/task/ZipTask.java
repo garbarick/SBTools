@@ -6,8 +6,9 @@ import java.io.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.tool.*;
+import ru.net.serbis.tools.adapter.*;
 
-public class ZipTask extends AsyncTask<File, Integer, Boolean> implements Progress
+public class ZipTask extends AsyncTask<Void, Integer, Boolean> implements Progress
 {
     private Context context;
     private TaskCallback callback;
@@ -20,17 +21,19 @@ public class ZipTask extends AsyncTask<File, Integer, Boolean> implements Progre
     }
 
     @Override
-    protected Boolean doInBackground(File... params)
+    protected Boolean doInBackground(Void... params)
     {
         try
         {
             publishProgress(0);
-            File dir = params[0];
-            File file = params[1];
+            File dir = new File(Params.DIRECTORY.getValue(context));
+            File file = new File(dir, Params.ZIP_NAME.getValue(context));
+            int compression = Params.COMPRESSION.getValue(context).getLevel();
+            boolean deleteSourceFiles = Params.DELETE_SOURCE_FOLRS.getValue(context);
 
             if (dir.isDirectory() && dir.exists())
             {
-                new ZipTool(context, this, dir, file).make();
+                new ZipTool(context, this, dir, file, compression, deleteSourceFiles).make();
                 return true;
             }
             else

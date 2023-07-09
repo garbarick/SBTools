@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:duplicateParentState="true">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/zip_dir"
+        android:text="@string/zip_dir"
+        android:duplicateParentState="true"
+        android:layout_weight="1"/>
+
+    <ImageButton
+        android:src="@drawable/set"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/zip_dir_set"
+        android:duplicateParentState="true"
+        android:scaleType="fitXY"/>
+
+</LinearLayout>

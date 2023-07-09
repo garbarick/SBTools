@@ -4,33 +4,46 @@ import android.app.*;
 import android.os.*;
 import android.view.*;
 import android.widget.*;
-import java.io.*;
+import java.util.*;
 import ru.net.serbis.tools.*;
-import ru.net.serbis.tools.tool.*;
-import ru.net.serbis.tools.task.*;
+import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
+import ru.net.serbis.tools.dialog.*;
+import ru.net.serbis.tools.task.*;
+import ru.net.serbis.tools.tool.*;
 
 public class Main extends Activity implements View.OnClickListener, TaskCallback
 {
+    private LinearLayout main;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
-        initButtons();
+        main = UITool.findView(this, R.id.main);
+        ToolsAdapter adapter = new ToolsAdapter(this, main);
+        initButtons(adapter.getButtonIds());
     }
 
-    private void initButtons()
+    private void initButtons(List<Integer> ids)
     {
-        Button button = UITool.findView(this, R.id.zip_dir);
+        for (int id : ids)
+        {
+            initButton(id);
+        }
+    }
+
+    private void initButton(int id)
+    {
+        View button = UITool.findView(this, id);
         button.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view)
     {
-        if (!UITool.isEnabled(this, R.id.buttons))
+        if (!main.isEnabled())
         {
             return;
         }
@@ -39,15 +52,21 @@ public class Main extends Activity implements View.OnClickListener, TaskCallback
             case R.id.zip_dir:
                 zipDir();
                 break;
+
+            case R.id.zip_dir_set:
+                new ParamsDialog(this, R.string.zip_dir_set_title, Params.ZIP_DIR_PARAMS);
+                break;
+
+            case R.id.sys_drawables:
+                new SysDrawables(this);
+                break;
         }
     }
 
     private void zipDir()
     {
-        UITool.disable(this, R.id.buttons);
-        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-        File file = new File(dir, dir.getName() + ".zip");
-        new ZipTask(this, this).execute(dir, file);
+        main.setEnabled(false);
+        new ZipTask(this, this).execute();
     }
 
     @Override
@@ -64,6 +83,6 @@ public class Main extends Activity implements View.OnClickListener, TaskCallback
         {
             UITool.toast(this, error);
         }
-        UITool.enable(this, R.id.buttons);
+        main.setEnabled(true);
     }
 }

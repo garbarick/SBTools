@@ -3,23 +3,14 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	android:id="@+id/main">
 
 	<LinearLayout
 		android:orientation="vertical"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_weight="1"
-        android:id="@+id/buttons">
-
-		<Button
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:id="@+id/zip_dir"
-			android:text="@string/zip_dir"
-            android:duplicateParentState="true"/>
-
-	</LinearLayout>
+		android:layout_height="match_parent"
+		android:layout_weight="1"/>
 
 	<ProgressBar
 		android:layout_height="wrap_content"

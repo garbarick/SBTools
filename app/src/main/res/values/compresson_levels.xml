@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="level_0">No compression</string>
+    <string name="level_1">Fastest</string>
+    <string name="level_2">Two</string>
+    <string name="level_3">Three</string>
+    <string name="level_4">Four</string>
+    <string name="level_5">Five</string>
+    <string name="level_6">Normal</string>
+    <string name="level_7">Seven</string>
+    <string name="level_8">Eight</string>
+    <string name="level_9">Five</string>
+</resources>

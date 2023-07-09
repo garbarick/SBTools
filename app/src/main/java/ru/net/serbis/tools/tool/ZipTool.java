@@ -16,13 +16,22 @@ public class ZipTool
     private int current;
     private int all;
     private File temp;
+    private int compression;
+    private boolean deleteSourceFiles;
 
-    public ZipTool(Context context, Progress progress, File dir, File result)
+    public ZipTool(Context context, 
+                   Progress progress,
+                   File dir,
+                   File result,
+                   int compression,
+                   boolean deleteSourceFiles)
     {
         this.context = context;
         this.progress = progress;
         this.dir = dir;
         this.result = result;
+        this.compression = compression;
+        this.deleteSourceFiles = deleteSourceFiles;
     }
 
     public void make() throws Exception
@@ -43,7 +52,10 @@ public class ZipTool
         {
             addFiles(files);
         }
-        clearFiles(files);
+        if (deleteSourceFiles)
+        {
+            clearFiles(files);
+        }
     }
 
     private List<File> getFiles(File dir)
@@ -68,6 +80,7 @@ public class ZipTool
         try
         {
             out = new ZipOutputStream(new FileOutputStream(result));
+            out.setLevel(compression);
             addFiles(files, out);
         }
         finally
@@ -83,6 +96,7 @@ public class ZipTool
         {
             all = getEntriesCount();
             out = new ZipOutputStream(new FileOutputStream(temp));
+            out.setLevel(compression);
             addFiles(out);
             addFiles(files, out);
         }
@@ -91,7 +105,7 @@ public class ZipTool
             IOTool.close(out);
         }
     }
-    
+
     private int getEntriesCount() throws Exception
     {
         int count = 0;
@@ -100,7 +114,7 @@ public class ZipTool
         {
             zip = new ZipFile(result);
             Enumeration<? extends ZipEntry> entries = zip.entries();
-            while(entries.hasMoreElements())
+            while (entries.hasMoreElements())
             {
                 count ++;
                 entries.nextElement();
@@ -112,7 +126,7 @@ public class ZipTool
             IOTool.close(zip);
         }
     }
-    
+
     private void addFiles(ZipOutputStream out) throws Exception
     {
         ZipInputStream in = null;
@@ -120,7 +134,7 @@ public class ZipTool
         {
             in = new ZipInputStream(new FileInputStream(result));
             ZipEntry inEntry = null;
-            while((inEntry = in.getNextEntry()) != null)
+            while ((inEntry = in.getNextEntry()) != null)
             {
                 ZipEntry outEntry = new ZipEntry(inEntry);
                 out.putNextEntry(outEntry);
@@ -142,7 +156,7 @@ public class ZipTool
             return;
         }
         all += files.size();
-        for(File file : files)
+        for (File file : files)
         {
             if (file.isDirectory())
             {
@@ -181,7 +195,7 @@ public class ZipTool
             return;
         }
         all += files.size();
-        for(File file : files)
+        for (File file : files)
         {
             if (file.isDirectory())
             {
