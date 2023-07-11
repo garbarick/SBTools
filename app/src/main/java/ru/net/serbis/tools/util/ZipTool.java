@@ -1,4 +1,4 @@
-package ru.net.serbis.tools.tool;
+package ru.net.serbis.tools.util;
 
 import android.content.*;
 import java.io.*;

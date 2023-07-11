@@ -10,7 +10,8 @@
         android:id="@+id/zip_dir"
         android:text="@string/zip_dir"
         android:duplicateParentState="true"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:textAllCaps="false"/>
 
     <ImageButton
         android:src="@drawable/set"

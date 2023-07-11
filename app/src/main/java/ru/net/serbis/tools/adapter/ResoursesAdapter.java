@@ -7,7 +7,7 @@ import android.widget.*;
 import java.lang.reflect.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.tool.*;
+import ru.net.serbis.tools.util.*;
 
 public class ResoursesAdapter extends ArrayAdapter<Resource>
 {

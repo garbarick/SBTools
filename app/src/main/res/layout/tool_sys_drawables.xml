@@ -9,6 +9,7 @@
         android:layout_height="60dp"
         android:id="@+id/sys_drawables"
         android:text="@string/sys_drawables"
-        android:duplicateParentState="true"/>
+        android:duplicateParentState="true"
+        android:textAllCaps="false"/>
     
 </LinearLayout>

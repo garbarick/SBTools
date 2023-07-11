@@ -4,7 +4,7 @@ import android.app.*;
 import java.lang.reflect.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
-import ru.net.serbis.tools.tool.*;
+import ru.net.serbis.tools.util.*;
 
 public class App extends Application
 {

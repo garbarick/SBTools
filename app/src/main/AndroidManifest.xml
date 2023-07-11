@@ -4,6 +4,7 @@
     package="ru.net.serbis.tools" >
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="ru.net.serbis.share.BIND_FILES_SERVICE"/>
 
     <application
         android:name=".App"

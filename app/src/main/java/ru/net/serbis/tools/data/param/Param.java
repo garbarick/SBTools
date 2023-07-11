@@ -5,7 +5,7 @@ import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.tool.*;
+import ru.net.serbis.tools.util.*;
 
 public abstract class Param<T, V extends View>
 {

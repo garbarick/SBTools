@@ -6,7 +6,7 @@ import android.widget.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.tool.*;
+import ru.net.serbis.tools.util.*;
 
 public class SysDrawables extends AlertDialog.Builder implements DialogInterface.OnClickListener
 {

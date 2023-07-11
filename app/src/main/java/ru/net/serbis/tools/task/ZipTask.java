@@ -5,7 +5,7 @@ import android.os.*;
 import java.io.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.tool.*;
+import ru.net.serbis.tools.util.*;
 import ru.net.serbis.tools.adapter.*;
 
 public class ZipTask extends AsyncTask<Void, Integer, Boolean> implements Progress

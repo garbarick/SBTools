@@ -6,7 +6,7 @@ import android.widget.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.param.*;
-import ru.net.serbis.tools.tool.*;
+import ru.net.serbis.tools.util.*;
 
 public class ParamsAdapter
 {
