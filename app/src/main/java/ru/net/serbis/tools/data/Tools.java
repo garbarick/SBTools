@@ -8,4 +8,5 @@ public interface Tools
     Tool ZIP_DIR = new ZipDir();
     Tool SYS_DRAWABLES = new SysDrawablesTool();
     Tool CHECK_PERMISSIONS = new CheckPermissions();
+    Tool UNCAUGHT_EXCEPTION = new UncaughtException();
 }

@@ -5,6 +5,7 @@ import java.lang.reflect.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.util.*;
+import ru.net.serbis.tools.tool.*;
 
 public class App extends Application
 {
@@ -15,6 +16,8 @@ public class App extends Application
 
         initCompression();
         initParams();
+
+        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(getApplicationContext()));
     }
 
     private void initCompression()

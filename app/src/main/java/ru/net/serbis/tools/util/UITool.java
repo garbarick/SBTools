@@ -82,4 +82,13 @@ public class UITool
         Double percent = 100.0 / max * cur;
         return percent.intValue();
     }
+
+    public static void initButtons(Activity context, View.OnClickListener tool, int ... ids)
+    {
+        for (int id : ids)
+        {
+            View button = UITool.findView(context, id);
+            button.setOnClickListener(tool);
+        }
+    }
 }

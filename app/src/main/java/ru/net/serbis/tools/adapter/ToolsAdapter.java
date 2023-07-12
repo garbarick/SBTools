@@ -44,16 +44,7 @@ public class ToolsAdapter
             tool.setContext(context);
             tool.setMain(main);
             main.addView(view, index);
-            initButtons(context, tool);
-        }
-    }
-
-    public void initButtons(Activity context, Tool tool)
-    {
-        for (int id : tool.getButtonIds())
-        {
-            View button = UITool.findView(context, id);
-            button.setOnClickListener(tool);
+            UITool.initButtons(context, tool, tool.getButtonIds());
         }
     }
 }
