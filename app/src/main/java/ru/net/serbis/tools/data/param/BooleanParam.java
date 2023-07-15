@@ -19,10 +19,10 @@ public class BooleanParam extends Param<Boolean, CheckBox>
     }
 
     @Override
-    public void initViewValue(View parent, Context context)
+    public void initViewValue(View parent)
     {
         CheckBox view = getViewValue(parent);
-        view.setChecked(getValue(context));
+        setValue(view, getValue(context));
     }
 
     @Override
@@ -38,7 +38,13 @@ public class BooleanParam extends Param<Boolean, CheckBox>
     }
 
     @Override
-    protected Boolean getValue(CheckBox view)
+    public void setValue(CheckBox view, Boolean value)
+    {
+        view.setChecked(value);
+    }
+
+    @Override
+    public Boolean getValue(CheckBox view)
     {
         return view.isChecked();
     }

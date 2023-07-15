@@ -27,7 +27,7 @@ public class ZipDir extends Tool implements TaskCallback
                 break;
 
             case R.id.zip_dir_set:
-                new ParamsDialog(context, R.string.zip_dir_set_title, Params.ZIP_DIR_PARAMS);
+                new ParamsDialog(context, R.string.zip_dir_set, Params.ZIP_DIR_PARAMS);
                 break;
         }
     }

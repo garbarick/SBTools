@@ -8,27 +8,29 @@ import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.util.*;
 
-public class SysDrawables extends AlertDialog.Builder implements DialogInterface.OnClickListener
+public abstract class ResoursesDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener
 {
     private ListView list;
     private ResoursesAdapter adapter;
 
-    public SysDrawables(Context context)
+    public ResoursesDialog(Context context, int title)
     {
         super(context);
 
-        setTitle(R.string.sys_drawables);
+        setTitle(title);
         list = new ListView(context);
         list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        adapter = new ResoursesAdapter(context);
+        adapter = createAdapter();
         list.setAdapter(adapter);
         setView(list);
         
-        setPositiveButton(android.R.string.ok, this);
+        setPositiveButton(android.R.string.copy, this);
         setNegativeButton(android.R.string.cancel, this);
 
         show();
     }
+
+    protected abstract ResoursesAdapter createAdapter();
 
     @Override
     public void onClick(DialogInterface dialog, int id)
@@ -47,9 +49,9 @@ public class SysDrawables extends AlertDialog.Builder implements DialogInterface
         if (selected > -1)
         {
             Resource resource = adapter.getItem(selected);
-            SysTool.setClipBoard(getContext(), R.string.resource_clip_label, resource.getName());
+            SysTool.setClipBoard(getContext(), R.string.resource_clip_label, resource.getName(getContext()));
             String message = getContext().getResources().getString(R.string.copied_to_clipboard);
-            UITool.toast(getContext(), String.format(message, resource.getName()));
+            UITool.toast(getContext(), String.format(message, resource.getName(getContext())));
         }
     }
 }

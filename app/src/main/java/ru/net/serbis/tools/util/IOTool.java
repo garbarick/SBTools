@@ -1,5 +1,6 @@
 package ru.net.serbis.tools.util;
 
+import android.os.*;
 import java.io.*;
 
 public class IOTool
@@ -40,5 +41,25 @@ public class IOTool
                 close(os);
             }
         }
+    }
+
+    public static File getDownloadFile()
+    {
+        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+    }
+
+    public static String getDownloadPath()
+    {
+        return getDownloadFile().getAbsolutePath();
+    }
+
+    public static File getDownloadFile(String path)
+    {
+        return new File(getDownloadFile(), path);
+    }
+    
+    public static String getDownloadPath(String path)
+    {
+        return getDownloadFile(path).getAbsolutePath();
     }
 }

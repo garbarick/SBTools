@@ -1,6 +1,7 @@
 package ru.net.serbis.tools.tool;
 
 import android.app.*;
+import android.content.*;
 import android.view.*;
 import android.widget.*;
 
@@ -61,5 +62,9 @@ public abstract class Tool implements View.OnClickListener
         }
     }
 
-    protected abstract void onClick(int id)
+    protected abstract void onClick(int id);
+    
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+    }
 }

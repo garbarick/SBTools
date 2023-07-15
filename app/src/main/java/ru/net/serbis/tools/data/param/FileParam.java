@@ -1,36 +1,32 @@
 package ru.net.serbis.tools.data.param;
 
-import android.content.*;
 import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.dialog.*;
 
-public class FolderParam extends TextParam<TextView>
+public class FileParam extends TextViewParam
 {
-    public FolderParam(int nameId, String defaultValue)
+    private boolean onlyFolder;
+
+    public FileParam(int nameId, String defaultValue, boolean onlyFolder)
     {
         super(nameId, defaultValue);
+        this.onlyFolder = onlyFolder;
     }
 
     @Override
-    public int getLayoutId()
-    {
-        return R.layout.param_text;
-    }
-
-    @Override
-    public void initViewValue(View parent, final Context context)
+    public void initViewValue(View parent)
     {
         final TextView view = getViewValue(parent);
-        view.setText(getValue(context));
+        setValue(view, getValue(context));
         view.setOnClickListener(
             new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
-                    new FileChooser(context, R.string.choose_dir, true)
+                    new FileChooser(context, R.string.choose_dir, onlyFolder)
                     {
                         @Override
                         public void onChoose(String path)
@@ -41,11 +37,5 @@ public class FolderParam extends TextParam<TextView>
                 }
             }
         );
-    }
-
-    @Override
-    protected String getValue(TextView view)
-    {
-        return view.getText().toString();
     }
 }

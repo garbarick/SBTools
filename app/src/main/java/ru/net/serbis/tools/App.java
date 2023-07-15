@@ -2,13 +2,17 @@ package ru.net.serbis.tools;
 
 import android.app.*;
 import java.lang.reflect.*;
+import ru.net.serbis.tools.connection.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.tools.extension.share.*;
 import ru.net.serbis.tools.tool.*;
+import ru.net.serbis.tools.util.*;
 
 public class App extends Application
 {
+    private ExtConnection shareConnection = new ShareConnection(this);
+
     @Override
     public void onCreate()
     {
@@ -16,6 +20,7 @@ public class App extends Application
 
         initCompression();
         initParams();
+        shareConnection.bind();
 
         Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(getApplicationContext()));
     }
@@ -46,4 +51,17 @@ public class App extends Application
             }
         }
     }
+    
+    @Override
+    public void onTerminate()
+    {
+        super.onTerminate();
+        shareConnection.unBind();
+    }
+
+    public ExtConnection getShareConnection()
+    {
+        shareConnection.bind();
+        return shareConnection;
+	}
 }

@@ -19,14 +19,20 @@ public class EditTextParam extends TextParam<EditText>
     }
 
     @Override
-    public void initViewValue(View parent, Context context)
+    public void initViewValue(View parent)
     {
         EditText view = getViewValue(parent);
-        view.setText(getValue(context));
+        setValue(view, getValue(context));
     }
 
     @Override
-    protected String getValue(EditText view)
+    public void setValue(EditText view, String value)
+    {
+        view.setText(value);
+    }
+
+    @Override
+    public String getValue(EditText view)
     {
         return view.getText().toString();
     }

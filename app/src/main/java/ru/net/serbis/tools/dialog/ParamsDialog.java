@@ -10,11 +10,13 @@ import android.widget.*;
 
 public class ParamsDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener
 {
+    private Activity context;
     private ParamsAdapter adapter;
 
-    public ParamsDialog(Context context, int titleId, Param[] params)
+    public ParamsDialog(Activity context, int titleId, Param[] params)
     {
         super(context);
+        this.context = context;
 
         setTitle(titleId);
 
@@ -23,6 +25,7 @@ public class ParamsDialog extends AlertDialog.Builder implements DialogInterface
         setView(view);
 
         setPositiveButton(android.R.string.ok, this);
+        setNeutralButton(R.string.reset, this);
         setNegativeButton(android.R.string.cancel, this);
 
         show();
@@ -36,6 +39,14 @@ public class ParamsDialog extends AlertDialog.Builder implements DialogInterface
             case Dialog.BUTTON_POSITIVE:
                 adapter.saveValues();
                 break;
+            case Dialog.BUTTON_NEUTRAL:
+                adapter.reset();
+                break;
         }
+    }
+
+    public void updateValue(Param param, Object value)
+    {
+        adapter.updateValue(param, value);
     }
 }

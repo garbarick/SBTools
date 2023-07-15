@@ -9,8 +9,8 @@
 	<Button
 		android:layout_width="match_parent"
 		android:layout_height="60dp"
-		android:id="@+id/sys_drawables"
-		android:text="@string/sys_drawables"
+		android:id="@+id/sys_strings"
+		android:text="@string/sys_strings"
 		android:duplicateParentState="true"
 		android:textAllCaps="false"
 		android:layout_weight="1"/>
@@ -19,7 +19,7 @@
 		android:src="@android:drawable/ic_menu_preferences"
 		android:layout_width="60dp"
 		android:layout_height="60dp"
-		android:id="@+id/sys_drawables_set"
+		android:id="@+id/sys_strings_set"
 		android:duplicateParentState="true"
 		android:scaleType="fitXY"/>
 

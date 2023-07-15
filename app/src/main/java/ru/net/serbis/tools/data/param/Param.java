@@ -1,5 +1,6 @@
 package ru.net.serbis.tools.data.param;
 
+import android.app.*;
 import android.content.*;
 import android.view.*;
 import android.widget.*;
@@ -12,6 +13,7 @@ public abstract class Param<T, V extends View>
     protected String name;
     private int nameId;
     protected T defaultValue;
+    protected Activity context;
 
     public Param(int nameId, T defaultValue)
     {
@@ -32,9 +34,9 @@ public abstract class Param<T, V extends View>
         view.setText(name);
     }
 
-    public abstract void initViewValue(View parent, Context context);
+    public abstract void initViewValue(View parent);
 
-    protected V getViewValue(View parent)
+    public V getViewValue(View parent)
     {
         return UITool.findView(parent, R.id.value);
     }
@@ -49,10 +51,11 @@ public abstract class Param<T, V extends View>
         return getPreferences(context).edit();
     }
 
-    public void saveValue(Context context, T value)
+    public void saveValue(T value)
     {
         SharedPreferences.Editor editor = getPreferencesEditor(context);
-        editor.putString(name, typeToString(value));
+        String data = value == null ? null : typeToString(value);
+        editor.putString(name, data);
         editor.commit();
     }
 
@@ -65,12 +68,17 @@ public abstract class Param<T, V extends View>
 
     public abstract T stringToType(String value);
 
-    public void saveValue(Context context, View parent)
+    public void saveViewValue(V view)
     {
-        V view = getViewValue(parent);
         T value = getValue(view);
-        saveValue(context, value);
+        saveValue(value);
     }
 
-    protected abstract T getValue(V view);
+    public abstract void setValue(V view, T value);
+    public abstract T getValue(V view);
+
+    public void setContext(Activity context)
+    {
+        this.context = context;
+    }
 }

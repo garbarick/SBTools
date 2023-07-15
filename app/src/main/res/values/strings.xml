@@ -2,11 +2,16 @@
 <resources>
     <string name="app">SBTools</string>
     <string name="zip_dir">Zip directory</string>
-    <string name="zip_dir_set_title">Zip directory settings</string>
+    <string name="zip_dir_set">Settings for ziping directory</string>
     <string name="sys_drawables">System drawables</string>
+    <string name="sys_drawables_set">Settings for system drawables</string>
     <string name="check_permissions">Check permissions</string>
     <string name="permissions">Permissions</string>
-    <string name="uncaught_exception">Uncaught Exception</string>
+    <string name="uncaught_exception">Uncaught exception</string>
+    <string name="move_file_to_share">Move file to share</string>
+    <string name="move_file_to_share_set">Settings for moving file to share</string>
+    <string name="sys_strings">System strings</string>
+    <string name="sys_strings_set">Settings for system strings</string>
 
     <string name="error_file_is_not_found">File is not found</string>
     <string name="error_no_files">There are no files</string>
@@ -18,5 +23,9 @@
     <string name="choose_dir">Choose directory</string>
     <string name="delete_source_files">Delete source files</string>
     <string name="resource_clip_label">Resource clip label</string>
-    <string name="copied_to_clipboard">Copied %s to clipboard</string>
+    <string name="copied_to_clipboard">Copied \&apos;%s\&apos; to clipboard</string>
+    <string name="type">Type</string>
+    <string name="file">File</string>
+    <string name="share_dir">Share Directory</string>
+    <string name="reset">Reset</string>
 </resources>

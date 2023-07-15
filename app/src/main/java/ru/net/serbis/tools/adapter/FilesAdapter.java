@@ -16,14 +16,27 @@ public class FilesAdapter extends ArrayAdapter<File> implements AdapterView.OnIt
 
     public FilesAdapter(Context context, FileChooser chooser, boolean onlyFolder)
     {
-        super(context, android.R.layout.simple_list_item_1, android.R.id.text1);
+        super(context, android.R.layout.simple_list_item_activated_1, android.R.id.text1);
         this.chooser = chooser;
         this.onlyFolder = onlyFolder;
     }
 
-    public File getFolder()
+    public File getSelected()
     {
-        return folder;
+        if (onlyFolder)
+        {
+            return folder;
+        }
+        int selected = chooser.getList().getCheckedItemPosition();
+        if (selected > -1)
+        {
+            File file = getItem(selected);
+            if (file.isFile())
+            {
+                return file;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -57,6 +70,7 @@ public class FilesAdapter extends ArrayAdapter<File> implements AdapterView.OnIt
         addAll(result);
         setNotifyOnChange(true);
         notifyDataSetChanged();
+        chooser.getList().setItemChecked(0, true);
 	}
 
     private File[] getFiles()

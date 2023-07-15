@@ -1,6 +1,7 @@
 package ru.net.serbis.tools.adapter;
 
 import android.app.*;
+import android.content.*;
 import android.view.*;
 import android.widget.*;
 import java.lang.reflect.*;
@@ -45,6 +46,14 @@ public class ToolsAdapter
             tool.setMain(main);
             main.addView(view, index);
             UITool.initButtons(context, tool, tool.getButtonIds());
+        }
+    }
+    
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        for (Tool tool : tools)
+        {
+            tool.onActivityResult(requestCode, resultCode, data);
         }
     }
 }

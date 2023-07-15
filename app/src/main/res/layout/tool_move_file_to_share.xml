@@ -7,8 +7,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:id="@+id/zip_dir"
-        android:text="@string/zip_dir"
+        android:id="@+id/move_file_to_share"
+        android:text="@string/move_file_to_share"
         android:duplicateParentState="true"
         android:layout_weight="1"
         android:textAllCaps="false"/>
@@ -17,7 +17,7 @@
         android:src="@android:drawable/ic_menu_preferences"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:id="@+id/zip_dir_set"
+        android:id="@+id/move_file_to_share_set"
         android:duplicateParentState="true"
         android:scaleType="fitXY"/>
 
