@@ -11,4 +11,5 @@ public interface Tools
     Tool CHECK_PERMISSIONS = new CheckPermissions();
     Tool UNCAUGHT_EXCEPTION = new UncaughtException();
     Tool MOVE_FILE_TO_SHARE = new MoveFileToShare();
+    Tool SYS_XML = new SystemXml();
 }

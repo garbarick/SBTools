@@ -12,6 +12,8 @@
     <string name="move_file_to_share_set">Settings for moving file to share</string>
     <string name="sys_strings">System strings</string>
     <string name="sys_strings_set">Settings for system strings</string>
+    <string name="sys_xml">System XML</string>
+    <string name="sys_xml_set">Settings for system XML</string>
 
     <string name="error_file_is_not_found">File is not found</string>
     <string name="error_no_files">There are no files</string>
@@ -23,9 +25,10 @@
     <string name="choose_dir">Choose directory</string>
     <string name="delete_source_files">Delete source files</string>
     <string name="resource_clip_label">Resource clip label</string>
-    <string name="copied_to_clipboard">Copied \&apos;%s\&apos; to clipboard</string>
     <string name="type">Type</string>
     <string name="file">File</string>
     <string name="share_dir">Share Directory</string>
     <string name="reset">Reset</string>
+    <string name="view">View</string>
+    <string name="formatter">Formatter</string>
 </resources>

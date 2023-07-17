@@ -3,12 +3,13 @@ package ru.net.serbis.tools.tool;
 import android.app.*;
 import android.content.*;
 import android.widget.*;
+import java.io.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.dialog.*;
 import ru.net.serbis.tools.extension.share.*;
-import ru.net.serbis.tools.util.*;
 import ru.net.serbis.tools.task.*;
+import ru.net.serbis.tools.util.*;
 
 public class MoveFileToShare extends Tool implements TaskCallback
 {
@@ -55,7 +56,12 @@ public class MoveFileToShare extends Tool implements TaskCallback
     @Override
     public void onResult(boolean result, TaskError error)
     {
-        if (!result)
+        if (result)
+        {
+            String filePath = Params.FILE.getValue(context);
+            new File(filePath).delete();
+        }
+        else
         {
             UITool.toast(context, error);
         }

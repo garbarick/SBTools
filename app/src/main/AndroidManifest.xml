@@ -27,6 +27,10 @@
             android:name=".activity.ExceptionReport"
             android:label="@string/uncaught_exception" >
         </activity>
+
+        <activity
+            android:name=".activity.ViewXml">
+        </activity>
     </application>
 
 </manifest>

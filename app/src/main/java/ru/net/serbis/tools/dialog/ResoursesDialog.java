@@ -10,8 +10,9 @@ import ru.net.serbis.tools.util.*;
 
 public abstract class ResoursesDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener
 {
-    private ListView list;
-    private ResoursesAdapter adapter;
+    protected ListView list;
+    protected ResoursesAdapter adapter;
+    protected AlertDialog dialog;
 
     public ResoursesDialog(Context context, int title)
     {
@@ -23,11 +24,14 @@ public abstract class ResoursesDialog extends AlertDialog.Builder implements Dia
         adapter = createAdapter();
         list.setAdapter(adapter);
         setView(list);
-        
+        initButtons();
+        dialog = show();
+    }
+
+    protected void initButtons()
+    {
         setPositiveButton(android.R.string.copy, this);
         setNegativeButton(android.R.string.cancel, this);
-
-        show();
     }
 
     protected abstract ResoursesAdapter createAdapter();
@@ -40,18 +44,30 @@ public abstract class ResoursesDialog extends AlertDialog.Builder implements Dia
             case Dialog.BUTTON_POSITIVE:
                 positive();
                 break;
+            case Dialog.BUTTON_NEGATIVE:
+                negative();
+                break;
+            case Dialog.BUTTON_NEUTRAL:
+                neutral();
+                break;
         }
     }
 
-    private void positive()
+    protected void positive()
     {
         int selected = list.getCheckedItemPosition();
         if (selected > -1)
         {
             Resource resource = adapter.getItem(selected);
             SysTool.setClipBoard(getContext(), R.string.resource_clip_label, resource.getName(getContext()));
-            String message = getContext().getResources().getString(R.string.copied_to_clipboard);
-            UITool.toast(getContext(), String.format(message, resource.getName(getContext())));
         }
+    }
+
+    protected void negative()
+    {
+    }
+
+    protected void neutral()
+    {
     }
 }

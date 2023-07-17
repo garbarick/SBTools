@@ -5,7 +5,7 @@ import java.io.*;
 
 public class IOTool
 {
-    public static void close(Closeable o)
+    public static void close(Object o)
     {
         try
         {
@@ -13,7 +13,14 @@ public class IOTool
             {
                 return;
             }
-            o.close();
+            if (o instanceof Closeable)
+            {
+                ((Closeable)o).close();
+            }
+            else if (o instanceof AutoCloseable)
+            {
+                ((AutoCloseable)o).close();
+            }
         }
         catch (Exception e)
         {}
@@ -40,6 +47,18 @@ public class IOTool
             {
                 close(os);
             }
+        }
+    }
+    
+    public static void copyQuietly(InputStream is, OutputStream os, boolean closeIn, boolean closeOut)
+    {
+        try
+        {
+            copy(is, os, closeIn, closeOut);
+        }
+        catch (Exception e)
+        {
+            Log.error(new IOTool(), e);
         }
     }
 

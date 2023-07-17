@@ -1,8 +1,9 @@
 package ru.net.serbis.tools.data;
 
 import android.content.*;
+import java.io.*;
 
-public class Resource
+public class Resource implements Serializable
 {
     private String name;
     private int id;
