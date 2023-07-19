@@ -14,9 +14,9 @@ public class XmlDialog extends ResoursesDialog implements View.OnClickListener
 {
     private Button neutralButton;
 
-    public XmlDialog(Context context)
+    public XmlDialog(Context context, int layoutId)
     {
-        super(context, R.string.sys_xml);
+        super(context, layoutId);
 
         neutralButton = dialog.getButton(Dialog.BUTTON_NEUTRAL);
         neutralButton.setOnClickListener(this);

@@ -3,7 +3,7 @@ package ru.net.serbis.tools.data;
 import android.content.*;
 import java.io.*;
 
-public class Resource implements Serializable
+public class Resource implements Serializable, Comparable<Resource>
 {
     private String name;
     private int id;
@@ -38,6 +38,11 @@ public class Resource implements Serializable
     
     private String getXmlName()
     {
+        String name = this.name;
+        if (ResType.STYLE.equals(type))
+        {
+            name = name.replace("_", ".");
+        }
         return "@android:" + type.getValue() + "/" + name;
     }
     
@@ -51,5 +56,21 @@ public class Resource implements Serializable
                 return getXmlName();
         }
         return "";
+    }
+    
+    @Override
+    public int compareTo(Resource that)
+    {
+        return Integer.compare(id, that.id);
+    }
+
+    @Override
+    public boolean equals(Object that)
+    {
+        if (that instanceof Resource)
+        {
+            return id == ((Resource)that).id ;
+        }
+        return super.equals(that);
     }
 }

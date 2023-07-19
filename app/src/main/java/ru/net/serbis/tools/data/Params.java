@@ -39,4 +39,12 @@ public interface Params
         VIEW_TYPE,
         XML_FORMAT
     };
+
+    Param[] SYS_COLORS_PARAMS = new Param[]{
+        VIEW_TYPE
+    };
+
+    Param[] SYS_THEMES_PARAMS = new Param[]{
+        VIEW_TYPE
+    };
 }

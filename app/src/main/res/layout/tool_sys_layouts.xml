@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:duplicateParentState="true">
+
+	<Button
+		android:layout_width="match_parent"
+		android:layout_height="60dp"
+		android:id="@+id/sys_layouts"
+		android:text="@string/sys_layouts"
+		android:duplicateParentState="true"
+		android:textAllCaps="false"
+		android:layout_weight="1"/>
+
+	<ImageButton
+		android:src="@android:drawable/ic_menu_preferences"
+		android:layout_width="60dp"
+		android:layout_height="60dp"
+		android:id="@+id/sys_layouts_set"
+		android:duplicateParentState="true"
+		android:scaleType="fitXY"/>
+
+</LinearLayout>
+

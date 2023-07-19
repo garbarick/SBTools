@@ -12,8 +12,13 @@
     <string name="move_file_to_share_set">Settings for moving file to share</string>
     <string name="sys_strings">System strings</string>
     <string name="sys_strings_set">Settings for system strings</string>
-    <string name="sys_xml">System XML</string>
-    <string name="sys_xml_set">Settings for system XML</string>
+    <string name="sys_layouts">System layouts</string>
+    <string name="sys_layouts_set">Settings for system layouts</string>
+    <string name="sys_colors">System colors</string>
+    <string name="sys_colors_set">Settings for system colors</string>
+    <string name="sys_resources">System resources</string>
+    <string name="sys_themes">System themes</string>
+    <string name="sys_themes_set">Settings for system themes</string>
 
     <string name="error_file_is_not_found">File is not found</string>
     <string name="error_no_files">There are no files</string>

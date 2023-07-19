@@ -1,7 +1,7 @@
 package ru.net.serbis.tools.adapter;
 
 import android.content.*;
-import android.content.res.*;
+import android.graphics.*;
 import android.view.*;
 import android.widget.*;
 import java.lang.reflect.*;
@@ -14,6 +14,7 @@ public abstract class ResoursesAdapter extends ArrayAdapter<Resource>
     private Class sysClass;
     private ResType type;
     private int rowLayout;
+    private int selected = -1;
     
     public ResoursesAdapter(Context context, Class sysClass, ResType type, int rowLayout)
     {
@@ -24,14 +25,18 @@ public abstract class ResoursesAdapter extends ArrayAdapter<Resource>
         init();
     }
 
-    private void init()
+    public void setSelection(int position)
     {
-        Resources res = Resources.getSystem();
+        selected = position;
+    }
+
+    protected void init()
+    {
         for (Field field : sysClass.getFields())
         {
             try
             {
-                int id = res.getIdentifier(field.getName(), type.getValue(), "android");
+                int id = field.get(null);
                 add(new Resource(field.getName(), id, type));
             }
             catch (Exception e)
@@ -44,18 +49,20 @@ public abstract class ResoursesAdapter extends ArrayAdapter<Resource>
     @Override
     public View getView(int position, View view, ViewGroup parent)
     {
-       if (view == null)
-       {
-           view = LayoutInflater.from(getContext()).inflate(rowLayout, parent, false);
-       }
+       view = LayoutInflater.from(getContext()).inflate(rowLayout, parent, false);
        Resource resource = getItem(position);
-       initView(view, resource);
+       initView(view, resource, position);
        return view;
     }
 
-    protected void initView(View view, Resource resource)
+    protected void initView(View view, Resource resource, int position)
     {
         TextView name = UITool.findView(view, R.id.name);
         name.setText(resource.getName(getContext()));
+        if (selected == position)
+        {
+            name.setTextColor(Color.BLACK);
+            view.setBackgroundColor(Color.CYAN);
+        }
     }
 }

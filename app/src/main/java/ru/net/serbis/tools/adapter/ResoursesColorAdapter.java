@@ -7,18 +7,19 @@ import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.util.*;
 
-public class ResoursesStringAdapter extends ResoursesAdapter
+public class ResoursesColorAdapter extends ResoursesAdapter
 {
-    public ResoursesStringAdapter(Context context)
+    public ResoursesColorAdapter(Context context)
     {
-        super(context, android.R.string.class, ResType.STRING, R.layout.resource_string);
+        super(context, android.R.color.class, ResType.COLOR, R.layout.resource_img);
     }
 
     @Override
     protected void initView(View view, Resource resource, int position)
     {
         super.initView(view, resource, position);
-        TextView value = UITool.findView(view, R.id.value);
-        value.setText(resource.getId());
+        ImageView img = UITool.findView(view, R.id.img);
+        int color = getContext().getResources().getColor(resource.getId());
+        img.setBackgroundColor(color);
     }
 }

@@ -17,15 +17,36 @@ public abstract class ResoursesDialog extends AlertDialog.Builder implements Dia
     public ResoursesDialog(Context context, int title)
     {
         super(context);
+        init(context, title, null);
+    }
 
+    public ResoursesDialog(Context context, int title, int theme, Resource resource)
+    {
+        super(context, theme);
+        init(context, title, resource);
+    }
+
+    protected void init(Context context, int title, Resource resource)
+    {
         setTitle(title);
+        initList(context, resource);
+        setView(list);
+        initButtons();
+        dialog = show();
+    }
+
+    protected void initList(Context context, Resource resource)
+    {
         list = new ListView(context);
         list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         adapter = createAdapter();
         list.setAdapter(adapter);
-        setView(list);
-        initButtons();
-        dialog = show();
+        if (resource != null)
+        {
+            int position = adapter.getPosition(resource);
+            list.setSelection(position);
+            adapter.setSelection(position);
+        }
     }
 
     protected void initButtons()

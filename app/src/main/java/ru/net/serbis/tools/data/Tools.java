@@ -11,5 +11,24 @@ public interface Tools
     Tool CHECK_PERMISSIONS = new CheckPermissions();
     Tool UNCAUGHT_EXCEPTION = new UncaughtException();
     Tool MOVE_FILE_TO_SHARE = new MoveFileToShare();
-    Tool SYS_XML = new SystemXml();
+    Tool SYS_LAYOUTS = new SysLayouts();
+    Tool SYS_COLORS = new SysColors();
+    Tool SYS_RESOURCES = new SysResources();
+    Tool SYS_THEMES = new SysThemes();
+
+    Tool[] MAIN_TOOLS = new Tool[]{
+        ZIP_DIR,
+        MOVE_FILE_TO_SHARE,
+        CHECK_PERMISSIONS,
+        UNCAUGHT_EXCEPTION,
+        SYS_RESOURCES
+    };
+    
+    Tool[] SYS_RESOURCES_TOOLS = new Tool[]{
+        SYS_DRAWABLES,
+        SYS_STRINGS,
+        SYS_LAYOUTS,
+        SYS_COLORS,
+        SYS_THEMES
+    };
 }

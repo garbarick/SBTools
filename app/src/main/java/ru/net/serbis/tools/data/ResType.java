@@ -4,7 +4,9 @@ public enum ResType
 {
     STRING,
     DRAWABLE,
-    LAYOUT;
+    LAYOUT,
+    COLOR,
+    STYLE;
     
     public String getValue()
     {

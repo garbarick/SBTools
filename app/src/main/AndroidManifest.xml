@@ -16,7 +16,7 @@
 
         <activity
             android:name=".activity.Main"
-            android:label="@string/app" >
+            android:label="@string/app">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -25,12 +25,18 @@
 
         <activity
             android:name=".activity.ExceptionReport"
-            android:label="@string/uncaught_exception" >
+            android:label="@string/uncaught_exception">
         </activity>
 
         <activity
             android:name=".activity.ViewXml">
         </activity>
+
+        <activity
+            android:name=".activity.SysResourcesActivity"
+            android:label="@string/sys_resources">
+        </activity>
+
     </application>
 
 </manifest>
