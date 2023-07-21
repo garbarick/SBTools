@@ -8,12 +8,14 @@ import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.dialog.*;
 import ru.net.serbis.tools.extension.share.*;
+import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.task.*;
 import ru.net.serbis.tools.util.*;
 
 public class MoveFileToShare extends Tool implements TaskCallback
 {
-    ParamsDialog dialog;
+    private ParamsDialog dialog;
+    private NotificationProgress notification;
 
     public MoveFileToShare()
     {
@@ -41,6 +43,7 @@ public class MoveFileToShare extends Tool implements TaskCallback
     private void moveFileToShare()
     {
         disable();
+        notification = new NotificationProgress(context, R.string.move_file_to_share);
         String filePath = Params.FILE.getValue(context);
         String shareDir = Params.SHARE_DIR.getValue(context);
         new ShareTools(context).uploadFile(filePath, shareDir, this);
@@ -49,6 +52,7 @@ public class MoveFileToShare extends Tool implements TaskCallback
     @Override
     public void progress(int value)
     {
+        notification.setProgress(value);
         ProgressBar bar = UITool.findView(context, R.id.progress);
         bar.setProgress(value);
     }
@@ -65,6 +69,7 @@ public class MoveFileToShare extends Tool implements TaskCallback
         {
             UITool.toast(context, error);
         }
+        notification.cancel();
         enable();
     }
 

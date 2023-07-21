@@ -3,45 +3,37 @@ package ru.net.serbis.tools.tool;
 import android.widget.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.dialog.*;
 import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.task.*;
 import ru.net.serbis.tools.util.*;
 
-public class ZipDir extends Tool implements TaskCallback
+public class ProgressInNotification extends Tool implements TaskCallback
 {
     private NotificationProgress notification;
 
-    public ZipDir()
+    public ProgressInNotification()
     {
-        super(
-            R.layout.tool_zip_dir,
-            R.id.zip_dir,
-            R.id.zip_dir_set);
+        super(R.layout.tool_progress_in_notification, R.id.progress_in_notification);
     }
 
     @Override
-    public void onClick(int id)
+    protected void onClick(int id)
     {
         switch (id)
         {
-            case R.id.zip_dir:
-                zipDir();
-                break;
-
-            case R.id.zip_dir_set:
-                new ParamsDialog(context, R.string.zip_dir_set, Params.ZIP_DIR_PARAMS);
+            case R.id.progress_in_notification:
+                makeProgress();
                 break;
         }
     }
-    
-    private void zipDir()
+
+    private void makeProgress()
     {
         disable();
-        notification = new NotificationProgress(context, R.string.zip_dir);
-        new ZipTask(context, this).execute();
+        notification = new NotificationProgress(context, R.string.in_progress);
+        new ProgressTask(context, this).execute(1000, 10);
     }
-    
+
     @Override
     public void progress(int value)
     {
@@ -53,10 +45,6 @@ public class ZipDir extends Tool implements TaskCallback
     @Override
     public void onResult(boolean result, TaskError error)
     {
-        if (!result)
-        {
-            UITool.toast(context, error);
-        }
         notification.cancel();
         enable();
     }

@@ -2,12 +2,14 @@ package ru.net.serbis.tools.extension.share;
 
 import android.content.*;
 import android.os.*;
+import android.text.*;
+import java.io.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.connection.*;
+import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.task.*;
 import ru.net.serbis.tools.util.*;
-import ru.net.serbis.tools.data.*;
 
 public class ShareTools
 {
@@ -45,8 +47,15 @@ public class ShareTools
         }
     }
 
-    public void uploadFile(final String filePath, final String shareDir, final TaskCallback callback)
+    public void uploadFile(String filePath, String shareDir, final TaskCallback callback)
     {
+        TaskError error = validate(filePath, shareDir);
+        if (error != null)
+        {
+            callback.onResult(false, error);
+            return;
+        }
+
         Map<String, String> request = new HashMap<String, String>();
         request.put(Share.FILE, filePath);
         request.put(Share.PATH, shareDir);
@@ -80,4 +89,20 @@ public class ShareTools
             }
         );
 	}
+    
+    private TaskError validate(String filePath, String shareDir)
+    {
+        TaskError error = error = new TaskError(context, Constants.ERROR_FILE_IS_NOT_FOUND, R.string.error_file_is_not_found);
+        if (TextUtils.isEmpty(filePath) ||
+            TextUtils.isEmpty(shareDir))
+        {
+            return error;
+        }
+        File file = new File(filePath);
+        if (!file.exists() || !file.isFile())
+        {
+            return error;
+        }
+        return null;
+    }
 }

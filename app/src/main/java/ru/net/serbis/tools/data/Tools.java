@@ -15,13 +15,15 @@ public interface Tools
     Tool SYS_COLORS = new SysColors();
     Tool SYS_RESOURCES = new SysResources();
     Tool SYS_THEMES = new SysThemes();
+    Tool PROGRESS_IN_NOTIFICATION = new ProgressInNotification();
 
     Tool[] MAIN_TOOLS = new Tool[]{
         ZIP_DIR,
         MOVE_FILE_TO_SHARE,
         CHECK_PERMISSIONS,
         UNCAUGHT_EXCEPTION,
-        SYS_RESOURCES
+        SYS_RESOURCES,
+        PROGRESS_IN_NOTIFICATION
     };
     
     Tool[] SYS_RESOURCES_TOOLS = new Tool[]{
