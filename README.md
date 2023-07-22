@@ -2,7 +2,7 @@ SBTools
 
 - Main activity
 
-  ![main activity](img/main_activity.png)
+  <img src="img/main_activity.png" alt="main activity" style="width:300px;"/>
 
   - Zip directory
 
@@ -14,13 +14,13 @@ SBTools
 
   - Check permission
 
-    ![check permission dialog](img/check_permission_dialog.png)
+    <img src="img/check_permission_dialog.png" alt="check permission dialog" style="width:300px;"/>
 
     Dialog shows application's permissions. If some of them are not checked, you can check them and click OK
 
   - Uncaught exception
 
-    ![uncaught exception](img/uncaught_exception.png)
+    <img src="img/uncaught_exception.png" alt="uncaught exception" style="width:300px;"/>
 
     The tool throws the exception for showing actvity with it and it's stack trace
  
@@ -34,28 +34,28 @@ SBTools
 
 - System resources activity
 
-  ![system resources activity](img/system_resources_activity.png)
+  <img src="img/system_resources_activity.png" alt="system resources activity" style="width:300px;"/>
 
   - System drawables
 
-    ![system drawables](img/system_drawables.png)
+    <img src="img/system_drawables.png" alt="system drawables" style="width:300px;"/>
 
   - System strings
 
-    ![system strings](img/system_strings.png)
+    <img src="img/system_strings.png" alt="system strings" style="width:300px;"/>
 
   - System layouts
 
-    ![system layouts](img/system_layouts.png)
+    <img src="img/system_layouts.png" alt="system layouts" style="width:300px;"/>
 
     If you select some layout and click View button, the tool opens the viewer layout
 
-    ![viewer layout](img/viewer_layout.png)
+    <img src="img/viewer_layout.png" alt="viewer layout" style="width:300px;"/>
 
   - System colors
 
-    ![system colors](img/system_colors.png)
+    <img src="img/system_colors.png" alt="system colors" style="width:300px;"/>
 
   - System themes
 
-    ![system themes](img/system_themes.png)
+    <img src="img/system_themes.png" alt="system themes" style="width:300px;"/>
