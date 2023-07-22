@@ -1,25 +1,17 @@
 package ru.net.serbis.tools.dialog;
 
-import android.app.*;
 import android.content.*;
-import android.view.*;
-import android.widget.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.util.*;
-import ru.net.serbis.tools.activity.*;
+import ru.net.serbis.tools.resource.*;
 
-public class XmlDialog extends ResoursesDialog implements View.OnClickListener
+public class XmlDialog extends ResoursesDialog
 {
-    private Button neutralButton;
-
     public XmlDialog(Context context, int layoutId)
     {
         super(context, layoutId);
-
-        neutralButton = dialog.getButton(Dialog.BUTTON_NEUTRAL);
-        neutralButton.setOnClickListener(this);
+        creatNeutralButton();
     }
 
     @Override
@@ -32,7 +24,7 @@ public class XmlDialog extends ResoursesDialog implements View.OnClickListener
     protected void initButtons()
     {
         super.initButtons();
-        setNeutralButton(R.string.view, null);
+        initNeutralButton(R.string.view);
     }
 
     @Override
@@ -42,19 +34,7 @@ public class XmlDialog extends ResoursesDialog implements View.OnClickListener
         if (selected > -1)
         {
             Resource resource = adapter.getItem(selected);
-            Intent intent = new Intent(getContext(), ViewXml.class);
-            intent.putExtra(Constants.TITLE, resource.getName());
-            intent.putExtra(Constants.RESOURCE, resource);
-            getContext().startActivity(intent);
-        }
-    }
-
-    @Override
-    public void onClick(View view)
-    {
-        if (view == neutralButton)
-        {
-            neutral();
+            new OpenerXml().open(getContext(), resource);
         }
     }
 }

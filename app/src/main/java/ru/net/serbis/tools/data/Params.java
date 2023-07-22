@@ -13,7 +13,6 @@ public interface Params
     ViewTypeParam VIEW_TYPE = new ViewTypeParam();
     FileParam FILE = new FileParam(R.string.file, IOTool.getDownloadPath(IOTool.getDownloadFile().getName() + ".zip"), false);
     ShareDirParam SHARE_DIR = new ShareDirParam(R.string.share_dir, null);
-    XmlFormatParam XML_FORMAT = new XmlFormatParam();
 
     Param[] ZIP_DIR_PARAMS = new Param[]{
         DIRECTORY,
@@ -36,8 +35,7 @@ public interface Params
     };
 
     Param[] SYS_XML_PARAMS = new Param[]{
-        VIEW_TYPE,
-        XML_FORMAT
+        VIEW_TYPE
     };
 
     Param[] SYS_COLORS_PARAMS = new Param[]{

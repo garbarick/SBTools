@@ -8,7 +8,7 @@ public class ResoursesThemeAdapter extends ResoursesAdapter
 {
     public ResoursesThemeAdapter(Context context)
     {
-        super(context, android.R.style.class, ResType.STYLE, R.layout.resource_xml);
+        super(context, ResType.STYLE, R.layout.resource_xml);
     }
 
     @Override

@@ -3,15 +3,12 @@ package ru.net.serbis.tools.activity;
 import android.content.*;
 import android.content.res.*;
 import android.os.*;
-import android.util.*;
 import android.widget.*;
-import java.io.*;
-import org.xmlpull.v1.*;
+import java.util.regex.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
+import ru.net.serbis.tools.resource.*;
 import ru.net.serbis.tools.util.*;
-
-import ru.net.serbis.tools.util.Log;
 
 public class ViewXml extends TextActivity
 {
@@ -44,14 +41,7 @@ public class ViewXml extends TextActivity
         {
             Resources resources = getResources();
             parser = resources.getXml(resource.getId());
-            switch (Params.XML_FORMAT.getValue(this))
-            {
-                case XML_SERIALIZER:
-                    return convertToStringXmlSerializer(parser);
-                case CUSTOM:
-                    return convertToStringCustom(parser);
-            }
-            return "";
+            return convertToStringCustom(parser);
         }
         catch (Exception e)
         {
@@ -102,7 +92,7 @@ public class ViewXml extends TextActivity
                             .append("android:")
                             .append(parser.getAttributeName(i))
                             .append("=\"")
-                            .append(parser.getAttributeValue(i))
+                            .append(getValue(parser.getAttributeValue(i)))
                             .append("\"");
                     }
                     result.append(">\n");
@@ -133,38 +123,20 @@ public class ViewXml extends TextActivity
         }
         return result.toString();
     }
-
-    private String convertToStringXmlSerializer(XmlResourceParser parser) throws Exception
+    
+    private static final Pattern idPattern = Pattern.compile("^[\\@\\?]\\d+$");
+    private String getValue(String value)
     {
-        XmlSerializer serializer = Xml.newSerializer();
-        StringWriter writer = new StringWriter();
-        serializer.setOutput(writer);
-        serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
-        int event;
-        while ((event = parser.next()) != parser.END_DOCUMENT)
+        if (idPattern.matcher(value).find())
         {
-            switch (event)
+            int id = Integer.valueOf(value.substring(1));
+            Resource resource = ResourceLoader.get().get(id);
+            if (resource != null)
             {
-                case parser.START_TAG:
-                    serializer.startTag(parser.getNamespace(), parser.getName());
-                    int attributeCount = parser.getAttributeCount();
-                    for (int i = 0; i < attributeCount; i++)
-                    {
-                        serializer.attribute(
-                            parser.getAttributeNamespace(i),
-                            parser.getAttributeName(i),
-                            parser.getAttributeValue(i));
-                    }
-                    break;
-                case parser.TEXT:
-                    serializer.text(parser.getText());
-                    break;
-                case parser.END_TAG:
-                    serializer.endTag(parser.getNamespace(), parser.getName());
-                    break;
+                String pref = value.substring(0, 1);
+                return resource.getXmlName(pref);
             }
         }
-        serializer.endDocument();
-        return writer.toString();
+        return value;
     }
 }

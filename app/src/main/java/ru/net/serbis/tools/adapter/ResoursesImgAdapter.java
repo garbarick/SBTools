@@ -11,7 +11,7 @@ public class ResoursesImgAdapter extends ResoursesAdapter
 {
     public ResoursesImgAdapter(Context context)
     {
-        super(context, android.R.drawable.class, ResType.DRAWABLE, R.layout.resource_img);
+        super(context, ResType.DRAWABLE, R.layout.resource_img);
     }
 
     @Override

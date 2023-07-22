@@ -11,7 +11,7 @@ public class ResoursesColorAdapter extends ResoursesAdapter
 {
     public ResoursesColorAdapter(Context context)
     {
-        super(context, android.R.color.class, ResType.COLOR, R.layout.resource_img);
+        super(context, ResType.COLOR, R.layout.resource_img);
     }
 
     @Override

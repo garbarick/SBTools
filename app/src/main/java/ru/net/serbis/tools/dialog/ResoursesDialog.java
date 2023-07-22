@@ -2,17 +2,19 @@ package ru.net.serbis.tools.dialog;
 
 import android.app.*;
 import android.content.*;
+import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.util.*;
 
-public abstract class ResoursesDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener
+public abstract class ResoursesDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener, View.OnClickListener
 {
     protected ListView list;
     protected ResoursesAdapter adapter;
     protected AlertDialog dialog;
+    private Button neutralButton;
 
     public ResoursesDialog(Context context, int title)
     {
@@ -55,6 +57,17 @@ public abstract class ResoursesDialog extends AlertDialog.Builder implements Dia
         setNegativeButton(android.R.string.cancel, this);
     }
 
+    protected void initNeutralButton(int textId)
+    {
+        setNeutralButton(textId, null);
+    }
+
+    protected void creatNeutralButton()
+    {
+        neutralButton = dialog.getButton(Dialog.BUTTON_NEUTRAL);
+        neutralButton.setOnClickListener(this);
+    }
+
     protected abstract ResoursesAdapter createAdapter();
 
     @Override
@@ -90,5 +103,14 @@ public abstract class ResoursesDialog extends AlertDialog.Builder implements Dia
 
     protected void neutral()
     {
+    }
+    
+    @Override
+    public void onClick(View view)
+    {
+        if (view == neutralButton)
+        {
+            neutral();
+        }
     }
 }

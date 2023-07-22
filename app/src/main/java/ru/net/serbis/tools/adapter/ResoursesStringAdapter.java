@@ -11,7 +11,7 @@ public class ResoursesStringAdapter extends ResoursesAdapter
 {
     public ResoursesStringAdapter(Context context)
     {
-        super(context, android.R.string.class, ResType.STRING, R.layout.resource_string);
+        super(context, ResType.STRING, R.layout.resource_string);
     }
 
     @Override

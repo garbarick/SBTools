@@ -30,22 +30,27 @@ public class Resource implements Serializable, Comparable<Resource>
     {
         return type;
     }
-    
+
     private String getJavaName()
     {
         return "android.R." + type.getValue() + "." + name;
     }
-    
+
     private String getXmlName()
+    {
+        return getXmlName("@");
+    }
+
+    public String getXmlName(String pref)
     {
         String name = this.name;
         if (ResType.STYLE.equals(type))
         {
             name = name.replace("_", ".");
         }
-        return "@android:" + type.getValue() + "/" + name;
+        return pref + "android:" + type.getValue() + "/" + name;
     }
-    
+
     public String getName(Context context)
     {
         switch(Params.VIEW_TYPE.getValue(context))
@@ -57,7 +62,7 @@ public class Resource implements Serializable, Comparable<Resource>
         }
         return "";
     }
-    
+
     @Override
     public int compareTo(Resource that)
     {

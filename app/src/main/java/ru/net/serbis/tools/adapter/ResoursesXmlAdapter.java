@@ -8,6 +8,6 @@ public class ResoursesXmlAdapter extends ResoursesAdapter
 {
     public ResoursesXmlAdapter(Context context)
     {
-        super(context, android.R.layout.class, ResType.LAYOUT, R.layout.resource_xml);
+        super(context, ResType.LAYOUT, R.layout.resource_xml);
     }
 }

@@ -4,25 +4,21 @@ import android.content.*;
 import android.graphics.*;
 import android.view.*;
 import android.widget.*;
-import java.lang.reflect.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
+import ru.net.serbis.tools.resource.*;
 import ru.net.serbis.tools.util.*;
 
 public abstract class ResoursesAdapter extends ArrayAdapter<Resource>
 {
-    private Class sysClass;
-    private ResType type;
     private int rowLayout;
     private int selected = -1;
     
-    public ResoursesAdapter(Context context, Class sysClass, ResType type, int rowLayout)
+    public ResoursesAdapter(Context context, ResType type, int rowLayout)
     {
         super(context, android.R.layout.simple_list_item_activated_1);
-        this.sysClass = sysClass;
-        this.type = type;
         this.rowLayout = rowLayout;
-        init();
+        init(type);
     }
 
     public void setSelection(int position)
@@ -30,19 +26,12 @@ public abstract class ResoursesAdapter extends ArrayAdapter<Resource>
         selected = position;
     }
 
-    protected void init()
+    protected void init(ResType type)
     {
-        for (Field field : sysClass.getFields())
+        ResourceLoader.get().load();
+        for (Resource resource : ResourceLoader.get().get(type))
         {
-            try
-            {
-                int id = field.get(null);
-                add(new Resource(field.getName(), id, type));
-            }
-            catch (Exception e)
-            {
-                Log.error(this, e);
-            }
+            add(resource);
         }
     }
 
