@@ -46,7 +46,7 @@ public class ZipDir extends Tool implements TaskCallback
     public void progress(int value)
     {
         notification.setProgress(value);
-        ProgressBar bar = UITool.findView(context, R.id.progress);
+        ProgressBar bar = UITool.get().findView(context, R.id.progress);
         bar.setProgress(value);
     }
 
@@ -55,7 +55,7 @@ public class ZipDir extends Tool implements TaskCallback
     {
         if (!result)
         {
-            UITool.toast(context, error);
+            UITool.get().toast(context, error);
         }
         notification.cancel();
         enable();

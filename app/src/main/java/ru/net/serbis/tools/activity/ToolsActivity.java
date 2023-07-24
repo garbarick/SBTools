@@ -15,12 +15,18 @@ public abstract class ToolsActivity extends Activity
     private ToolsAdapter adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    protected void onCreate(Bundle state)
     {
-        super.onCreate(savedInstanceState);
+        super.onCreate(state);
+
         setContentView(R.layout.main);
-        main = UITool.findView(this, R.id.main);
+        main = UITool.get().findView(this, R.id.main);
         adapter = new ToolsAdapter(this, main, getTools());
+
+        if (UITool.get().isProgress(this))
+        {
+            main.setEnabled(false);
+        }
     }
 
     protected abstract Tool[] getTools();
@@ -29,5 +35,14 @@ public abstract class ToolsActivity extends Activity
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         adapter.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if (main.isEnabled())
+        {
+            super.onBackPressed();
+        }
     }
 }

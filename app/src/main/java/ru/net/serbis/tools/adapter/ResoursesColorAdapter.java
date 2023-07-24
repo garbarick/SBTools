@@ -18,7 +18,7 @@ public class ResoursesColorAdapter extends ResoursesAdapter
     protected void initView(View view, Resource resource, int position)
     {
         super.initView(view, resource, position);
-        ImageView img = UITool.findView(view, R.id.img);
+        ImageView img = UITool.get().findView(view, R.id.img);
         int color = getContext().getResources().getColor(resource.getId());
         img.setBackgroundColor(color);
     }

@@ -26,7 +26,7 @@ public class ToolsAdapter
             tool.setContext(context);
             tool.setMain(main);
             main.addView(view, index);
-            UITool.initButtons(context, tool, tool.getButtonIds());
+            UITool.get().initButtons(context, tool, tool.getButtonIds());
             index ++;
         }
     }

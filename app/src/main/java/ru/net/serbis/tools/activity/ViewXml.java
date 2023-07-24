@@ -23,7 +23,7 @@ public class ViewXml extends TextActivity
             Resource resource = (Resource) intent.getSerializableExtra(Constants.RESOURCE);
             edit.setText(readResource(resource));
         }
-        Button button = UITool.findView(this, R.id.ok);
+        Button button = UITool.get().findView(this, R.id.ok);
         button.setText(android.R.string.copy);
     }
 

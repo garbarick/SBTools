@@ -29,7 +29,7 @@ public class ParamsAdapter
 
     public View getView(Param param, View parent, int position)
     {
-        LinearLayout layout = UITool.findView(parent, R.id.params);
+        LinearLayout layout = UITool.get().findView(parent, R.id.params);
         View view = LayoutInflater.from(context).inflate(param.getLayoutId(), layout, false);
         layout.addView(view);
         param.initNameView(view);

@@ -18,7 +18,7 @@ public class ResoursesStringAdapter extends ResoursesAdapter
     protected void initView(View view, Resource resource, int position)
     {
         super.initView(view, resource, position);
-        TextView value = UITool.findView(view, R.id.value);
+        TextView value = UITool.get().findView(view, R.id.value);
         value.setText(resource.getId());
     }
 }

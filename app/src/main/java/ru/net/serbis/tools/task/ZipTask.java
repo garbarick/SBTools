@@ -25,6 +25,7 @@ public class ZipTask extends AsyncTask<Void, Integer, Boolean> implements Progre
     {
         try
         {
+            UITool.get().setProgress(context, true);
             publishProgress(0);
             File dir = new File(Params.DIRECTORY.getValue(context));
             File file = new File(dir, Params.ZIP_NAME.getValue(context));
@@ -69,6 +70,7 @@ public class ZipTask extends AsyncTask<Void, Integer, Boolean> implements Progre
     @Override
     protected void onPostExecute(Boolean result)
     {
+        UITool.get().setProgress(context, false);
         callback.onResult(result, error);
     }
 }

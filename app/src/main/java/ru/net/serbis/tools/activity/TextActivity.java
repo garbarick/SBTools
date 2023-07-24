@@ -19,12 +19,12 @@ public class TextActivity extends Activity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.text);
 
-        edit = UITool.findView(this, R.id.text);
+        edit = UITool.get().findView(this, R.id.text);
         edit.setKeyListener(null);
         edit.setTextIsSelectable(true);
 
         initTitle();
-        UITool.initButtons(this, this, R.id.ok, R.id.cancel);
+        UITool.get().initButtons(this, this, R.id.ok, R.id.cancel);
     }
 
     protected void initTitle()

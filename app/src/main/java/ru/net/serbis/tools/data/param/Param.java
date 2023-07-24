@@ -30,7 +30,7 @@ public abstract class Param<T, V extends View>
 
     public void initNameView(View parent)
     {
-        TextView view = UITool.findView(parent, R.id.name);
+        TextView view = UITool.get().findView(parent, R.id.name);
         view.setText(name);
     }
 
@@ -38,7 +38,7 @@ public abstract class Param<T, V extends View>
 
     public V getViewValue(View parent)
     {
-        return UITool.findView(parent, R.id.value);
+        return UITool.get().findView(parent, R.id.value);
     }
 
     protected SharedPreferences getPreferences(Context context)

@@ -140,7 +140,7 @@ public class ZipTool
                 out.putNextEntry(outEntry);
                 IOTool.copy(in, out, false, false);
                 current ++;
-                progress.progress(UITool.getPercent(all, current));
+                progress.progress(UITool.get().getPercent(all, current));
             }
         }
         finally
@@ -176,7 +176,7 @@ public class ZipTool
                 }
             }
             current ++;
-            progress.progress(UITool.getPercent(all, current));
+            progress.progress(UITool.get().getPercent(all, current));
         }
     }
 
@@ -203,7 +203,7 @@ public class ZipTool
             }
             file.delete();
             current ++;
-            progress.progress(UITool.getPercent(all, current));
+            progress.progress(UITool.get().getPercent(all, current));
         }
     }
 }

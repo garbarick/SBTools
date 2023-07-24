@@ -11,15 +11,17 @@ import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.task.*;
 import ru.net.serbis.tools.util.*;
 
-public class ShareTools
+public class ShareTools implements TaskCallback
 {
     protected Context context;
     protected App app;
+    TaskCallback callback;
 
-    public ShareTools(Context context)
+    public ShareTools(Context context, TaskCallback callback)
     {
         this.context = context;
         app = (App) context.getApplicationContext();
+        this.callback = callback;
     }
     
     private void sendServiceAction(int action, Map<String, String> request, Handler reply)
@@ -47,12 +49,14 @@ public class ShareTools
         }
     }
 
-    public void uploadFile(String filePath, String shareDir, final TaskCallback callback)
+    public void uploadFile(String filePath, String shareDir)
     {
+        UITool.get().setProgress(context, true);
+
         TaskError error = validate(filePath, shareDir);
         if (error != null)
         {
-            callback.onResult(false, error);
+            onResult(false, error);
             return;
         }
 
@@ -71,19 +75,19 @@ public class ShareTools
                     if (msg.getData().containsKey(Share.RESULT) &&
                         Share.SUCCESS.equals(msg.getData().getString(Share.RESULT)))
                     {
-                        callback.onResult(true, null);
+                        onResult(true, null);
                     }
                     else if (msg.getData().containsKey(Share.ERROR) &&
                              msg.getData().containsKey(Share.ERROR_CODE))
                     {
                         int errorCode = msg.getData().getInt(Share.ERROR_CODE);
                         String error = msg.getData().getString(Share.ERROR);
-                        callback.onResult(false, new TaskError(errorCode, error));
+                        onResult(false, new TaskError(errorCode, error));
                     }
                     else if (msg.getData().containsKey(Share.PROGRESS))
                     {
                         int progress = msg.getData().getInt(Share.PROGRESS);
-                        callback.progress(progress);
+                        progress(progress);
                     }
                 }
             }
@@ -104,5 +108,18 @@ public class ShareTools
             return error;
         }
         return null;
+    }
+    
+    @Override
+    public void progress(int progress)
+    {
+        callback.progress(progress);
+    }
+
+    @Override
+    public void onResult(boolean result, TaskError error)
+    {
+        UITool.get().setProgress(context, false);
+        callback.onResult(false, error);
     }
 }

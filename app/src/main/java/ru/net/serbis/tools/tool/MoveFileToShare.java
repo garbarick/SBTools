@@ -46,14 +46,14 @@ public class MoveFileToShare extends Tool implements TaskCallback
         notification = new NotificationProgress(context, R.string.move_file_to_share);
         String filePath = Params.FILE.getValue(context);
         String shareDir = Params.SHARE_DIR.getValue(context);
-        new ShareTools(context).uploadFile(filePath, shareDir, this);
+        new ShareTools(context, this).uploadFile(filePath, shareDir);
     }
     
     @Override
     public void progress(int value)
     {
         notification.setProgress(value);
-        ProgressBar bar = UITool.findView(context, R.id.progress);
+        ProgressBar bar = UITool.get().findView(context, R.id.progress);
         bar.setProgress(value);
     }
 
@@ -67,7 +67,7 @@ public class MoveFileToShare extends Tool implements TaskCallback
         }
         else
         {
-            UITool.toast(context, error);
+            UITool.get().toast(context, error);
         }
         notification.cancel();
         enable();

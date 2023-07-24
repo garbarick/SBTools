@@ -46,7 +46,7 @@ public abstract class ResoursesAdapter extends ArrayAdapter<Resource>
 
     protected void initView(View view, Resource resource, int position)
     {
-        TextView name = UITool.findView(view, R.id.name);
+        TextView name = UITool.get().findView(view, R.id.name);
         name.setText(resource.getName(getContext()));
         if (selected == position)
         {

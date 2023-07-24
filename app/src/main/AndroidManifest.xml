@@ -16,7 +16,8 @@
 
         <activity
             android:name=".activity.Main"
-            android:label="@string/app">
+            android:label="@string/app"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -34,7 +35,8 @@
 
         <activity
             android:name=".activity.SysResourcesActivity"
-            android:label="@string/sys_resources">
+            android:label="@string/sys_resources"
+            android:launchMode="singleTask">
         </activity>
 
     </application>

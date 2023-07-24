@@ -12,6 +12,7 @@ import ru.net.serbis.tools.util.*;
 public class App extends Application
 {
     private ExtConnection shareConnection = new ShareConnection(this);
+    private boolean progress;
 
     @Override
     public void onCreate()
@@ -64,4 +65,14 @@ public class App extends Application
         shareConnection.bind();
         return shareConnection;
 	}
+
+    public void setProgress(boolean progress)
+    {
+        this.progress = progress;
+    }
+
+    public boolean isProgress()
+    {
+        return progress;
+    }
 }

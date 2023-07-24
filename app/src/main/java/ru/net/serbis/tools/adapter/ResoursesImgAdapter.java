@@ -18,7 +18,7 @@ public class ResoursesImgAdapter extends ResoursesAdapter
     protected void initView(View view, Resource resource, int position)
     {
         super.initView(view, resource, position);
-        ImageView img = UITool.findView(view, R.id.img);
+        ImageView img = UITool.get().findView(view, R.id.img);
         img.setImageResource(resource.getId());
     }
 }
