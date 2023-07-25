@@ -120,6 +120,6 @@ public class ShareTools implements TaskCallback
     public void onResult(boolean result, TaskError error)
     {
         UITool.get().setProgress(context, false);
-        callback.onResult(false, error);
+        callback.onResult(result, error);
     }
 }
