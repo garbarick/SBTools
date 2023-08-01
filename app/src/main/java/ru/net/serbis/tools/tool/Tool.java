@@ -4,6 +4,9 @@ import android.app.*;
 import android.content.*;
 import android.view.*;
 import android.widget.*;
+import ru.net.serbis.tools.*;
+import ru.net.serbis.tools.notification.*;
+import ru.net.serbis.tools.util.*;
 
 public abstract class Tool implements View.OnClickListener
 {
@@ -11,6 +14,8 @@ public abstract class Tool implements View.OnClickListener
     private int[] buttonIds;
     protected Activity context;
     protected LinearLayout main;
+    protected NotificationProgress notification;
+    protected ProgressBar bar;
 
     public Tool(int layoutId, int ... buttonIds)
     {
@@ -31,6 +36,7 @@ public abstract class Tool implements View.OnClickListener
     public void setContext(Activity context)
     {
         this.context = context;
+        bar = UITool.get().findView(context, R.id.progress);
     }
 
     public void setMain(LinearLayout main)

@@ -21,6 +21,7 @@ public class App extends Application
 
         initCompression();
         initParams();
+        initStrings();
         shareConnection.bind();
 
         Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(getApplicationContext()));
@@ -52,7 +53,15 @@ public class App extends Application
             }
         }
     }
-    
+
+    private void initStrings()
+    {
+        for (Strings item : Strings.class.getEnumConstants())
+        {
+            item.initValue(this);
+        }
+    }
+
     @Override
     public void onTerminate()
     {

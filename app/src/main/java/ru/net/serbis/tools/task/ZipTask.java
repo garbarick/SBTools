@@ -11,10 +11,10 @@ import ru.net.serbis.tools.adapter.*;
 public class ZipTask extends AsyncTask<Void, Integer, Boolean> implements Progress
 {
     private Context context;
-    private TaskCallback callback;
+    private TaskCallback<Boolean> callback;
     private TaskError error;
 
-    public ZipTask(Context context, TaskCallback callback)
+    public ZipTask(Context context, TaskCallback<Boolean> callback)
     {
         this.context = context;
         this.callback = callback;

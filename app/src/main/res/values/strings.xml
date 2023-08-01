@@ -20,6 +20,7 @@
     <string name="sys_themes">System themes</string>
     <string name="sys_themes_set">Settings for system themes</string>
     <string name="progress_in_notification">Progress in notification</string>
+    <string name="activities">Activities</string>
 
     <string name="error_file_is_not_found">File is not found</string>
     <string name="error_no_files">There are no files</string>
@@ -39,4 +40,7 @@
     <string name="formatter">Formatter</string>
     <string name="progress">Progress</string>
     <string name="in_progress">in progress</string>
+    <string name="count">count: </string>
+    <string name="back">Back</string>
+    <string name="open">Open</string>
 </resources>

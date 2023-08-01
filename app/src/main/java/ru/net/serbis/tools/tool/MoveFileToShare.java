@@ -2,7 +2,6 @@ package ru.net.serbis.tools.tool;
 
 import android.app.*;
 import android.content.*;
-import android.widget.*;
 import java.io.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
@@ -12,10 +11,9 @@ import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.task.*;
 import ru.net.serbis.tools.util.*;
 
-public class MoveFileToShare extends Tool implements TaskCallback
+public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
 {
     private ParamsDialog dialog;
-    private NotificationProgress notification;
 
     public MoveFileToShare()
     {
@@ -53,12 +51,11 @@ public class MoveFileToShare extends Tool implements TaskCallback
     public void progress(int value)
     {
         notification.setProgress(value);
-        ProgressBar bar = UITool.get().findView(context, R.id.progress);
         bar.setProgress(value);
     }
 
     @Override
-    public void onResult(boolean result, TaskError error)
+    public void onResult(Boolean result, TaskError error)
     {
         if (result)
         {

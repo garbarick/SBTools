@@ -7,9 +7,9 @@ import ru.net.serbis.tools.util.*;
 public class ProgressTask extends AsyncTask<Integer, Integer, Boolean>
 {
     private Context context;
-    private TaskCallback callback;
+    private TaskCallback<Boolean> callback;
 
-    public ProgressTask(Context context, TaskCallback callback)
+    public ProgressTask(Context context, TaskCallback<Boolean> callback)
     {
         this.context = context;
         this.callback = callback;

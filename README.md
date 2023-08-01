@@ -32,6 +32,14 @@ SBTools
 
     The tool creats a notification with the progress bar
 
+    - Activities
+
+    The tool show a list of applications which have activities. If click to any of them, tool open list of activities.
+
+    <img src="img/activities.png" alt="activities" style="width:300px;"/>
+
+    <img src="img/activities_level_2.png" alt="activities level 2.png" style="width:300px;"/>
+
 - System resources activity
 
   <img src="img/system_resources_activity.png" alt="system resources activity" style="width:300px;"/>

@@ -11,13 +11,13 @@ import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.task.*;
 import ru.net.serbis.tools.util.*;
 
-public class ShareTools implements TaskCallback
+public class ShareTools implements TaskCallback<Boolean>
 {
     protected Context context;
     protected App app;
-    TaskCallback callback;
+    protected TaskCallback<Boolean> callback;
 
-    public ShareTools(Context context, TaskCallback callback)
+    public ShareTools(Context context, TaskCallback<Boolean> callback)
     {
         this.context = context;
         app = (App) context.getApplicationContext();
@@ -117,7 +117,7 @@ public class ShareTools implements TaskCallback
     }
 
     @Override
-    public void onResult(boolean result, TaskError error)
+    public void onResult(Boolean result, TaskError error)
     {
         UITool.get().setProgress(context, false);
         callback.onResult(result, error);

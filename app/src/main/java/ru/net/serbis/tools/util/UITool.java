@@ -26,6 +26,11 @@ public class UITool
     {
         return (T) view.findViewById(id);
     }
+    
+    public <T> T findView(AlertDialog view, int id)
+    {
+        return (T) view.findViewById(id);
+    }
 
     public String getEditText(Activity activity, int id)
     {
@@ -48,19 +53,52 @@ public class UITool
     public void enable(Activity activity, int id)
     {
         View view = findView(activity, id);
+        enable(view);
+    }
+
+    public void enable(View view)
+    {
         view.setEnabled(true);
     }
 
     public void disable(Activity activity, int id)
     {
         View view = findView(activity, id);
+        disable(view);
+    }
+
+    public void disable(View view)
+    {
         view.setEnabled(false);
     }
 
     public boolean isEnabled(Activity activity, int id)
     {
         View view = findView(activity, id);
+        return isEnabled(view);
+    }
+
+    public boolean isEnabled(View view)
+    {
         return view.isEnabled();
+    }
+
+    public void disableAll(LinearLayout view)
+    {
+        view.setEnabled(false);
+        for (int i = 0; i < view.getChildCount(); i ++)
+        {
+            view.getChildAt(i).setEnabled(false);
+        }
+    }
+
+    public void enableAll(LinearLayout view)
+    {
+        view.setEnabled(true);
+        for (int i = 0; i < view.getChildCount(); i ++)
+        {
+            view.getChildAt(i).setEnabled(true);
+        }
     }
 
     public void toast(final Context context, final String text)

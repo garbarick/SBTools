@@ -16,6 +16,7 @@ public interface Tools
     Tool SYS_RESOURCES = new SysResources();
     Tool SYS_THEMES = new SysThemes();
     Tool PROGRESS_IN_NOTIFICATION = new ProgressInNotification();
+    Tool ACTIVITIES = new Activities();
 
     Tool[] MAIN_TOOLS = new Tool[]{
         ZIP_DIR,
@@ -23,7 +24,8 @@ public interface Tools
         CHECK_PERMISSIONS,
         UNCAUGHT_EXCEPTION,
         SYS_RESOURCES,
-        PROGRESS_IN_NOTIFICATION
+        PROGRESS_IN_NOTIFICATION,
+        ACTIVITIES
     };
     
     Tool[] SYS_RESOURCES_TOOLS = new Tool[]{

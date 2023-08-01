@@ -1,6 +1,5 @@
 package ru.net.serbis.tools.tool;
 
-import android.widget.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.dialog.*;
@@ -8,10 +7,8 @@ import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.task.*;
 import ru.net.serbis.tools.util.*;
 
-public class ZipDir extends Tool implements TaskCallback
+public class ZipDir extends Tool implements TaskCallback<Boolean>
 {
-    private NotificationProgress notification;
-
     public ZipDir()
     {
         super(
@@ -46,12 +43,11 @@ public class ZipDir extends Tool implements TaskCallback
     public void progress(int value)
     {
         notification.setProgress(value);
-        ProgressBar bar = UITool.get().findView(context, R.id.progress);
         bar.setProgress(value);
     }
 
     @Override
-    public void onResult(boolean result, TaskError error)
+    public void onResult(Boolean result, TaskError error)
     {
         if (!result)
         {

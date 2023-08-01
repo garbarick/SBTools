@@ -54,7 +54,7 @@ public class FilesAdapter extends ArrayAdapter<File> implements AdapterView.OnIt
         }
         return text;
     }
-    
+
     public void initFiles()
     {
         setNotifyOnChange(false);
@@ -116,7 +116,8 @@ public class FilesAdapter extends ArrayAdapter<File> implements AdapterView.OnIt
         );
         return result;
 	}
-    
+
+    @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id)
     {
         File file = getItem(position);
