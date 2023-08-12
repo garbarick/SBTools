@@ -6,7 +6,9 @@ import android.view.*;
 import android.widget.*;
 import java.io.*;
 import java.util.*;
+import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.dialog.*;
+import ru.net.serbis.tools.util.*;
 
 public class FilesAdapter extends ArrayAdapter<File> implements AdapterView.OnItemClickListener
 {
@@ -16,7 +18,7 @@ public class FilesAdapter extends ArrayAdapter<File> implements AdapterView.OnIt
 
     public FilesAdapter(Context context, FileChooser chooser, boolean onlyFolder)
     {
-        super(context, android.R.layout.simple_list_item_activated_1, android.R.id.text1);
+        super(context, android.R.layout.simple_list_item_activated_1);
         this.chooser = chooser;
         this.onlyFolder = onlyFolder;
     }
@@ -42,17 +44,28 @@ public class FilesAdapter extends ArrayAdapter<File> implements AdapterView.OnIt
     @Override
     public View getView(int position, View view, ViewGroup parent)
     {
-        TextView text = (TextView) super.getView(position, view, parent);
+        view = LayoutInflater.from(getContext()).inflate(R.layout.resource_img, parent, false);
+        TextView text = UITool.get().findView(view, R.id.name);
+        ImageView img = UITool.get().findView(view, R.id.img);
         File file = getItem(position);
         if (file.equals(folder))
         {
             text.setText(file.getPath() + "/..");
+            img.setImageResource(R.drawable.open_dir);
         }
         else
         {
             text.setText(file.getName());
+            if (file.isDirectory())
+            {
+                img.setImageResource(R.drawable.dir);
+            }
+            else
+            {
+                img.setImageResource(R.drawable.file);
+            }
         }
-        return text;
+        return view;
     }
 
     public void initFiles()
