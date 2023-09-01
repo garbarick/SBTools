@@ -44,7 +44,8 @@ public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
         notification = new NotificationProgress(context, R.string.move_file_to_share);
         String filePath = Params.FILE.getValue(context);
         String shareDir = Params.SHARE_DIR.getValue(context);
-        new ShareTools(context, this).uploadFile(filePath, shareDir);
+        Integer bufferSize = Params.BUFFER_SIZE.getValue(context);
+        new ShareTools(context, this).uploadFile(filePath, shareDir, bufferSize);
     }
     
     @Override

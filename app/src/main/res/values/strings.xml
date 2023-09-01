@@ -43,4 +43,5 @@
     <string name="count">count: </string>
     <string name="back">Back</string>
     <string name="open">Open</string>
+    <string name="buffer_size">Buffer size</string>
 </resources>

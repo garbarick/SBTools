@@ -31,10 +31,11 @@ public class ZipTask extends AsyncTask<Void, Integer, Boolean> implements Progre
             File file = new File(dir, Params.ZIP_NAME.getValue(context));
             int compression = Params.COMPRESSION.getValue(context).getLevel();
             boolean deleteSourceFiles = Params.DELETE_SOURCE_FOLRS.getValue(context);
+            int bufferSize = Params.BUFFER_SIZE.getValue(context);
 
             if (dir.isDirectory() && dir.exists())
             {
-                new ZipTool(context, this, dir, file, compression, deleteSourceFiles).make();
+                new ZipTool(context, this, dir, file, compression, deleteSourceFiles, bufferSize).make();
                 return true;
             }
             else

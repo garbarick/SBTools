@@ -14,6 +14,7 @@ public interface Share
     String ERROR_CODE = PACKAGE + ".ERROR_CODE";
     String FILE = PACKAGE + ".FILE";
     String PROGRESS = PACKAGE + ".PROGRESS";
+    String BUFFER_SIZE = PACKAGE + ".BUFFER_SIZE";
 
     int ACTION_SELECT_ACCOUNT_PATH = 102;
     int ACTION_UPLOAD = 107;

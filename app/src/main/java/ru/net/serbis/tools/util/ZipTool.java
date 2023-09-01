@@ -18,13 +18,15 @@ public class ZipTool
     private File temp;
     private int compression;
     private boolean deleteSourceFiles;
+    private int bufferZise;
 
     public ZipTool(Context context, 
                    Progress progress,
                    File dir,
                    File result,
                    int compression,
-                   boolean deleteSourceFiles)
+                   boolean deleteSourceFiles,
+                   int bufferSize)
     {
         this.context = context;
         this.progress = progress;
@@ -32,6 +34,7 @@ public class ZipTool
         this.result = result;
         this.compression = compression;
         this.deleteSourceFiles = deleteSourceFiles;
+        this.bufferZise = bufferSize;
     }
 
     public void make() throws Exception
@@ -138,7 +141,7 @@ public class ZipTool
             {
                 ZipEntry outEntry = new ZipEntry(inEntry);
                 out.putNextEntry(outEntry);
-                IOTool.copy(in, out, false, false);
+                IOTool.copy(in, out, false, false, bufferZise);
                 current ++;
                 progress.progress(UITool.get().getPercent(all, current));
             }
@@ -168,7 +171,7 @@ public class ZipTool
                 {
                     out.putNextEntry(createEntry(file));
                     FileInputStream in = new FileInputStream(file);
-                    IOTool.copy(in, out, true, false);
+                    IOTool.copy(in, out, true, false, bufferZise);
                     out.closeEntry();
                 }
                 catch (Exception e)

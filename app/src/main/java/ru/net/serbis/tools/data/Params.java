@@ -13,17 +13,20 @@ public interface Params
     ViewTypeParam VIEW_TYPE = new ViewTypeParam();
     FileParam FILE = new FileParam(R.string.file, IOTool.getDownloadPath(IOTool.getDownloadFile().getName() + ".zip"), false);
     ShareDirParam SHARE_DIR = new ShareDirParam(R.string.share_dir, null);
+    NumberParam BUFFER_SIZE = new NumberParam(R.string.buffer_size, 10240);
 
     Param[] ZIP_DIR_PARAMS = new Param[]{
         DIRECTORY,
         ZIP_NAME,
         COMPRESSION,
-        DELETE_SOURCE_FOLRS
+        DELETE_SOURCE_FOLRS,
+        BUFFER_SIZE
     };
 
     Param[] MOVE_FILE_TO_SHARE_PARAMS = new Param[]{
         FILE,
-        SHARE_DIR
+        SHARE_DIR,
+        BUFFER_SIZE
     };
 
     Param[] SYS_DRAWABLES_PARAMS = new Param[]{

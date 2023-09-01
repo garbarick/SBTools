@@ -49,7 +49,7 @@ public class ShareTools implements TaskCallback<Boolean>
         }
     }
 
-    public void uploadFile(String filePath, String shareDir)
+    public void uploadFile(String filePath, String shareDir, Integer bufferSize)
     {
         UITool.get().setProgress(context, true);
 
@@ -63,6 +63,7 @@ public class ShareTools implements TaskCallback<Boolean>
         Map<String, String> request = new HashMap<String, String>();
         request.put(Share.FILE, filePath);
         request.put(Share.PATH, shareDir);
+        request.put(Share.BUFFER_SIZE, bufferSize.toString());
 
         sendServiceAction(
             Share.ACTION_UPLOAD,

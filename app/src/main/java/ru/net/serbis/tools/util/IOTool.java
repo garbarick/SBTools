@@ -26,11 +26,11 @@ public class IOTool
         {}
     }
 
-    public static void copy(InputStream is, OutputStream os, boolean closeIn, boolean closeOut) throws Exception
+    public static void copy(InputStream is, OutputStream os, boolean closeIn, boolean closeOut, int bufferSize) throws Exception
     {
         try
         {
-            byte[] buf = new byte[10240];
+            byte[] buf = new byte[bufferSize];
             int len;
             while ((len = is.read(buf)) > 0)
             {
@@ -50,11 +50,11 @@ public class IOTool
         }
     }
     
-    public static void copyQuietly(InputStream is, OutputStream os, boolean closeIn, boolean closeOut)
+    public static void copyQuietly(InputStream is, OutputStream os, boolean closeIn, boolean closeOut, int bufferSize)
     {
         try
         {
-            copy(is, os, closeIn, closeOut);
+            copy(is, os, closeIn, closeOut, bufferSize);
         }
         catch (Exception e)
         {
