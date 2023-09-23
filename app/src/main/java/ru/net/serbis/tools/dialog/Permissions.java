@@ -4,9 +4,10 @@ import android.app.*;
 import android.content.*;
 import android.content.pm.*;
 import android.widget.*;
+import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.adapter.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.tools.data.*;
 
 public class Permissions extends AlertDialog.Builder implements DialogInterface.OnClickListener
 {
@@ -28,8 +29,6 @@ public class Permissions extends AlertDialog.Builder implements DialogInterface.
 
         setPositiveButton(android.R.string.ok, this);
         setNegativeButton(android.R.string.cancel, this);
-
-        show();
     }
 
     private void checkItems()
@@ -67,6 +66,24 @@ public class Permissions extends AlertDialog.Builder implements DialogInterface.
             {
                 context.requestPermissions(new String[]{permission}, 200);
             }
+        }
+    }
+
+    public Holder<Integer, Boolean> getValues()
+    {
+        Holder<Integer, Boolean> result = new Holder<Integer, Boolean>();
+        for (int i = 0; i < adapter.getCount(); i ++)
+        {
+            result.put(i, list.isItemChecked(i));
+        }
+        return result;
+    }
+
+    public void setValues(Holder<Integer, Boolean> values)
+    {
+        for (Map.Entry<Integer, Boolean> entry : values.entrySet())
+        {
+            list.setItemChecked(entry.getKey(), entry.getValue());
         }
     }
 }

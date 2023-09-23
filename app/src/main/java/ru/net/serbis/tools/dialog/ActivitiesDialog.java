@@ -20,8 +20,10 @@ public class ActivitiesDialog extends AlertDialog.Builder implements AdapterView
     private String title;
     private Button positive;
     private Button negative;
+    private boolean itemsReady;
+    private int position;
 
-    public ActivitiesDialog(Activity context, Collection<ActivityItem> items)
+    public ActivitiesDialog(Activity context)
     {
         super(context);
 
@@ -29,7 +31,7 @@ public class ActivitiesDialog extends AlertDialog.Builder implements AdapterView
 
         list = UITool.get().findView(view, R.id.list);
         list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        adapter = new ActvitiesAdapter(context, items);
+        adapter = new ActvitiesAdapter(context);
         list.setAdapter(adapter);
         list.setOnItemClickListener(this);
 
@@ -41,9 +43,26 @@ public class ActivitiesDialog extends AlertDialog.Builder implements AdapterView
 
         setPositiveButton(android.R.string.ok, null);
         setNegativeButton(android.R.string.cancel, null);
+    }
 
-        dialog = show();
+    @Override
+    public AlertDialog create()
+    {
+        dialog = super.create();
+        return dialog;
+    }
 
+    @Override
+    public AlertDialog show()
+    {
+        dialog = super.show();
+        initButtons();
+        initItems();
+        return dialog;
+    }
+    
+    public void initButtons()
+    {
         positive = dialog.getButton(Dialog.BUTTON_POSITIVE);
         positive.setOnClickListener(this);
         negative = dialog.getButton(Dialog.BUTTON_NEGATIVE);
@@ -98,6 +117,13 @@ public class ActivitiesDialog extends AlertDialog.Builder implements AdapterView
             negative.setText(android.R.string.cancel);
         }
     }
+
+    public void initItems()
+    {
+        UITool.get().disableAll(view);
+        adapter.enable(false);
+        new PackagesLoader(getContext(), this).execute();
+    }
     
     public void loadChildren(PackageItem item)
     {
@@ -122,7 +148,16 @@ public class ActivitiesDialog extends AlertDialog.Builder implements AdapterView
             UITool.get().toast(getContext(), error);
             return;
         }
-        adapter.updateCurrent(this, list, result);
+        if (itemsReady)
+        {
+            adapter.updateCurrent(this, list, result);
+        }
+        else
+        {
+            adapter.initItems(result);
+            itemsReady = true;
+            list.setSelection(position);
+        }
     }
     
     public void setDialogTitle(String title)
@@ -145,5 +180,19 @@ public class ActivitiesDialog extends AlertDialog.Builder implements AdapterView
             ActivityItem item = adapter.getItem(selected);
             item.start(getContext());
         }
+    }
+
+    public void setPosition(int position)
+    {
+        this.position = position;
+    }
+
+    public int getPosition()
+    {
+        if (adapter.inLevelTwo())
+        {
+            return adapter.getCurrentPosition();
+        }
+        return list.getFirstVisiblePosition();
     }
 }

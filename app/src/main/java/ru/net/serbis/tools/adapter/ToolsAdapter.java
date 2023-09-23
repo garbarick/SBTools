@@ -23,7 +23,6 @@ public class ToolsAdapter
         for (Tool tool : tools)
         {
             View view = LayoutInflater.from(context).inflate(tool.getLayoutId(), main, false);
-            tool.setContext(context);
             tool.setMain(main);
             main.addView(view, index);
             UITool.get().initButtons(context, tool, tool.getButtonIds());

@@ -12,15 +12,13 @@ import android.graphics.*;
 
 public class ActvitiesAdapter extends ArrayAdapter<ActivityItem>
 {
-    private Collection<ActivityItem> items;
+    private Collection<ActivityItem> items = new ArrayList<ActivityItem>();
     private PackageItem current;
     private boolean enabled = true;
 
-    public ActvitiesAdapter(Context context, Collection<ActivityItem> items)
+    public ActvitiesAdapter(Context context)
     {
         super(context, android.R.layout.simple_list_item_activated_1);
-        this.items = items;
-        addAll(items);
     }
 
     @Override
@@ -92,10 +90,19 @@ public class ActvitiesAdapter extends ArrayAdapter<ActivityItem>
         }
     }
 
-    private void selectItem(ListView list, int position)
+    public void selectItem(ListView list, int position)
     {
         list.setItemChecked(position, true);
         list.smoothScrollToPosition(position);
+    }
+
+    public void initItems(Collection<ActivityItem> items)
+    {
+        setNotifyOnChange(false);
+        this.items = items;
+        addAll(items);
+        setNotifyOnChange(true);
+        notifyDataSetChanged();
     }
 
     public void updateCurrent(ActivitiesDialog dialog, ListView list, Collection<ActivityItem> children)
@@ -139,5 +146,19 @@ public class ActvitiesAdapter extends ArrayAdapter<ActivityItem>
     public boolean inLevelTwo()
     {
         return current != null;
+    }
+
+    public int getCurrentPosition()
+    {
+        int result = 0;
+        for (ActivityItem item : items)
+        {
+            if (item == current)
+            {
+                return result;
+            }
+            result ++;
+        }
+        return 0;
     }
 }

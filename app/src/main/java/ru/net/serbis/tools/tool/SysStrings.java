@@ -2,7 +2,7 @@ package ru.net.serbis.tools.tool;
 
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.dialog.*;
+import ru.net.serbis.tools.fragment.*;
 
 public class SysStrings extends Tool
 {
@@ -20,12 +20,18 @@ public class SysStrings extends Tool
         switch (id)
         {
             case R.id.sys_strings:
-                new StringsDialog(context);
+                new StringsFragment(context);
                 break;
 
             case R.id.sys_strings_set:
-                new ParamsDialog(context, R.string.sys_strings_set, Params.SYS_STRINGS_PARAMS);
+                new ParamsFragment(context, R.string.sys_strings_set, Params.SYS_STRINGS_PARAMS);
                 break;
         }
+    }
+
+    @Override
+    public int getNameId()
+    {
+        return R.string.sys_strings;
     }
 }

@@ -88,7 +88,7 @@ public class ZipTool
         }
         finally
         {
-            IOTool.close(out);
+            IOTool.get().close(out);
         }
     }
 
@@ -105,7 +105,7 @@ public class ZipTool
         }
         finally
         {
-            IOTool.close(out);
+            IOTool.get().close(out);
         }
     }
 
@@ -126,7 +126,7 @@ public class ZipTool
         }
         finally
         {
-            IOTool.close(zip);
+            IOTool.get().close(zip);
         }
     }
 
@@ -141,14 +141,14 @@ public class ZipTool
             {
                 ZipEntry outEntry = new ZipEntry(inEntry);
                 out.putNextEntry(outEntry);
-                IOTool.copy(in, out, false, false, bufferZise);
+                IOTool.get().copy(in, out, false, false, bufferZise);
                 current ++;
                 progress.progress(UITool.get().getPercent(all, current));
             }
         }
         finally
         {
-            IOTool.close(in);
+            IOTool.get().close(in);
         }
     }
 
@@ -171,7 +171,7 @@ public class ZipTool
                 {
                     out.putNextEntry(createEntry(file));
                     FileInputStream in = new FileInputStream(file);
-                    IOTool.copy(in, out, true, false, bufferZise);
+                    IOTool.get().copy(in, out, true, false, bufferZise);
                     out.closeEntry();
                 }
                 catch (Exception e)

@@ -27,4 +27,10 @@ public class SysResources extends Tool
         Intent intent = new Intent(context, SysResourcesActivity.class);
         context.startActivity(intent);
     }
+
+    @Override
+    public int getNameId()
+    {
+        return R.string.sys_resources;
+    }
 }

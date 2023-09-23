@@ -16,6 +16,7 @@ public abstract class Tool implements View.OnClickListener
     protected LinearLayout main;
     protected NotificationProgress notification;
     protected ProgressBar bar;
+    private boolean hidden;
 
     public Tool(int layoutId, int ... buttonIds)
     {
@@ -73,4 +74,16 @@ public abstract class Tool implements View.OnClickListener
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
     }
+
+    public void setHidden(boolean hidden)
+    {
+        this.hidden = hidden;
+    }
+
+    public boolean isHidden()
+    {
+        return hidden;
+    }
+
+    public abstract int getNameId();
 }

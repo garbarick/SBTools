@@ -7,7 +7,7 @@ import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
 
-public class ThemesDialog extends ResoursesDialog implements AdapterView.OnItemClickListener
+public class ThemesDialog extends ResourcesDialog implements AdapterView.OnItemClickListener
 {
     public ThemesDialog(Context context)
     {
@@ -36,7 +36,12 @@ public class ThemesDialog extends ResoursesDialog implements AdapterView.OnItemC
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
         Resource resource = adapter.getItem(position);
+        reopen(resource);
+    }
+
+    public void reopen(Resource resource)
+    {
         dialog.dismiss();
-        new ThemesDialog(getContext(), resource.getId(), resource);
+        new ThemesDialog(getContext(), resource.getId(), resource).show();
     }
 }

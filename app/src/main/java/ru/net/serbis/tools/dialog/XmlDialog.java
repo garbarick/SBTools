@@ -1,17 +1,17 @@
 package ru.net.serbis.tools.dialog;
 
+import android.app.*;
 import android.content.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.resource.*;
 
-public class XmlDialog extends ResoursesDialog
+public class XmlDialog extends ResourcesDialog
 {
-    public XmlDialog(Context context, int layoutId)
+    public XmlDialog(Context context)
     {
-        super(context, layoutId);
-        creatNeutralButton();
+        super(context, R.string.sys_layouts);
     }
 
     @Override
@@ -36,5 +36,13 @@ public class XmlDialog extends ResoursesDialog
             Resource resource = adapter.getItem(selected);
             new OpenerXml().open(getContext(), resource);
         }
+    }
+
+    @Override
+    public AlertDialog show()
+    {
+        super.show();
+        createNeutralButton();
+        return dialog;
     }
 }

@@ -2,7 +2,7 @@ package ru.net.serbis.tools.tool;
 
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.dialog.*;
+import ru.net.serbis.tools.fragment.*;
 
 public class SysColors extends Tool
 {
@@ -20,12 +20,18 @@ public class SysColors extends Tool
         switch (id)
         {
             case R.id.sys_colors:
-                new ColorsDialog(context);
+                new ColorsFragment(context);
                 break;
 
             case R.id.sys_colors_set:
-                new ParamsDialog(context, R.string.sys_colors_set, Params.SYS_COLORS_PARAMS);
+                new ParamsFragment(context, R.string.sys_colors_set, Params.SYS_COLORS_PARAMS);
                 break;
         }
+    }
+
+    @Override
+    public int getNameId()
+    {
+        return R.string.sys_colors;
     }
 }

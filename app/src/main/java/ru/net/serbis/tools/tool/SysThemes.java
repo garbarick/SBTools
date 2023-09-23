@@ -2,7 +2,7 @@ package ru.net.serbis.tools.tool;
 
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.dialog.*;
+import ru.net.serbis.tools.fragment.*;
 
 public class SysThemes extends Tool
 {
@@ -20,12 +20,18 @@ public class SysThemes extends Tool
         switch (id)
         {
             case R.id.sys_themes:
-                new ThemesDialog(context);
+                new ThemesFragment(context);
                 break;
 
             case R.id.sys_themes_set:
-                new ParamsDialog(context, R.string.sys_themes_set, Params.SYS_THEMES_PARAMS);
+                new ParamsFragment(context, R.string.sys_themes_set, Params.SYS_THEMES_PARAMS);
                 break;
         }
+    }
+
+    @Override
+    public int getNameId()
+    {
+        return R.string.sys_themes;
     }
 }

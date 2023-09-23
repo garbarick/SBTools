@@ -4,7 +4,7 @@ import android.content.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.adapter.*;
 
-public class ColorsDialog extends ResoursesDialog
+public class ColorsDialog extends ResourcesDialog
 {
     public ColorsDialog(Context context)
     {

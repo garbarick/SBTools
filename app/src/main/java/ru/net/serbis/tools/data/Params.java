@@ -3,15 +3,16 @@ package ru.net.serbis.tools.data;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.util.*;
+import java.util.*;
 
 public interface Params
 {
-    FileParam DIRECTORY = new FileParam(R.string.dir, IOTool.getDownloadPath(), true);
-    EditTextParam ZIP_NAME = new EditTextParam(R.string.zip_name, IOTool.getDownloadFile().getName() + ".zip");
+    FileParam DIRECTORY = new FileParam(R.string.dir, IOTool.get().getDownloadPath(), true, false);
+    EditTextParam ZIP_NAME = new EditTextParam(R.string.zip_name, IOTool.get().getDownloadFile().getName() + ".zip");
     CompressionParam COMPRESSION = new CompressionParam();
     BooleanParam DELETE_SOURCE_FOLRS = new BooleanParam(R.string.delete_source_files, true);
     ViewTypeParam VIEW_TYPE = new ViewTypeParam();
-    FileParam FILE = new FileParam(R.string.file, IOTool.getDownloadPath(IOTool.getDownloadFile().getName() + ".zip"), false);
+    FileParam FILE = new FileParam(R.string.file, IOTool.get().getDownloadPath(IOTool.get().getDownloadFile().getName() + ".zip"), false, true);
     ShareDirParam SHARE_DIR = new ShareDirParam(R.string.share_dir, null);
     NumberParam BUFFER_SIZE = new NumberParam(R.string.buffer_size, 10240);
 
@@ -47,5 +48,18 @@ public interface Params
 
     Param[] SYS_THEMES_PARAMS = new Param[]{
         VIEW_TYPE
+    };
+
+    Holder<String, Param[]> PARAMS = new Holder<String, Param[]>()
+    {
+        {
+            put("ZIP_DIR_PARAMS", ZIP_DIR_PARAMS);
+            put("MOVE_FILE_TO_SHARE_PARAMS", MOVE_FILE_TO_SHARE_PARAMS);
+            put("SYS_DRAWABLES_PARAMS", SYS_DRAWABLES_PARAMS);
+            put("SYS_STRINGS_PARAMS", SYS_STRINGS_PARAMS);
+            put("SYS_XML_PARAMS", SYS_XML_PARAMS);
+            put("SYS_COLORS_PARAMS", SYS_COLORS_PARAMS);
+            put("SYS_THEMES_PARAMS", SYS_THEMES_PARAMS);
+        }
     };
 }

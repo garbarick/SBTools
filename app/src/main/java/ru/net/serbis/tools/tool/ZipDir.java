@@ -2,7 +2,7 @@ package ru.net.serbis.tools.tool;
 
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.dialog.*;
+import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.task.*;
 import ru.net.serbis.tools.util.*;
@@ -27,7 +27,7 @@ public class ZipDir extends Tool implements TaskCallback<Boolean>
                 break;
 
             case R.id.zip_dir_set:
-                new ParamsDialog(context, R.string.zip_dir_set, Params.ZIP_DIR_PARAMS);
+                new ParamsFragment(context, R.string.zip_dir_set, Params.ZIP_DIR_PARAMS);
                 break;
         }
     }
@@ -55,5 +55,11 @@ public class ZipDir extends Tool implements TaskCallback<Boolean>
         }
         notification.cancel();
         enable();
+    }
+
+    @Override
+    public int getNameId()
+    {
+        return R.string.zip_dir;
     }
 }

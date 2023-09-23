@@ -5,6 +5,7 @@ import android.view.*;
 import android.widget.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
+import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.util.*;
 
@@ -69,6 +70,34 @@ public class ParamsAdapter
             int position = entry.getKey();
             Param param = entry.getValue();
             param.saveValue(null);
+        }
+    }
+
+    public Holder<Integer, String> getValues()
+    {
+        Holder<Integer, String> result = new Holder<Integer, String>();
+        for (Map.Entry<Integer, Param> entry : params.entrySet())
+        {
+            int position = entry.getKey();
+            Param param = entry.getValue();
+            View view = views.get(position);
+            View viewValue = param.getViewValue(view);
+            String value = param.typeToString(param.getValue(viewValue));
+            result.put(position, value);
+        }
+        return result;
+    }
+
+    public void setValues(Holder<Integer, String> values)
+    {
+        for (Map.Entry<Integer, String> entry : values.entrySet())
+        {
+            int position = entry.getKey();
+            String value = entry.getValue();
+            Param param = params.get(position);
+            View view = views.get(position);
+            View viewValue = param.getViewValue(view);
+            param.setValue(viewValue, param.stringToType(value));
         }
     }
 }

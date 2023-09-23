@@ -5,7 +5,6 @@ import android.content.*;
 import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.*;
-import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.util.*;
 
 public abstract class Param<T, V extends View>
@@ -41,19 +40,9 @@ public abstract class Param<T, V extends View>
         return UITool.get().findView(parent, R.id.value);
     }
 
-    protected SharedPreferences getPreferences(Context context)
-    {
-        return context.getSharedPreferences(Constants.APP, Context.MODE_PRIVATE);
-    }
-
-    protected SharedPreferences.Editor getPreferencesEditor(Context context)
-    {
-        return getPreferences(context).edit();
-    }
-
     public void saveValue(T value)
     {
-        SharedPreferences.Editor editor = getPreferencesEditor(context);
+        SharedPreferences.Editor editor = SysTool.get().getPreferencesEditor(context);
         String data = value == null ? null : typeToString(value);
         editor.putString(name, data);
         editor.commit();
@@ -63,7 +52,7 @@ public abstract class Param<T, V extends View>
 
     public T getValue(Context context)
     {
-        return stringToType(getPreferences(context).getString(name, typeToString(defaultValue)));
+        return stringToType(SysTool.get().getPreferences(context).getString(name, typeToString(defaultValue)));
     }
 
     public abstract T stringToType(String value);

@@ -43,4 +43,10 @@ public class ProgressInNotification extends Tool implements TaskCallback<Boolean
         notification.cancel();
         enable();
     }
+
+    @Override
+    public int getNameId()
+    {
+        return R.string.progress_in_notification;
+    }
 }

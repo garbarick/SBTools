@@ -2,7 +2,7 @@ package ru.net.serbis.tools.tool;
 
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.dialog.*;
+import ru.net.serbis.tools.fragment.*;
 
 public class SysDrawables extends Tool
 {
@@ -20,12 +20,18 @@ public class SysDrawables extends Tool
         switch (id)
         {
             case R.id.sys_drawables:
-                new DrawablesDialog(context);
+                new DrawablesFragment(context);
                 break;
 
             case R.id.sys_drawables_set:
-                new ParamsDialog(context, R.string.sys_drawables_set, Params.SYS_DRAWABLES_PARAMS);
+                new ParamsFragment(context, R.string.sys_drawables_set, Params.SYS_DRAWABLES_PARAMS);
                 break;
         }
+    }
+
+    @Override
+    public int getNameId()
+    {
+        return R.string.sys_drawables;
     }
 }

@@ -10,7 +10,7 @@ public class PermisssionsAdapter extends ArrayAdapter<String>
     public PermisssionsAdapter(Context context)
     {
         super(context, android.R.layout.simple_list_item_multiple_choice);
-        initItems(context);;
+        initItems(context);
     }
     
     private void initItems(Context context)

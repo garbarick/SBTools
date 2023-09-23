@@ -5,8 +5,8 @@ import android.content.*;
 import android.view.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.adapter.*;
+import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
-import android.widget.*;
 
 public class ParamsDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener
 {
@@ -27,8 +27,6 @@ public class ParamsDialog extends AlertDialog.Builder implements DialogInterface
         setPositiveButton(android.R.string.ok, this);
         setNeutralButton(R.string.reset, this);
         setNegativeButton(android.R.string.cancel, this);
-
-        show();
     }
 
     @Override
@@ -48,5 +46,15 @@ public class ParamsDialog extends AlertDialog.Builder implements DialogInterface
     public void updateValue(Param param, Object value)
     {
         adapter.updateValue(param, value);
+    }
+
+    public Holder<Integer, String> getValues()
+    {
+        return adapter.getValues();
+    }
+    
+    public void setValues(Holder<Integer, String> values)
+    {
+        adapter.setValues(values);
     }
 }

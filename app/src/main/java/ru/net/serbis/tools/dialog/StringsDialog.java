@@ -4,7 +4,7 @@ import android.content.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.adapter.*;
 
-public class StringsDialog extends ResoursesDialog
+public class StringsDialog extends ResourcesDialog
 {
     public StringsDialog(Context context)
     {

@@ -17,6 +17,9 @@ public interface Tools
     Tool SYS_THEMES = new SysThemes();
     Tool PROGRESS_IN_NOTIFICATION = new ProgressInNotification();
     Tool ACTIVITIES = new Activities();
+    Tool RENAME_FILES = new RenameFiles();
+    Tool CLEAR_TRASH = new ClearTrash();
+    Tool HIDE_TOOLS = new HideTools();
 
     Tool[] MAIN_TOOLS = new Tool[]{
         ZIP_DIR,
@@ -25,7 +28,10 @@ public interface Tools
         UNCAUGHT_EXCEPTION,
         SYS_RESOURCES,
         PROGRESS_IN_NOTIFICATION,
-        ACTIVITIES
+        ACTIVITIES,
+        //RENAME_FILES,
+        CLEAR_TRASH,
+        HIDE_TOOLS
     };
     
     Tool[] SYS_RESOURCES_TOOLS = new Tool[]{

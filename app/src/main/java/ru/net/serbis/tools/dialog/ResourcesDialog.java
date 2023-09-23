@@ -9,20 +9,25 @@ import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.util.*;
 
-public abstract class ResoursesDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener, View.OnClickListener
+public abstract class ResourcesDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener, View.OnClickListener, DialogInterface.OnDismissListener
 {
     protected ListView list;
     protected ResoursesAdapter adapter;
     protected AlertDialog dialog;
     private Button neutralButton;
 
-    public ResoursesDialog(Context context, int title)
+    public ResourcesDialog(Context context, int title, Resource resource)
     {
         super(context);
-        init(context, title, null);
+        init(context, title, resource);
     }
 
-    public ResoursesDialog(Context context, int title, int theme, Resource resource)
+    public ResourcesDialog(Context context, int title)
+    {
+        this(context, title, null);
+    }
+
+    public ResourcesDialog(Context context, int title, int theme, Resource resource)
     {
         super(context, theme);
         init(context, title, resource);
@@ -34,7 +39,20 @@ public abstract class ResoursesDialog extends AlertDialog.Builder implements Dia
         initList(context, resource);
         setView(list);
         initButtons();
-        dialog = show();
+    }
+
+    @Override
+    public AlertDialog create()
+    {
+        dialog = super.create();
+        return dialog;
+    }
+
+    @Override
+    public AlertDialog show()
+    {
+        dialog = super.show();
+        return dialog;
     }
 
     protected void initList(Context context, Resource resource)
@@ -61,8 +79,8 @@ public abstract class ResoursesDialog extends AlertDialog.Builder implements Dia
     {
         setNeutralButton(textId, null);
     }
-
-    protected void creatNeutralButton()
+    
+    public void createNeutralButton()
     {
         neutralButton = dialog.getButton(Dialog.BUTTON_NEUTRAL);
         neutralButton.setOnClickListener(this);
@@ -89,12 +107,21 @@ public abstract class ResoursesDialog extends AlertDialog.Builder implements Dia
 
     protected void positive()
     {
+        Resource resource = getSelected();
+        if (resource != null)
+        {
+            SysTool.get().setClipBoard(getContext(), R.string.resource_clip_label, resource.getName(getContext()));
+        }
+    }
+    
+    public Resource getSelected()
+    {
         int selected = list.getCheckedItemPosition();
         if (selected > -1)
         {
-            Resource resource = adapter.getItem(selected);
-            SysTool.setClipBoard(getContext(), R.string.resource_clip_label, resource.getName(getContext()));
+            return adapter.getItem(selected);
         }
+        return null;
     }
 
     protected void negative()
@@ -112,5 +139,21 @@ public abstract class ResoursesDialog extends AlertDialog.Builder implements Dia
         {
             neutral();
         }
+    }
+
+    public int getTop()
+    {
+        return list.getFirstVisiblePosition();
+    }
+
+    public void setTop(int top)
+    {
+        list.setSelection(top);
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog)
+    {
+        UITool.get().toast(getContext(), "dismiss");
     }
 }

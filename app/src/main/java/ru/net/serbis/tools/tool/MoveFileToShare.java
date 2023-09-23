@@ -5,15 +5,15 @@ import android.content.*;
 import java.io.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.dialog.*;
 import ru.net.serbis.tools.extension.share.*;
+import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.task.*;
 import ru.net.serbis.tools.util.*;
 
 public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
 {
-    private ParamsDialog dialog;
+    private ParamsFragment dialog;
 
     public MoveFileToShare()
     {
@@ -33,7 +33,7 @@ public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
                 break;
 
             case R.id.move_file_to_share_set:
-                dialog = new ParamsDialog(context, R.string.move_file_to_share_set, Params.MOVE_FILE_TO_SHARE_PARAMS);
+                dialog = new ParamsFragment(context, R.string.move_file_to_share_set, Params.MOVE_FILE_TO_SHARE_PARAMS);
                 break;
         }
     }
@@ -83,5 +83,11 @@ public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
                 dialog.updateValue(Params.SHARE_DIR, path);
             }
         }
+    }
+
+    @Override
+    public int getNameId()
+    {
+        return R.string.move_file_to_share;
     }
 }

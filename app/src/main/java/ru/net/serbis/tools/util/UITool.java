@@ -122,6 +122,11 @@ public class UITool
     {
         toast(context, error.getCode(), error.getMessage());
     }
+    
+    public void notImplementedYet(Context context)
+    {
+        toast(context, context.getResources().getString(R.string.error_not_implemented));
+    }
 
     public int getPercent(long max, long cur)
     {
@@ -148,5 +153,19 @@ public class UITool
     {
         App app = (App) context.getApplicationContext();
         return app.isProgress();
+    }
+
+    public <T> T getBundle(Bundle bundle, String key, T defaultValue)
+    {
+        if (bundle == null)
+        {
+            return defaultValue;
+        }
+        T value = (T) bundle.get(key);
+        if (value == null)
+        {
+            return defaultValue;
+        }
+        return value;
     }
 }

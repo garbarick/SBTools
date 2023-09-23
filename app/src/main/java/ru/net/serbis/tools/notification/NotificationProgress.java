@@ -18,7 +18,7 @@ public class NotificationProgress extends Notification.Builder
         setContentText(context.getResources().getString(textId));
         String channelId = context.getResources().getString(R.string.progress);
         NotificationChannel channel = new NotificationChannel(channelId, channelId, NotificationManager.IMPORTANCE_LOW);
-        manager = SysTool.getService(context, Context.NOTIFICATION_SERVICE);
+        manager = SysTool.get().getService(context, Context.NOTIFICATION_SERVICE);
         manager.createNotificationChannel(channel);
     }
 

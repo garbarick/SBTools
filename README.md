@@ -32,13 +32,25 @@ SBTools
 
     The tool creats a notification with the progress bar
 
-    - Activities
+  - Activities
 
     The tool show a list of applications which have activities. If click to any of them, tool open list of activities.
 
     <img src="img/activities.png" alt="activities" style="width:300px;"/>
 
-    <img src="img/activities_level_2.png" alt="activities level 2.png" style="width:300px;"/>
+    <img src="img/activities_level_2.png" alt="activities level 2" style="width:300px;"/>
+
+  - Clear Trash
+
+    The tool deletes predefined files and folders.
+
+    <img src="img/setting_for_clear_trash.png" alt="setting fo _clear trash" style="width:300px;"/>
+
+  - Hide Tools
+
+    The tool hides other tools.
+
+    <img src="img/hide_tools.png" alt="hide tools" style="width:300px;"/>
 
 - System resources activity
 

@@ -2,7 +2,7 @@ package ru.net.serbis.tools.tool;
 
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.dialog.*;
+import ru.net.serbis.tools.fragment.*;
 
 public class SysLayouts extends Tool
 {
@@ -20,12 +20,18 @@ public class SysLayouts extends Tool
         switch (id)
         {
             case R.id.sys_layouts:
-                new XmlDialog(context, R.string.sys_layouts);
+                new XmlFragment(context);
                 break;
 
             case R.id.sys_layouts_set:
-                new ParamsDialog(context, R.string.sys_layouts_set, Params.SYS_XML_PARAMS);
+                new ParamsFragment(context, R.string.sys_layouts_set, Params.SYS_XML_PARAMS);
                 break;
         }
+    }
+
+    @Override
+    public int getNameId()
+    {
+        return R.string.sys_layouts;
     }
 }

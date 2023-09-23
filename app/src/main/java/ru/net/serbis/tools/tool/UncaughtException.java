@@ -25,4 +25,10 @@ public class UncaughtException extends Tool
             context.getResources().getString(R.string.uncaught_exception)
         );
     }
+
+    @Override
+    public int getNameId()
+    {
+        return R.string.uncaught_exception;
+    }
 }

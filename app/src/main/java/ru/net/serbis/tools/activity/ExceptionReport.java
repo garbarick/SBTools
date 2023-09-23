@@ -16,7 +16,7 @@ public class ExceptionReport extends TextActivity
         if (intent.hasExtra(Constants.THROWABLE))
         {
             Throwable error = (Throwable) intent.getSerializableExtra(Constants.THROWABLE);
-            edit.setText(SysTool.errorToText(error));
+            edit.setText(SysTool.get().errorToText(error));
         }
     }
 

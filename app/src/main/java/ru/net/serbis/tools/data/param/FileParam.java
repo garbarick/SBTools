@@ -8,11 +8,13 @@ import ru.net.serbis.tools.dialog.*;
 public class FileParam extends TextViewParam
 {
     private boolean onlyFolder;
+    private boolean onlyFile;
 
-    public FileParam(int nameId, String defaultValue, boolean onlyFolder)
+    public FileParam(int nameId, String defaultValue, boolean onlyFolder, boolean onlyFile)
     {
         super(nameId, defaultValue);
         this.onlyFolder = onlyFolder;
+        this.onlyFile = onlyFile;
     }
 
     @Override
@@ -26,7 +28,7 @@ public class FileParam extends TextViewParam
                 @Override
                 public void onClick(View v)
                 {
-                    new FileChooser(context, R.string.choose_dir, onlyFolder)
+                    new FileChooser(context, R.string.choose_dir, onlyFolder, onlyFile)
                     {
                         @Override
                         public void onChoose(String path)

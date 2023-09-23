@@ -15,12 +15,14 @@ public class FilesAdapter extends ArrayAdapter<File> implements AdapterView.OnIt
     private File folder = Environment.getExternalStorageDirectory();
     private FileChooser chooser;
     private boolean onlyFolder;
+    private boolean onlyFile;
 
-    public FilesAdapter(Context context, FileChooser chooser, boolean onlyFolder)
+    public FilesAdapter(Context context, FileChooser chooser, boolean onlyFolder, boolean onlyFile)
     {
         super(context, android.R.layout.simple_list_item_activated_1);
         this.chooser = chooser;
         this.onlyFolder = onlyFolder;
+        this.onlyFile = onlyFile;
     }
 
     public File getSelected()
@@ -33,10 +35,11 @@ public class FilesAdapter extends ArrayAdapter<File> implements AdapterView.OnIt
         if (selected > -1)
         {
             File file = getItem(selected);
-            if (file.isFile())
+            if (onlyFile && file.isFile())
             {
                 return file;
             }
+            return file;
         }
         return null;
     }
@@ -153,10 +156,6 @@ public class FilesAdapter extends ArrayAdapter<File> implements AdapterView.OnIt
                 folder = file;
             }
             initFiles();
-        }
-        else
-        {
-            chooser.onChoose(file.getAbsolutePath());
         }
 	}
 }

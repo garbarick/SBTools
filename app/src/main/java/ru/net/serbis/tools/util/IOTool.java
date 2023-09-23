@@ -5,7 +5,14 @@ import java.io.*;
 
 public class IOTool
 {
-    public static void close(Object o)
+    private static final IOTool instance = new IOTool();
+
+    public static IOTool get()
+    {
+        return instance;
+    }
+
+    public void close(Object o)
     {
         try
         {
@@ -26,7 +33,7 @@ public class IOTool
         {}
     }
 
-    public static void copy(InputStream is, OutputStream os, boolean closeIn, boolean closeOut, int bufferSize) throws Exception
+    public void copy(InputStream is, OutputStream os, boolean closeIn, boolean closeOut, int bufferSize) throws Exception
     {
         try
         {
@@ -50,7 +57,7 @@ public class IOTool
         }
     }
     
-    public static void copyQuietly(InputStream is, OutputStream os, boolean closeIn, boolean closeOut, int bufferSize)
+    public void copyQuietly(InputStream is, OutputStream os, boolean closeIn, boolean closeOut, int bufferSize)
     {
         try
         {
@@ -62,22 +69,22 @@ public class IOTool
         }
     }
 
-    public static File getDownloadFile()
+    public File getDownloadFile()
     {
         return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
     }
 
-    public static String getDownloadPath()
+    public String getDownloadPath()
     {
         return getDownloadFile().getAbsolutePath();
     }
 
-    public static File getDownloadFile(String path)
+    public File getDownloadFile(String path)
     {
         return new File(getDownloadFile(), path);
     }
     
-    public static String getDownloadPath(String path)
+    public String getDownloadPath(String path)
     {
         return getDownloadFile(path).getAbsolutePath();
     }

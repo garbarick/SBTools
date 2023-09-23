@@ -1,7 +1,7 @@
 package ru.net.serbis.tools.tool;
 
 import ru.net.serbis.tools.*;
-import ru.net.serbis.tools.dialog.*;
+import ru.net.serbis.tools.fragment.*;
 
 public class CheckPermissions extends Tool
 {
@@ -18,8 +18,14 @@ public class CheckPermissions extends Tool
         switch (id)
         {
             case R.id.check_permissions:
-                new Permissions(context);
+                new PermissionsFragment(context);
                 break;
         }
+    }
+
+    @Override
+    public int getNameId()
+    {
+        return R.string.check_permissions;
     }
 }

@@ -11,13 +11,13 @@ public abstract class FileChooser extends AlertDialog.Builder implements DialogI
     private ListView list;
 	private FilesAdapter adapter;
 
-	public FileChooser(Context context, int title, boolean onlyFolder)
+	public FileChooser(Context context, int title, boolean onlyFolder, boolean onlyFile)
 	{
 		super(context);
 
 		list = new ListView(context);
         list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-		adapter = new FilesAdapter(context, this, onlyFolder);
+		adapter = new FilesAdapter(context, this, onlyFolder, onlyFile);
 		list.setAdapter(adapter);
 		list.setOnItemClickListener(adapter);
 		adapter.initFiles();
