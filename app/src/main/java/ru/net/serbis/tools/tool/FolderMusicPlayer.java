@@ -3,14 +3,14 @@ package ru.net.serbis.tools.tool;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.util.*;
 
-public class RenameFiles extends Tool
+public class FolderMusicPlayer extends Tool
 {
-    public RenameFiles()
+    public FolderMusicPlayer()
     {
         super(
-            R.layout.tool_rename_files,
-            R.id.rename_files,
-            R.id.rename_files_set
+            R.layout.tool_folder_music_player,
+            R.id.folder_music_player,
+            R.id.folder_music_player_set
         );
     }
 
@@ -19,11 +19,11 @@ public class RenameFiles extends Tool
     {
         switch (id)
         {
-            case R.id.rename_files:
+            case R.id.folder_music_player:
                 UITool.get().notImplementedYet(context);
                 break;
 
-            case R.id.rename_files_set:
+            case R.id.folder_music_player_set:
                 UITool.get().notImplementedYet(context);
                 break;
         }
@@ -32,6 +32,6 @@ public class RenameFiles extends Tool
     @Override
     public int getNameId()
     {
-        return R.string.rename_files;
+        return R.string.folder_music_player;
     }
 }

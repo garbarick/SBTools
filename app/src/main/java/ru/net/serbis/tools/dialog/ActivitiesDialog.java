@@ -1,6 +1,7 @@
 package ru.net.serbis.tools.dialog;
 
 import android.app.*;
+import android.content.res.*;
 import android.view.*;
 import android.widget.*;
 import java.util.*;
@@ -14,31 +15,39 @@ public class ActivitiesDialog extends AlertDialog.Builder implements AdapterView
 {
     private AlertDialog dialog;
     private LinearLayout view;
-    private ListView list;
-    private ActvitiesAdapter adapter;
+    private ListView applications;
+    private ListView activities;
     private ProgressBar bar;
-    private String title;
     private Button positive;
     private Button negative;
     private boolean itemsReady;
     private int position;
+    private boolean horizontal;
 
     public ActivitiesDialog(Activity context)
     {
         super(context);
 
-        view = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.list_with_progress, null, false);
+        int layout = R.layout.activities_portrait;
+        if (Configuration.ORIENTATION_LANDSCAPE == context.getResources().getConfiguration().orientation)
+        {
+            layout = R.layout.activities_landscape;
+            horizontal = true;
+        }
+        view = (LinearLayout) LayoutInflater.from(context).inflate(layout, null, false);
 
-        list = UITool.get().findView(view, R.id.list);
-        list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        adapter = new ActvitiesAdapter(context);
-        list.setAdapter(adapter);
-        list.setOnItemClickListener(this);
+        applications = UITool.get().findView(view, R.id.applications);
+        applications.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        applications.setAdapter(new ActvitiesAdapter(context));
+        applications.setOnItemClickListener(this);
+
+        activities = UITool.get().findView(view, R.id.activities);
+        activities.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        activities.setAdapter(new ActvitiesAdapter(context));
 
         bar = UITool.get().findView(view, R.id.progress);
 
-        title = context.getResources().getString(R.string.activities);
-        setTitle(title);
+        setTitle(R.string.activities);
         setView(view);
 
         setPositiveButton(android.R.string.ok, null);
@@ -60,75 +69,82 @@ public class ActivitiesDialog extends AlertDialog.Builder implements AdapterView
         initItems();
         return dialog;
     }
-    
+
     public void initButtons()
     {
         positive = dialog.getButton(Dialog.BUTTON_POSITIVE);
         positive.setOnClickListener(this);
         negative = dialog.getButton(Dialog.BUTTON_NEGATIVE);
         negative.setOnClickListener(this);
+        showApplications();
     }
 
     @Override
     public void onClick(View button)
     {
-        if (UITool.get().isEnabled(view))
+        if (!UITool.get().isEnabled(view))
         {
-            if (adapter.inLevelTwo())
-            {
-                if (button == negative)
-                {
-                    onItemClick(null, null, 0, 0);
-                }
-                else if (button == positive)
-                {
-                    openActivity();
-                }
-                return;
-            }
-            else
-            {
-                if (button == positive)
-                {
-                    int selected = list.getCheckedItemPosition();
-                    if (selected > -1)
-                    {
-                        onItemClick(null, null, selected, 0);
-                    }
-                    return;
-                }
-            }
-            dialog.dismiss();
+            return;
+        }
+        switch (getButtonTag(button))
+        {
+            case android.R.string.ok:
+                initActivities();
+                break;
+
+            case R.string.open:
+                openActivity();
+                break;
+
+            case R.string.back:
+                showApplications();
+                break;
+
+            default:
+                dialog.dismiss();
         }
     }
-    
+
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id)
+    public void onItemClick(AdapterView<?> listView, View view, int position, long id)
     {
-        adapter.onItemClick(this, list, position);
-        if (adapter.inLevelTwo())
+        if (listView == applications)
         {
-            positive.setText(R.string.open);
-            negative.setText(R.string.back);
-        }
-        else
-        {
-            positive.setText(android.R.string.ok);
-            negative.setText(android.R.string.cancel);
+            showActivities();
+            PackageItem item = (PackageItem) getAdapter(applications).getItem(position);
+            initActivities(item);
         }
     }
 
     public void initItems()
     {
+        if (itemsReady)
+        {
+            return;
+        }
         UITool.get().disableAll(view);
-        adapter.enable(false);
+        getAdapter(applications).enable(false);
         new PackagesLoader(getContext(), this).execute();
     }
-    
-    public void loadChildren(PackageItem item)
+
+    private ActvitiesAdapter getAdapter(ListView list)
+    {
+        return (ActvitiesAdapter) list.getAdapter();
+    }
+
+    private void initActivities()
+    {
+        int selected = applications.getCheckedItemPosition();
+        if (selected > -1)
+        {
+            onItemClick(applications, null, selected, 0);
+        }
+    }
+
+    public void initActivities(PackageItem item)
     {
         UITool.get().disableAll(view);
-        adapter.enable(false);
+        getAdapter(activities).enable(false);
         new PackagesLoader(getContext(), this).execute(item);
     }
 
@@ -142,7 +158,6 @@ public class ActivitiesDialog extends AlertDialog.Builder implements AdapterView
     public void onResult(Collection<ActivityItem> result, TaskError error)
     {
         UITool.get().enableAll(view);
-        adapter.enable(true);
         if (error != null)
         {
             UITool.get().toast(getContext(), error);
@@ -150,35 +165,26 @@ public class ActivitiesDialog extends AlertDialog.Builder implements AdapterView
         }
         if (itemsReady)
         {
-            adapter.updateCurrent(this, list, result);
+            getAdapter(activities).enable(true);
+            getAdapter(activities).initItems(result);
         }
         else
         {
-            adapter.initItems(result);
+            getAdapter(applications).enable(true);
+            getAdapter(applications).initItems(result);
+            applications.setSelection(position);
             itemsReady = true;
-            list.setSelection(position);
         }
     }
-    
-    public void setDialogTitle(String title)
-    {
-        if (title == null)
-        {
-            dialog.setTitle(this.title);
-        }
-        else
-        {
-            dialog.setTitle(title);
-        }
-    }
-    
+
     private void openActivity()
     {
-        int selected = list.getCheckedItemPosition();
-        if (selected > 0)
+        int selected = activities.getCheckedItemPosition();
+        if (selected > -1)
         {
-            ActivityItem item = adapter.getItem(selected);
+            ActivityItem item = getAdapter(activities).getItem(selected);
             item.start(getContext());
+            showApplications();
         }
     }
 
@@ -189,10 +195,59 @@ public class ActivitiesDialog extends AlertDialog.Builder implements AdapterView
 
     public int getPosition()
     {
-        if (adapter.inLevelTwo())
+        return applications.getFirstVisiblePosition();
+    }
+
+    private void showApplications()
+    {
+        if (horizontal)
         {
-            return adapter.getCurrentPosition();
+            UITool.get().enable(applications);
+            getAdapter(applications).enable(true);
+            UITool.get().disable(activities);
+            getAdapter(activities).enable(false);
         }
-        return list.getFirstVisiblePosition();
+        else
+        {
+            applications.setVisibility(View.VISIBLE);
+            activities.setVisibility(View.GONE);
+        }
+        setButtonTag(positive, android.R.string.ok);
+        setButtonTag(negative, android.R.string.cancel);
+    }
+
+    private void showActivities()
+    {
+        getAdapter(activities).clear();
+        if (horizontal)
+        {
+            UITool.get().disable(applications);
+            getAdapter(applications).enable(false);
+            UITool.get().enable(activities);
+            getAdapter(activities).enable(true);
+        }
+        else
+        {
+            applications.setVisibility(View.GONE);
+            activities.setVisibility(View.VISIBLE);
+        }
+        setButtonTag(positive, R.string.open);
+        setButtonTag(negative, R.string.back);
+    }
+    
+    private void setButtonTag(Button button, int id)
+    {
+        button.setText(id);
+        button.setTag(id);
+    }
+
+    private int getButtonTag(View button)
+    {
+        Object result = button.getTag();
+        if (result instanceof Integer)
+        {
+            return (Integer) result;
+        }
+        return -1;
     }
 }

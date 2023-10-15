@@ -47,6 +47,7 @@ public class PackagesLoader extends AsyncTask<PackageItem, Integer, Collection<A
 
     private Collection<ActivityItem> getActivityItems(PackageItem item) throws Exception
     {
+        item.getChildren().clear();
         PackageManager manager = context.getPackageManager();
         PackageInfo packageInfo = manager.getPackageInfo(item.getPackageName(), PackageManager.GET_ACTIVITIES);
         

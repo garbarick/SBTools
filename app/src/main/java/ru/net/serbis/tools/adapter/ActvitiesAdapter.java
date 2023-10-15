@@ -6,14 +6,10 @@ import android.widget.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.dialog.*;
 import ru.net.serbis.tools.util.*;
-import android.graphics.*;
 
 public class ActvitiesAdapter extends ArrayAdapter<ActivityItem>
 {
-    private Collection<ActivityItem> items = new ArrayList<ActivityItem>();
-    private PackageItem current;
     private boolean enabled = true;
 
     public ActvitiesAdapter(Context context)
@@ -28,14 +24,7 @@ public class ActvitiesAdapter extends ArrayAdapter<ActivityItem>
         ActivityItem item = getItem(position);
 
         TextView label = UITool.get().findView(view, R.id.label);
-        if (item == current)
-        {
-            label.setText("..");
-        }
-        else
-        {
-            label.setText(item.getLabel());
-        }
+        label.setText(item.getLabel());
 
         TextView name = UITool.get().findView(view, R.id.name);
         name.setText(item.getName());
@@ -54,42 +43,6 @@ public class ActvitiesAdapter extends ArrayAdapter<ActivityItem>
         return view;
     }
 
-    public void onItemClick(ActivitiesDialog dialog, ListView list, int position)
-    {
-        if (!enabled)
-        {
-            return;
-        }
-        ActivityItem item = getItem(position);
-        if (item instanceof PackageItem)
-        {
-            if (item == current)
-            {
-                setNotifyOnChange(false);
-                clear();
-                current = null;
-                addAll(items);
-                selectItem(list, getPosition(item));
-                setNotifyOnChange(true);
-                notifyDataSetChanged();
-                dialog.setDialogTitle(null);
-            }
-            else
-            {
-                current = (PackageItem)item;
-                if (current.isReady())
-                {
-                    updateCurrent(dialog, list, current.getChildren());
-                }
-                else
-                {
-                    dialog.loadChildren(current);
-                }
-            }
-
-        }
-    }
-
     public void selectItem(ListView list, int position)
     {
         list.setItemChecked(position, true);
@@ -99,22 +52,10 @@ public class ActvitiesAdapter extends ArrayAdapter<ActivityItem>
     public void initItems(Collection<ActivityItem> items)
     {
         setNotifyOnChange(false);
-        this.items = items;
+        clear();
         addAll(items);
         setNotifyOnChange(true);
         notifyDataSetChanged();
-    }
-
-    public void updateCurrent(ActivitiesDialog dialog, ListView list, Collection<ActivityItem> children)
-    {
-        setNotifyOnChange(false);
-        clear();
-        add(current);
-        addAll(children);
-        selectItem(list, 0);
-        setNotifyOnChange(true);
-        notifyDataSetChanged();
-        dialog.setDialogTitle(current.getLabel());
     }
 
     public void enable(boolean enabled)
@@ -131,34 +72,5 @@ public class ActvitiesAdapter extends ArrayAdapter<ActivityItem>
             return super.isEnabled(position);
         }
         return false;
-    }
-
-    @Override
-    public boolean areAllItemsEnabled()
-    {
-        if (enabled)
-        {
-            return super.areAllItemsEnabled();
-        }
-        return false;
-    }
-    
-    public boolean inLevelTwo()
-    {
-        return current != null;
-    }
-
-    public int getCurrentPosition()
-    {
-        int result = 0;
-        for (ActivityItem item : items)
-        {
-            if (item == current)
-            {
-                return result;
-            }
-            result ++;
-        }
-        return 0;
     }
 }
