@@ -5,6 +5,7 @@ import android.content.*;
 import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.*;
+import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.util.*;
 
 public abstract class Param<T, V extends View>
@@ -13,6 +14,7 @@ public abstract class Param<T, V extends View>
     private int nameId;
     protected T defaultValue;
     protected Activity context;
+    protected ParamsAdapter adapter;
 
     public Param(int nameId, T defaultValue)
     {
@@ -25,6 +27,11 @@ public abstract class Param<T, V extends View>
     public void initName(Context context)
     {
         name = context.getResources().getString(nameId);
+    }
+
+    public void setAdapter(ParamsAdapter adapter)
+    {
+        this.adapter = adapter;
     }
 
     public void initNameView(View parent)

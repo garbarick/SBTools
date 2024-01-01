@@ -41,16 +41,27 @@ public class App extends Application
         {
             if (Param.class.isAssignableFrom(field.getType()))
             {
-                try
-                {
-                    Param param = (Param) field.get(null);
-                    param.initName(this);
-                }
-                catch (Exception e)
-                {
-                    Log.error(this, e);
-                }
+                Param param = getValue(field);
+                param.initName(this);
             }
+            else if (field.getType().isArray())
+            {
+                Param[] params = getValue(field);
+                Params.PARAMS.put(field.getName(), params);
+            }
+        }
+    }
+
+    private <T> T getValue(Field field)
+    {
+        try
+        {
+            return (T) field.get(null);
+        }
+        catch (Exception e)
+        {
+            Log.error(this, e);
+            return null;
         }
     }
 

@@ -83,34 +83,41 @@ public class UITool
         return view.isEnabled();
     }
 
-    public void disableAll(LinearLayout view)
+    public void disableAll(View view)
     {
-        view.setEnabled(false);
-        for (int i = 0; i < view.getChildCount(); i ++)
-        {
-            view.getChildAt(i).setEnabled(false);
-        }
+        setEnableAll(view, false);
     }
 
-    public void enableAll(LinearLayout view)
+    public void enableAll(View view)
     {
-        view.setEnabled(true);
-        for (int i = 0; i < view.getChildCount(); i ++)
+        setEnableAll(view, true);
+    }
+
+    public void setEnableAll(View view, boolean enable)
+    {
+        view.setEnabled(enable);
+        if (view instanceof ViewGroup)
         {
-            view.getChildAt(i).setEnabled(true);
+            ViewGroup group = (ViewGroup) view;
+            for (int i = 0; i < group.getChildCount(); i ++)
+            {
+                View child = group.getChildAt(i);
+                setEnableAll(child, enable);
+            }
         }
     }
 
     public void toast(final Context context, final String text)
     {
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(
-            new Runnable() {
+        new Handler(Looper.getMainLooper()).post(
+            new Runnable()
+            {
                 public void run()
                 {
                     Toast.makeText(context, text, Toast.LENGTH_LONG).show();
                 }
-            });
+            }
+        );
     }
     
     public void toast(Context context, int code, String text)

@@ -17,7 +17,6 @@ public interface Tools
     Tool SYS_THEMES = new SysThemes();
     Tool PROGRESS_IN_NOTIFICATION = new ProgressInNotification();
     Tool ACTIVITIES = new Activities();
-    Tool FOLDER_MUSIC_PLAYER = new FolderMusicPlayer();
     Tool CLEAR_TRASH = new ClearTrash();
     Tool HIDE_TOOLS = new HideTools();
 
@@ -30,7 +29,6 @@ public interface Tools
         PROGRESS_IN_NOTIFICATION,
         ACTIVITIES,
         CLEAR_TRASH,
-        //FOLDER_MUSIC_PLAYER,
         HIDE_TOOLS
     };
     

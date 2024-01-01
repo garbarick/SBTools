@@ -33,4 +33,9 @@ public class Holder<K, V> implements Serializable
     {
         return data.entrySet();
     }
+    
+    public Map<K, V> get()
+    {
+        return data;
+    }
 }

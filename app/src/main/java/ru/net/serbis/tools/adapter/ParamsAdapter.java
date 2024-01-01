@@ -33,6 +33,7 @@ public class ParamsAdapter
         LinearLayout layout = UITool.get().findView(parent, R.id.params);
         View view = LayoutInflater.from(context).inflate(param.getLayoutId(), layout, false);
         layout.addView(view);
+        param.setAdapter(this);
         param.initNameView(view);
         param.initViewValue(view);
         return view;
@@ -50,17 +51,23 @@ public class ParamsAdapter
         }
     }
 
-    public void updateValue(Param param, Object value)
+    public View getView(Param param)
     {
         for (Map.Entry<Integer, Param> entry : params.entrySet())
         {
             if (entry.getValue() == param)
             {
-                View view = views.get(entry.getKey());
-                View viewValue = param.getViewValue(view);
-                param.setValue(viewValue, value);
+                return views.get(entry.getKey());
             }
         }
+        return null;
+    }
+
+    public void updateValue(Param param, Object value)
+    {
+        View view = getView(param);
+        View viewValue = param.getViewValue(view);
+        param.setValue(viewValue, value);
     }
 
     public void reset()

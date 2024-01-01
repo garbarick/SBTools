@@ -21,8 +21,6 @@
     <string name="sys_themes_set">Settings for system themes</string>
     <string name="progress_in_notification">Progress in notification</string>
     <string name="activities">Activities</string>
-    <string name="folder_music_player">Folder Music Player</string>
-    <string name="folder_music_player_set">Settings for folder music player</string>
     <string name="clear_trash">Clear Trash</string>
     <string name="clear_trash_set">Settings for clear trash</string>
     <string name="hide_tools">Hide Tools</string>

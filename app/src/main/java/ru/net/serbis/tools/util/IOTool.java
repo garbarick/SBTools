@@ -2,6 +2,7 @@ package ru.net.serbis.tools.util;
 
 import android.os.*;
 import java.io.*;
+import java.util.*;
 
 public class IOTool
 {
@@ -88,4 +89,54 @@ public class IOTool
     {
         return getDownloadFile(path).getAbsolutePath();
     }
+    
+    public Set<String> findFiles(String fileListPath, List<String> extensions)
+    {
+        Set<String> result = new TreeSet<String>();
+        File file = new File(fileListPath);
+        BufferedReader reader = null;
+        try
+        {
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+            String line;
+            while ((line = reader.readLine()) != null)
+            {
+                if (checkExt(line, extensions))
+                {
+                    result.add(line);
+                }
+            }
+        }
+        catch (Throwable e)
+        {
+            Log.error(this, e);
+        }
+        finally
+        {
+            close(reader);
+            file.delete();
+        }
+        return result;
+	}
+    
+    private String getExt(String fileName)
+    {
+        String ext = "";
+        int i = fileName.lastIndexOf('.');
+        if (i > 0)
+        {
+            ext = fileName.substring(i + 1).toLowerCase();
+        }
+        return ext;
+    }
+    
+    public boolean checkExt(String fileName, List<String> extensions)
+    {
+        return extensions.contains(getExt(fileName));
+	}
+    
+    public boolean checkExt(File file, List<String> extensions)
+    {
+        return checkExt(file.getName(), extensions);
+	}
 }
