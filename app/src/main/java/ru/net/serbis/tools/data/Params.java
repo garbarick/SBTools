@@ -14,6 +14,7 @@ public interface Params
     FileParam FILE = new FileParam(R.string.file, IOTool.get().getDownloadPath(IOTool.get().getDownloadFile().getName() + ".zip"), false, true);
     ShareDirParam SHARE_DIR = new ShareDirParam(R.string.share_dir, null);
     NumberParam BUFFER_SIZE = new NumberParam(R.string.buffer_size, 10240);
+    NotifyTypeParam NOTIFY_TYPE = new NotifyTypeParam();
     
     Param[] ZIP_DIR_PARAMS = new Param[]{
         DIRECTORY,
@@ -47,6 +48,10 @@ public interface Params
 
     Param[] SYS_THEMES_PARAMS = new Param[]{
         VIEW_TYPE
+    };
+
+    Param[] NOTIFICATION_PARAMS = new Param[]{
+        NOTIFY_TYPE
     };
 
     Holder<String, Param[]> PARAMS = new Holder<String, Param[]>();

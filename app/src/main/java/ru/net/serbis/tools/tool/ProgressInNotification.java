@@ -2,6 +2,7 @@ package ru.net.serbis.tools.tool;
 
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
+import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.task.*;
 
@@ -9,7 +10,10 @@ public class ProgressInNotification extends Tool implements TaskCallback<Boolean
 {
     public ProgressInNotification()
     {
-        super(R.layout.tool_progress_in_notification, R.id.progress_in_notification);
+        super(
+            R.layout.tool_progress_in_notification,
+            R.id.progress_in_notification,
+            R.id.progress_in_notification_set);
     }
 
     @Override
@@ -19,6 +23,9 @@ public class ProgressInNotification extends Tool implements TaskCallback<Boolean
         {
             case R.id.progress_in_notification:
                 makeProgress();
+                break;
+            case R.id.progress_in_notification_set:
+                new ParamsFragment(context, R.string.notification_set, Params.NOTIFICATION_PARAMS);
                 break;
         }
     }

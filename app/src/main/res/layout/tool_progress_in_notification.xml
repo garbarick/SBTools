@@ -10,6 +10,15 @@
         android:id="@+id/progress_in_notification"
         android:text="@string/progress_in_notification"
         android:duplicateParentState="true"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        android:layout_weight="1"/>
+
+    <ImageButton
+        android:src="@android:drawable/ic_menu_preferences"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/progress_in_notification_set"
+        android:duplicateParentState="true"
+        android:scaleType="fitXY"/>
 
 </LinearLayout>

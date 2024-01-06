@@ -19,17 +19,24 @@ public class App extends Application
     {
         super.onCreate();
 
-        initCompression();
+        initEnums();
         initParams();
-        initStrings();
         shareConnection.bind();
 
         Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(getApplicationContext()));
     }
 
-    private void initCompression()
+    private void initEnums()
     {
         for (Compression item : Compression.class.getEnumConstants())
+        {
+            item.initName(this);
+        }
+        for (Strings item : Strings.class.getEnumConstants())
+        {
+            item.initValue(this);
+        }
+        for (NotifyType item : NotifyType.class.getEnumConstants())
         {
             item.initName(this);
         }
@@ -62,14 +69,6 @@ public class App extends Application
         {
             Log.error(this, e);
             return null;
-        }
-    }
-
-    private void initStrings()
-    {
-        for (Strings item : Strings.class.getEnumConstants())
-        {
-            item.initValue(this);
         }
     }
 
