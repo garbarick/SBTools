@@ -18,6 +18,7 @@ public class NotificationProgress extends Notification.Builder
     private int textId;
     private NotifyType type;
     private NotificationManager manager;
+    private RemoteViews views;
 
     public NotificationProgress(Context context, int textId)
     {
@@ -70,7 +71,6 @@ public class NotificationProgress extends Notification.Builder
         if (init)
         {
             setContentText(context.getResources().getString(textId));
-            addAction(android.R.drawable.ic_input_add, Actions.TEST, getAction(Actions.TEST));
         }
         setContentTitle(progress + " %");
         setProgress(100, progress, false);
@@ -78,14 +78,17 @@ public class NotificationProgress extends Notification.Builder
 
     private void setCustomContent(int progress, boolean init)
     {
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.progress);
-        views.setImageViewResource(R.id.icon, R.drawable.app);
-        views.setTextViewText(R.id.name, context.getResources().getString(R.string.app));
-        views.setTextViewText(R.id.text, context.getResources().getString(textId));
+        if (init)
+        {
+            views = new RemoteViews(context.getPackageName(), R.layout.progress);
+            views.setImageViewResource(R.id.icon, R.drawable.app);
+            views.setTextViewText(R.id.name, context.getResources().getString(R.string.app));
+            views.setTextViewText(R.id.text, context.getResources().getString(textId));
+            views.setOnClickPendingIntent(R.id.button, getAction(Actions.TEST));
+            setContent(views);
+        }
         views.setTextViewText(R.id.title, progress + " %");
         views.setProgressBar(R.id.progress, 100, progress, false);
-        views.setOnClickPendingIntent(R.id.button, getAction(Actions.TEST));
-        setContent(views);
     }
 
     private PendingIntent getAction(String action)
