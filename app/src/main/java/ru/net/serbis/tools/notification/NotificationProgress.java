@@ -91,7 +91,7 @@ public class NotificationProgress extends Notification.Builder
     private PendingIntent getAction(String action)
     {
         Intent intent = new Intent(context, ActionsReceiver.class);
-        intent.setAction(Actions.TEST);
+        intent.setAction(action);
         return PendingIntent.getBroadcast(context, 0, intent, 0);
     }
 }
