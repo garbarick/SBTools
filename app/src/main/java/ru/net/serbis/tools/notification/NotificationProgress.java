@@ -45,8 +45,15 @@ public class NotificationProgress extends Notification.Builder
 
     public void setProgress(int progress)
     {
-        setContent(progress, false);
-        manager.notify(id, build());
+        try
+        {
+            setContent(progress, false);
+            manager.notify(id, build());
+        }
+        catch (Exception e)
+        {
+            Log.error(this, e);
+        }
     }
 
     public void cancel()
