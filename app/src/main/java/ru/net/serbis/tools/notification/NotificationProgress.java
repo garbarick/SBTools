@@ -19,11 +19,12 @@ public class NotificationProgress extends Notification.Builder
     private NotifyType type;
     private NotificationManager manager;
     private RemoteViews views;
+    private boolean old;
 
     public NotificationProgress(Context context, int textId)
     {
         super(context);
-
+        old = Build.VERSION.SDK_INT < Build.VERSION_CODES.N;
         this.context = context;
         this.textId = textId;
         type = Params.NOTIFY_TYPE.getValue(context);
@@ -96,5 +97,16 @@ public class NotificationProgress extends Notification.Builder
         Intent intent = new Intent(context, ActionsReceiver.class);
         intent.setAction(action);
         return PendingIntent.getBroadcast(context, 0, intent, 0);
+    }
+
+    @Override
+    public Notification build()
+    {
+        Notification result = super.build();
+        if (old && NotifyType.CUSTOM.equals(type))
+        {
+            result.bigContentView = views;
+        }
+        return result;
     }
 }
