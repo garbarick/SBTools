@@ -20,6 +20,7 @@ public class NotificationProgress extends Notification.Builder
     private NotificationManager manager;
     private RemoteViews views;
     private boolean old;
+    private int oldProgress = -1;
 
     public NotificationProgress(Context context, int textId)
     {
@@ -43,12 +44,18 @@ public class NotificationProgress extends Notification.Builder
         }
     }
 
+    synchronized
     public void setProgress(int progress)
     {
         try
         {
+            if (oldProgress == progress)
+            {
+                return;
+            }
             setContent(progress, false);
             manager.notify(id, build());
+            oldProgress = progress;
         }
         catch (Exception e)
         {
@@ -58,7 +65,7 @@ public class NotificationProgress extends Notification.Builder
 
     public void cancel()
     {
-        manager.cancel(id);
+        manager.cancelAll();
     }
 
     public void setContent(int progress, boolean init)
