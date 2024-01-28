@@ -15,7 +15,9 @@ public interface Params
     ShareDirParam SHARE_DIR = new ShareDirParam(R.string.share_dir, null);
     NumberParam BUFFER_SIZE = new NumberParam(R.string.buffer_size, 10240);
     NotifyTypeParam NOTIFY_TYPE = new NotifyTypeParam();
-    
+    BooleanParam CLEAN_UP_ON_START = new BooleanParam(R.string.clean_up_on_start, false);
+    FilesParam TRASH_FILES = new FilesParam(R.string.trash_files, "clearTrash");
+
     Param[] ZIP_DIR_PARAMS = new Param[]{
         DIRECTORY,
         ZIP_NAME,
@@ -52,6 +54,11 @@ public interface Params
 
     Param[] NOTIFICATION_PARAMS = new Param[]{
         NOTIFY_TYPE
+    };
+
+    Param[] CLEAR_TRASH_PARAMS = new Param[]{
+        CLEAN_UP_ON_START,
+        TRASH_FILES
     };
 
     Holder<String, Param[]> PARAMS = new Holder<String, Param[]>();

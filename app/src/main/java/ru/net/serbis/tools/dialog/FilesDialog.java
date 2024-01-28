@@ -8,16 +8,14 @@ import android.widget.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.adapter.*;
-import ru.net.serbis.tools.util.*;
 
-public class FilesDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener, View.OnClickListener, PopupMenu.OnMenuItemClickListener
+public abstract class FilesDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener, View.OnClickListener, PopupMenu.OnMenuItemClickListener
 {
     private AlertDialog dialog;
     private ListView list;
     private FilePathAdapter adapter;
     private Button neutral;
     private PopupMenu menu;
-    public static final String KEY = "clearTrash";
 
     public FilesDialog(Activity context, Set<String> pathes)
     {
@@ -27,10 +25,7 @@ public class FilesDialog extends AlertDialog.Builder implements DialogInterface.
 
         list = new ListView(context);
         setView(list);
-        if (pathes == null || pathes.isEmpty())
-        {
-            pathes = SysTool.get().getPreferences(context).getStringSet(KEY, new TreeSet<String>());
-        }
+
         adapter = new FilePathAdapter(context, pathes);
         list.setAdapter(adapter);
         list.setOnItemClickListener(adapter);
@@ -38,11 +33,6 @@ public class FilesDialog extends AlertDialog.Builder implements DialogInterface.
         setPositiveButton(android.R.string.ok, this);
         setNeutralButton(" ", null);
         setNegativeButton(android.R.string.cancel, this);
-    }
-
-    public FilesDialog(Activity context)
-    {
-        this(context, null);
     }
 
     @Override
@@ -103,17 +93,12 @@ public class FilesDialog extends AlertDialog.Builder implements DialogInterface.
         switch(id)
         {
             case Dialog.BUTTON_POSITIVE:
-                positive();
+                onResult(getPathes());
                 break;
         }
     }
 
-    private void positive()
-    {
-        SharedPreferences.Editor editor = SysTool.get().getPreferencesEditor(getContext());
-        editor.putStringSet(KEY, getPathes());
-        editor.commit();
-    }
+    protected abstract void onResult(Set<String> result);
 
     public Set<String> getPathes()
     {

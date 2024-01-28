@@ -1,16 +1,18 @@
 package ru.net.serbis.tools.tool;
 
+import android.widget.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.dialog.*;
 import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.task.*;
 import ru.net.serbis.tools.util.*;
 
-public class ClearTrash extends Tool implements TaskCallback<Boolean>
+public class ClearTrash extends Tool implements TaskCallback<Integer>
 {
+    private boolean start = true;
+
     public ClearTrash()
     {
         super(
@@ -28,9 +30,9 @@ public class ClearTrash extends Tool implements TaskCallback<Boolean>
             case R.id.clear_trash:
                 clearTrash();
                 break;
-
+                
             case R.id.clear_trash_set:
-                new FilesFragment(context);
+                new ParamsFragment(context, R.string.clear_trash_set, Params.CLEAR_TRASH_PARAMS);
                 break;
         }
     }
@@ -45,7 +47,7 @@ public class ClearTrash extends Tool implements TaskCallback<Boolean>
     {
         disable();
         notification = new NotificationProgress(context, R.string.clear_trash);
-        Set<String> pathes = SysTool.get().getPreferences(context).getStringSet(FilesDialog.KEY, new TreeSet<String>());
+        Set<String> pathes = Params.TRASH_FILES.getValue(context);
         new ClearTrashTask(this).execute(pathes.toArray(new String[0]));
     }
 
@@ -57,13 +59,30 @@ public class ClearTrash extends Tool implements TaskCallback<Boolean>
     }
 
     @Override
-    public void onResult(Boolean result, TaskError error)
+    public void onResult(Integer result, TaskError error)
     {
         notification.cancel();
         enable();
-        if (!result)
+        if (error != null)
         {
             UITool.get().toast(context, error);
         }
+        else
+        {
+            String format = context.getResources().getString(R.string.files_deleted);
+            String text = String.format(format, result);
+            UITool.get().toast(context, text);
+        }
+    }
+
+    @Override
+    public void setMain(LinearLayout main)
+    {
+        super.setMain(main);
+        if (start && Params.CLEAN_UP_ON_START.getValue(context))
+        {
+            clearTrash();
+        }
+        start = false;
     }
 }

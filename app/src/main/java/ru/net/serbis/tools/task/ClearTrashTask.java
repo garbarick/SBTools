@@ -5,18 +5,19 @@ import java.io.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.util.*;
 
-public class ClearTrashTask extends AsyncTask<String, Integer, Boolean>
+public class ClearTrashTask extends AsyncTask<String, Integer, Integer>
 {
     private TaskError error;
-    private TaskCallback<Boolean> callback;
+    private TaskCallback<Integer> callback;
+    private int filesDeleted;
 
-    public ClearTrashTask(TaskCallback<Boolean> callback)
+    public ClearTrashTask(TaskCallback<Integer> callback)
     {
         this.callback = callback;
     }
 
     @Override
-    protected Boolean doInBackground(String... pathes)
+    protected Integer doInBackground(String... pathes)
     {
         publishProgress(0);
         try
@@ -29,7 +30,6 @@ public class ClearTrashTask extends AsyncTask<String, Integer, Boolean>
                 deleteFile(file);
                 publishProgress(UITool.get().getPercent(count, ++i));
             }
-            return true;
         }
         catch (Exception e)
         {
@@ -39,7 +39,7 @@ public class ClearTrashTask extends AsyncTask<String, Integer, Boolean>
         {
             publishProgress(0);
         }
-        return false;
+        return filesDeleted;
     }
     
     private void deleteFile(File file)
@@ -59,7 +59,10 @@ public class ClearTrashTask extends AsyncTask<String, Integer, Boolean>
                     }
                 );
             }
-            file.delete();
+            if (file.delete())
+            {
+                filesDeleted ++;
+            }
         }
     }
 
@@ -70,7 +73,7 @@ public class ClearTrashTask extends AsyncTask<String, Integer, Boolean>
     }
 
     @Override
-    protected void onPostExecute(Boolean result)
+    protected void onPostExecute(Integer result)
     {
         if (error == null)
         {

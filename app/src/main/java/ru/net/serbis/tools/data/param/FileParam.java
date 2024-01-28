@@ -4,6 +4,7 @@ import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.dialog.*;
+import ru.net.serbis.tools.listener.*;
 
 public class FileParam extends TextViewParam
 {
@@ -20,13 +21,13 @@ public class FileParam extends TextViewParam
     @Override
     public void initViewValue(View parent)
     {
-        final TextView view = getViewValue(parent);
+        TextView view = getViewValue(parent);
         setValue(view, getValue(context));
         view.setOnClickListener(
-            new View.OnClickListener()
+            new ViewOnClickListener<TextView>()
             {
                 @Override
-                public void onClick(View v)
+                public void onClickView(final TextView view)
                 {
                     new FileChooser(context, R.string.choose_dir, onlyFolder, onlyFile)
                     {

@@ -3,6 +3,7 @@ package ru.net.serbis.tools.data.param;
 import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.extension.share.*;
+import ru.net.serbis.tools.listener.*;
 
 public class ShareDirParam extends TextViewParam
 {
@@ -14,13 +15,13 @@ public class ShareDirParam extends TextViewParam
     @Override
     public void initViewValue(View parent)
     {
-        final TextView view = getViewValue(parent);
+        TextView view = getViewValue(parent);
         setValue(view, getValue(context));
         view.setOnClickListener(
-            new View.OnClickListener()
+            new ViewOnClickListener<TextView>()
             {
                 @Override
-                public void onClick(View v)
+                public void onClickView(TextView view)
                 {
                     ShareFolders folders = new ShareFolders();
                     context.startActivityForResult(

@@ -21,6 +21,7 @@ public class NotificationProgress extends Notification.Builder
     private RemoteViews views;
     private boolean old;
     private int oldProgress = -1;
+    private WakeLocker wakeLocker = new WakeLocker();
 
     public NotificationProgress(Context context, int textId)
     {
@@ -53,9 +54,10 @@ public class NotificationProgress extends Notification.Builder
             {
                 return;
             }
+            oldProgress = progress;
+            wakeLocker.start(context);
             setContent(progress, false);
             manager.notify(id, build());
-            oldProgress = progress;
         }
         catch (Exception e)
         {
