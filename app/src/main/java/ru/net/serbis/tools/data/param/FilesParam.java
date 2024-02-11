@@ -11,18 +11,21 @@ import ru.net.serbis.tools.util.*;
 
 public class FilesParam extends Param<Set<String>, Button>
 {
-    private String paramName;
     private Set<String> files;
+    private boolean onlyFolder;
+    private boolean onlyFile;
 
-    public FilesParam(int nameId, String paramName)
+    public FilesParam(int nameId, String paramName, boolean onlyFolder, boolean onlyFile)
     {
         super(nameId, new TreeSet<String>());
         this.paramName = paramName;
+        this.onlyFolder = onlyFolder;
+        this.onlyFile = onlyFile;
     }
 
-    public FilesParam(int nameId)
+    public FilesParam(int nameId, boolean onlyFolder, boolean onlyFile)
     {
-        this(nameId, null);
+        this(nameId, null, onlyFolder, onlyFile);
     }
 
     @Override
@@ -42,7 +45,7 @@ public class FilesParam extends Param<Set<String>, Button>
                 @Override
                 public void onClickView(final Button view)
                 {
-                    new FilesDialog(context, getValue(view))
+                    new FilesDialog(context, nameId, getValue(view), onlyFolder, onlyFile)
                     {
                         @Override
                         protected void onResult(Set<String> result)

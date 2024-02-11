@@ -11,7 +11,8 @@ import ru.net.serbis.tools.util.*;
 public abstract class Param<T, V extends View>
 {
     protected String name;
-    private int nameId;
+    protected String paramName;
+    protected int nameId;
     protected T defaultValue;
     protected Activity context;
     protected ParamsAdapter adapter;
@@ -27,6 +28,10 @@ public abstract class Param<T, V extends View>
     public void initName(Context context)
     {
         name = context.getResources().getString(nameId);
+        if (paramName == null)
+        {
+            paramName = name;
+        }
     }
 
     public void setAdapter(ParamsAdapter adapter)
@@ -51,7 +56,7 @@ public abstract class Param<T, V extends View>
     {
         SharedPreferences.Editor editor = SysTool.get().getPreferencesEditor(context);
         String data = value == null ? null : typeToString(value);
-        editor.putString(name, data);
+        editor.putString(paramName, data);
         editor.commit();
     }
 
@@ -59,7 +64,7 @@ public abstract class Param<T, V extends View>
 
     public T getValue(Context context)
     {
-        return stringToType(SysTool.get().getPreferences(context).getString(name, typeToString(defaultValue)));
+        return stringToType(SysTool.get().getPreferences(context).getString(paramName, typeToString(defaultValue)));
     }
 
     public abstract T stringToType(String value);

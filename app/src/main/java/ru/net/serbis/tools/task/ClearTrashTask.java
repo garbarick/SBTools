@@ -1,33 +1,55 @@
 package ru.net.serbis.tools.task;
 
+import android.content.*;
 import android.os.*;
 import java.io.*;
+import java.util.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.util.*;
 
-public class ClearTrashTask extends AsyncTask<String, Integer, Integer>
+public class ClearTrashTask extends AsyncTask<Void, Integer, Integer>
 {
     private TaskError error;
     private TaskCallback<Integer> callback;
     private int filesDeleted;
+    private Set<String> trashFiles;
+    private Set<String> dirToFiles;
 
-    public ClearTrashTask(TaskCallback<Integer> callback)
+    public ClearTrashTask(Context context, TaskCallback<Integer> callback)
     {
         this.callback = callback;
+        trashFiles = Params.TRASH_FILES.getValue(context);
+        dirToFiles = Params.DIRS_TO_FILES.getValue(context);
     }
 
     @Override
-    protected Integer doInBackground(String... pathes)
+    protected Integer doInBackground(Void... pathes)
     {
         publishProgress(0);
         try
         {
-            int count = pathes.length;
+            int count = trashFiles.size() + dirToFiles.size();
             int i = 0;
-            for (String path : pathes)
+            for (String trashFile : trashFiles)
             {
-                File file = new File(path);
-                deleteFile(file);
+                File file = new File(trashFile);
+                if (!dirToFiles.contains(trashFile))
+                {
+                    deleteFile(file);
+                }
+                publishProgress(UITool.get().getPercent(count, ++i));
+            }
+            for (String dirToFile : dirToFiles)
+            {
+                File file = new File(dirToFile);
+                if (file.isDirectory())
+                {
+                    deleteFile(file);
+                }
+                if (!file.exists())
+                {
+                    file.createNewFile();
+                }
                 publishProgress(UITool.get().getPercent(count, ++i));
             }
         }

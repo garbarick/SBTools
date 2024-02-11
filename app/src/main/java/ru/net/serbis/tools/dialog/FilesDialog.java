@@ -16,12 +16,16 @@ public abstract class FilesDialog extends AlertDialog.Builder implements DialogI
     private FilePathAdapter adapter;
     private Button neutral;
     private PopupMenu menu;
+    private boolean onlyFolder;
+    private boolean onlyFile;
 
-    public FilesDialog(Activity context, Set<String> pathes)
+    public FilesDialog(Activity context, int titleId, Set<String> pathes, boolean onlyFolder, boolean onlyFile)
     {
         super(context);
+        this.onlyFolder = onlyFolder;
+        this.onlyFile = onlyFile;
 
-        setTitle(R.string.clear_trash_set);
+        setTitle(titleId);
 
         list = new ListView(context);
         setView(list);
@@ -107,7 +111,7 @@ public abstract class FilesDialog extends AlertDialog.Builder implements DialogI
 
     private void add()
     {
-        new FileChooser(getContext(), R.string.choose_dir, false, false)
+        new FileChooser(getContext(), R.string.choose_dir, onlyFolder, onlyFile)
         {
             @Override
             public void onChoose(String path)

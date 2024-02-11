@@ -47,8 +47,7 @@ public class ClearTrash extends Tool implements TaskCallback<Integer>
     {
         disable();
         notification = new NotificationProgress(context, R.string.clear_trash);
-        Set<String> pathes = Params.TRASH_FILES.getValue(context);
-        new ClearTrashTask(this).execute(pathes.toArray(new String[0]));
+        new ClearTrashTask(context, this).execute();
     }
 
     @Override

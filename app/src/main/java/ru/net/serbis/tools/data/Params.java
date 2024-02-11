@@ -16,7 +16,8 @@ public interface Params
     NumberParam BUFFER_SIZE = new NumberParam(R.string.buffer_size, 10240);
     NotifyTypeParam NOTIFY_TYPE = new NotifyTypeParam();
     BooleanParam CLEAN_UP_ON_START = new BooleanParam(R.string.clean_up_on_start, false);
-    FilesParam TRASH_FILES = new FilesParam(R.string.trash_files, "clearTrash");
+    FilesParam TRASH_FILES = new FilesParam(R.string.trash_files, "clearTrash", false, false);
+    FilesParam DIRS_TO_FILES = new FilesParam(R.string.dirs_to_files, true, false);
 
     Param[] ZIP_DIR_PARAMS = new Param[]{
         DIRECTORY,
@@ -58,7 +59,8 @@ public interface Params
 
     Param[] CLEAR_TRASH_PARAMS = new Param[]{
         CLEAN_UP_ON_START,
-        TRASH_FILES
+        TRASH_FILES,
+        DIRS_TO_FILES
     };
 
     Holder<String, Param[]> PARAMS = new Holder<String, Param[]>();
