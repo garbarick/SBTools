@@ -1,9 +1,10 @@
 package ru.net.serbis.tools.data.param;
 
+import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.*;
 
-public abstract class TextViewParam extends TextParam<TextView>
+public class TextViewParam extends TextParam<TextView>
 {
     public TextViewParam(int nameId, String defaultValue)
     {
@@ -14,6 +15,13 @@ public abstract class TextViewParam extends TextParam<TextView>
     public int getLayoutId()
     {
         return R.layout.param_text;
+    }
+
+    @Override
+    public void initViewValue(View parent)
+    {
+        TextView view = getViewValue(parent);
+        setValue(view, getValue(context));
     }
 
     @Override

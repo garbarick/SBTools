@@ -72,15 +72,33 @@ public class ClearTrash extends Tool implements TaskCallback<Integer>
             String text = String.format(format, result);
             UITool.get().toast(context, text);
         }
+        Params.LAST_CLEAN_UP.updateValue(context);
     }
 
     @Override
     public void setMain(LinearLayout main)
     {
         super.setMain(main);
-        if (start && Params.CLEAN_UP_ON_START.getValue(context))
+        if (start)
         {
-            clearTrash();
+            Date last = Params.LAST_CLEAN_UP.getDateValue(context);
+            Period period = Params.AUTO_CLEAN_UP.getValue(context);
+            switch(period)
+            {
+                case DISABLED:
+                    break;
+                case EVERY_TIME:
+                    clearTrash();
+                    break;
+                case ONCE_A_DAY:
+                case ONCE_TWO_DAYS:
+                case ONCE_A_WEEK:
+                    if (period.checkDays(last))
+                    {
+                        clearTrash();
+                    }
+                    break;
+            }
         }
         start = false;
     }

@@ -40,6 +40,10 @@ public class App extends Application
         {
             item.initName(this);
         }
+        for (Period item : Period.class.getEnumConstants())
+        {
+            item.initName(this);
+        }
     }
 
     private void initParams()

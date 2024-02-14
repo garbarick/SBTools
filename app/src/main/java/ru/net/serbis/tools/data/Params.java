@@ -1,5 +1,6 @@
 package ru.net.serbis.tools.data;
 
+import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.util.*;
@@ -15,9 +16,10 @@ public interface Params
     ShareDirParam SHARE_DIR = new ShareDirParam(R.string.share_dir, null);
     NumberParam BUFFER_SIZE = new NumberParam(R.string.buffer_size, 10240);
     NotifyTypeParam NOTIFY_TYPE = new NotifyTypeParam();
-    BooleanParam CLEAN_UP_ON_START = new BooleanParam(R.string.clean_up_on_start, false);
+    PeriodParam AUTO_CLEAN_UP = new PeriodParam(R.string.auto_clean_up);
     FilesParam TRASH_FILES = new FilesParam(R.string.trash_files, "clearTrash", false, false);
     FilesParam DIRS_TO_FILES = new FilesParam(R.string.dirs_to_files, true, false);
+    DateTimeParam LAST_CLEAN_UP = new DateTimeParam(R.string.last_clean_up);
 
     Param[] ZIP_DIR_PARAMS = new Param[]{
         DIRECTORY,
@@ -58,9 +60,10 @@ public interface Params
     };
 
     Param[] CLEAR_TRASH_PARAMS = new Param[]{
-        CLEAN_UP_ON_START,
+        AUTO_CLEAN_UP,
         TRASH_FILES,
-        DIRS_TO_FILES
+        DIRS_TO_FILES,
+        LAST_CLEAN_UP
     };
 
     Holder<String, Param[]> PARAMS = new Holder<String, Param[]>();

@@ -51,11 +51,12 @@
     <string name="add">Add</string>
     <string name="delete">Delete</string>
     <string name="notify_type">Notify type</string>
-    <string name="clean_up_on_start">Clean up on start</string>
+    <string name="auto_clean_up">Auto clean up</string>
     <string name="trash_files">Trash files</string>
     <string name="dirs_to_files">Dirs to files</string>
     <string name="choose_files">Choose files</string>
     <string name="chosen_files">Chosen files (%d)</string>
     <string name="files_deleted">Files were deleted: %d</string>
+    <string name="last_clean_up">Last clean up</string>
 
 </resources>

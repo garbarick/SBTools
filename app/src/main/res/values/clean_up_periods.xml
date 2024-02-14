@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="period_disabled">Disabled</string>
+    <string name="period_every_time">Every time</string>
+    <string name="period_once_a_day">Once a day</string>
+    <string name="period_once_two_days">Once two days</string>
+    <string name="period_once_a_week">Once a week</string>
+</resources>

@@ -15,8 +15,9 @@ public class ShareDirParam extends TextViewParam
     @Override
     public void initViewValue(View parent)
     {
+        super.initViewValue(parent);
+
         TextView view = getViewValue(parent);
-        setValue(view, getValue(context));
         view.setOnClickListener(
             new ViewOnClickListener<TextView>()
             {
