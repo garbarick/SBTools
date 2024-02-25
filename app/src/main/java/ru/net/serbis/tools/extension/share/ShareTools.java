@@ -158,13 +158,40 @@ public class ShareTools
         return null;
     }
 
+    private int lastProgress = -1;
+
     public <T> void  progress(final TaskCallback<T> callback, int progress)
     {
-        callback.progress(progress);
+        try
+        {
+            if (lastProgress != progress)
+            {
+                callback.progress(progress);
+            }
+        }
+        catch (Exception e)
+        {
+            Log.error(this, e);
+        }
+        finally
+        {
+            lastProgress = progress;
+        }
     }
 
     public <T> void onResult(final TaskCallback<T> callback, T result, TaskError error)
     {
-        callback.onResult(result, error);
+        try
+        {
+            callback.onResult(result, error);
+        }
+        catch (Exception e)
+        {
+            Log.error(this, e);
+        }
+        finally
+        {
+            lastProgress = -1;
+        }
     }
 }
