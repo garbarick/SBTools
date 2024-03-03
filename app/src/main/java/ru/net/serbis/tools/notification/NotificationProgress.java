@@ -9,7 +9,6 @@ import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.activity.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.util.*;
-import ru.net.serbis.tools.receiver.*;
 
 public class NotificationProgress extends Notification.Builder
 {
@@ -101,18 +100,10 @@ public class NotificationProgress extends Notification.Builder
             views.setImageViewResource(R.id.icon, R.drawable.app);
             views.setTextViewText(R.id.name, context.getResources().getString(R.string.app));
             views.setTextViewText(R.id.text, context.getResources().getString(textId));
-            views.setOnClickPendingIntent(R.id.button, getAction(Actions.TEST));
             setContent(views);
         }
         views.setTextViewText(R.id.title, progress + " %");
         views.setProgressBar(R.id.progress, 100, progress, false);
-    }
-
-    private PendingIntent getAction(String action)
-    {
-        Intent intent = new Intent(context, ActionsReceiver.class);
-        intent.setAction(action);
-        return PendingIntent.getBroadcast(context, 0, intent, 0);
     }
 
     @Override

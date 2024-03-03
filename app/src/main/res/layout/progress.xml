@@ -60,13 +60,6 @@
 
 		</LinearLayout>
 
-		<ImageButton
-			android:src="@android:drawable/ic_menu_add"
-			android:layout_width="30dp"
-			android:layout_height="30dp"
-			android:id="@+id/button"
-			android:background="@color/dark_gray"/>
-
 	</LinearLayout>
 
 	<ProgressBar
