@@ -58,5 +58,7 @@
     <string name="chosen_files">Chosen files (%d)</string>
     <string name="files_deleted">Files were deleted: %d</string>
     <string name="last_clean_up">Last clean up</string>
+    <string name="zip_size">Zip size: %s</string>
+    <string name="files_count">Files count: %d</string>
 
 </resources>

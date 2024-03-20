@@ -2,10 +2,10 @@ package ru.net.serbis.tools.util;
 
 import android.content.*;
 import java.io.*;
+import java.nio.file.attribute.*;
 import java.util.*;
 import java.util.zip.*;
 import ru.net.serbis.tools.*;
-import java.nio.file.attribute.*;
 
 public class ZipTool
 {
@@ -19,6 +19,7 @@ public class ZipTool
     private int compression;
     private boolean deleteSourceFiles;
     private int bufferZise;
+    private int entryCount;
 
     public ZipTool(Context context, 
                    Progress progress,
@@ -59,6 +60,7 @@ public class ZipTool
         {
             clearFiles(files);
         }
+        showResult();
     }
 
     private List<File> getFiles(File dir)
@@ -141,6 +143,7 @@ public class ZipTool
             {
                 ZipEntry outEntry = new ZipEntry(inEntry);
                 out.putNextEntry(outEntry);
+                entryCount ++;
                 IOTool.get().copy(in, out, false, false, bufferZise);
                 current ++;
                 progress.progress(UITool.get().getPercent(all, current));
@@ -170,6 +173,7 @@ public class ZipTool
                 try
                 {
                     out.putNextEntry(createEntry(file));
+                    entryCount ++;
                     FileInputStream in = new FileInputStream(file);
                     IOTool.get().copy(in, out, true, false, bufferZise);
                     out.closeEntry();
@@ -208,5 +212,37 @@ public class ZipTool
             current ++;
             progress.progress(UITool.get().getPercent(all, current));
         }
+    }
+
+    private void showResult()
+    {
+        String text = String.format(context.getResources().getString(R.string.zip_size), getFileSize(result));
+        text += ", ";
+        text += String.format(context.getResources().getString(R.string.files_count), entryCount);
+        UITool.get().toast(context, text);
+    }
+
+    private String getFileSize(File file)
+    {
+        long size = file.length();
+
+        float sizeKb = 1024.0f;
+        float sizeMb = sizeKb * sizeKb;
+        float sizeGb = sizeMb * sizeKb;
+        float sizeTerra = sizeGb * sizeKb;
+
+        if (size < sizeMb)
+        {
+            return String.format("%,.2f Kb", size / sizeKb);
+        }
+        else if (size < sizeGb)
+        {
+            return String.format("%,.2f Mb", size / sizeMb);
+        }
+        else if (size < sizeTerra)
+        {
+            return String.format("%,.2f Gb", size / sizeGb);
+        }
+        return "";
     }
 }
