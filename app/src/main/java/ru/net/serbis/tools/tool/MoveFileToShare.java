@@ -40,12 +40,12 @@ public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
 
     private void moveFileToShare()
     {
-        UITool.get().setProgress(context, true);
+        UITool.get().setProgress(true);
         disable();
         notification = new NotificationProgress(context, R.string.move_file_to_share);
-        String filePath = Params.FILE.getValue(context);
-        String shareDir = Params.SHARE_DIR.getValue(context);
-        Integer bufferSize = Params.BUFFER_SIZE.getValue(context);
+        String filePath = Params.FILE.getValue();
+        String shareDir = Params.SHARE_DIR.getValue();
+        Integer bufferSize = Params.BUFFER_SIZE.getValue();
         new ShareTools(context).uploadFile(this, filePath, shareDir, bufferSize);
     }
     
@@ -61,16 +61,16 @@ public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
     {
         if (result)
         {
-            String filePath = Params.FILE.getValue(context);
+            String filePath = Params.FILE.getValue();
             new File(filePath).delete();
         }
         else
         {
-            UITool.get().toast(context, error);
+            UITool.get().toast(error);
         }
         notification.cancel();
         enable();
-        UITool.get().setProgress(context, false);
+        UITool.get().setProgress(false);
     }
 
     @Override

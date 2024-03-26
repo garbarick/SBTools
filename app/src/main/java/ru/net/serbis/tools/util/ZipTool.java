@@ -219,7 +219,7 @@ public class ZipTool
         String text = String.format(context.getResources().getString(R.string.zip_size), getFileSize(result));
         text += ", ";
         text += String.format(context.getResources().getString(R.string.files_count), entryCount);
-        UITool.get().toast(context, text);
+        UITool.get().toast(text);
     }
 
     private String getFileSize(File file)

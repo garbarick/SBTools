@@ -38,7 +38,7 @@ public class FilesParam extends Param<Set<String>, Button>
     public void initViewValue(View parent)
     {
         Button view = getViewValue(parent);
-        setValue(view, getValue(context));
+        setValue(view, getValue());
         view.setOnClickListener(
             new ViewOnClickListener<Button>()
             {
@@ -59,15 +59,15 @@ public class FilesParam extends Param<Set<String>, Button>
     }
 
     @Override
-    public Set<String> getValue(Context context)
+    public Set<String> getValue()
     {
-        return SysTool.get().getPreferences(context).getStringSet(paramName, new TreeSet<String>());
+        return SysTool.get().getPreferences().getStringSet(paramName, new TreeSet<String>());
     }
 
     @Override
     public void saveValue(Set<String> value)
     {
-        SharedPreferences.Editor editor = SysTool.get().getPreferencesEditor(context);
+        SharedPreferences.Editor editor = SysTool.get().getPreferencesEditor();
         editor.putStringSet(paramName, value);
         editor.commit();
     }

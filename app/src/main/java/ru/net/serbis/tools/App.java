@@ -1,6 +1,7 @@
 package ru.net.serbis.tools;
 
 import android.app.*;
+import android.content.*;
 import java.lang.reflect.*;
 import ru.net.serbis.tools.connection.*;
 import ru.net.serbis.tools.data.*;
@@ -18,6 +19,10 @@ public class App extends Application
     public void onCreate()
     {
         super.onCreate();
+
+        Context context = getApplicationContext();
+        SysTool.get().set(context);
+        UITool.get().set(context);
 
         initEnums();
         initParams();

@@ -64,13 +64,13 @@ public class ClearTrash extends Tool implements TaskCallback<Integer>
         enable();
         if (error != null)
         {
-            UITool.get().toast(context, error);
+            UITool.get().toast(error);
         }
         else
         {
             String format = context.getResources().getString(R.string.files_deleted);
             String text = String.format(format, result);
-            UITool.get().toast(context, text);
+            UITool.get().toast(text);
         }
         Params.LAST_CLEAN_UP.updateValue(context);
     }
@@ -81,8 +81,8 @@ public class ClearTrash extends Tool implements TaskCallback<Integer>
         super.setMain(main);
         if (start)
         {
-            Date last = Params.LAST_CLEAN_UP.getDateValue(context);
-            Period period = Params.AUTO_CLEAN_UP.getValue(context);
+            Date last = Params.LAST_CLEAN_UP.getDateValue();
+            Period period = Params.AUTO_CLEAN_UP.getValue();
             switch(period)
             {
                 case DISABLED:

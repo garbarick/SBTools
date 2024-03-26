@@ -160,7 +160,7 @@ public class ActivitiesDialog extends AlertDialog.Builder implements AdapterView
         UITool.get().enableAll(view);
         if (error != null)
         {
-            UITool.get().toast(getContext(), error);
+            UITool.get().toast(error);
             return;
         }
         if (itemsReady)

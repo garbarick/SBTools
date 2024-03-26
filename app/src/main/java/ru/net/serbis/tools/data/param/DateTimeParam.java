@@ -1,7 +1,6 @@
 package ru.net.serbis.tools.data.param;
 
 import android.app.*;
-import android.content.*;
 import android.text.*;
 import android.view.*;
 import java.text.*;
@@ -27,9 +26,9 @@ public class DateTimeParam extends TextViewParam
         saveValue(value);
     }
 
-    public Date getDateValue(Context context)
+    public Date getDateValue()
     {
-        String value = getValue(context);
+        String value = getValue();
         if (TextUtils.isEmpty(value))
         {
             return null;

@@ -1,9 +1,8 @@
 package ru.net.serbis.tools.data.param;
 
+import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.*;
-import android.content.*;
-import android.view.*;
 
 public class BooleanParam extends Param<Boolean, CheckBox>
 {
@@ -22,7 +21,7 @@ public class BooleanParam extends Param<Boolean, CheckBox>
     public void initViewValue(View parent)
     {
         CheckBox view = getViewValue(parent);
-        setValue(view, getValue(context));
+        setValue(view, getValue());
     }
 
     @Override

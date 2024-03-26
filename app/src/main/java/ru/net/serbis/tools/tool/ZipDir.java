@@ -51,7 +51,7 @@ public class ZipDir extends Tool implements TaskCallback<Boolean>
     {
         if (!result)
         {
-            UITool.get().toast(context, error);
+            UITool.get().toast(error);
         }
         notification.cancel();
         enable();

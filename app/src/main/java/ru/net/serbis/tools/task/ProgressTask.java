@@ -20,7 +20,7 @@ public class ProgressTask extends AsyncTask<Integer, Integer, Boolean>
     {
         try
         {
-            UITool.get().setProgress(context, true);
+            UITool.get().setProgress(true);
             int sleep = params[0];
             int count = params[1];
             for (int i = 0; i <= count; i ++)
@@ -48,7 +48,7 @@ public class ProgressTask extends AsyncTask<Integer, Integer, Boolean>
     @Override
     protected void onPostExecute(Boolean result)
     {
-        UITool.get().setProgress(context, false);
+        UITool.get().setProgress(false);
         callback.onResult(result, null);
     }
 }

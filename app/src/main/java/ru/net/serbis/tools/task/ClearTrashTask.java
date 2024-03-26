@@ -18,8 +18,8 @@ public class ClearTrashTask extends AsyncTask<Void, Integer, Integer>
     public ClearTrashTask(Context context, TaskCallback<Integer> callback)
     {
         this.callback = callback;
-        trashFiles = Params.TRASH_FILES.getValue(context);
-        dirToFiles = Params.DIRS_TO_FILES.getValue(context);
+        trashFiles = Params.TRASH_FILES.getValue();
+        dirToFiles = Params.DIRS_TO_FILES.getValue();
     }
 
     @Override

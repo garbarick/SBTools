@@ -29,7 +29,7 @@ public abstract class ToolsActivity extends Activity
         main = UITool.get().findView(this, R.id.main);
         adapter = new ToolsAdapter(this, main, getVisibleTools());
 
-        if (UITool.get().isProgress(this))
+        if (UITool.get().isProgress())
         {
             main.setEnabled(false);
         }

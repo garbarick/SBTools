@@ -110,7 +110,7 @@ public abstract class ResourcesDialog extends AlertDialog.Builder implements Dia
         Resource resource = getSelected();
         if (resource != null)
         {
-            SysTool.get().setClipBoard(getContext(), R.string.resource_clip_label, resource.getName(getContext()));
+            SysTool.get().setClipBoard(R.string.resource_clip_label, resource.getName(getContext()));
         }
     }
     
@@ -154,6 +154,6 @@ public abstract class ResourcesDialog extends AlertDialog.Builder implements Dia
     @Override
     public void onDismiss(DialogInterface dialog)
     {
-        UITool.get().toast(getContext(), "dismiss");
+        UITool.get().toast("dismiss");
     }
 }

@@ -5,11 +5,11 @@ import android.content.*;
 import android.widget.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
+import ru.net.serbis.tools.activity.*;
 import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.tool.*;
 import ru.net.serbis.tools.util.*;
-import ru.net.serbis.tools.activity.*;
 
 public class HideToolsDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener
 {
@@ -55,7 +55,7 @@ public class HideToolsDialog extends AlertDialog.Builder implements DialogInterf
 
     private void positive()
     {
-        SharedPreferences.Editor editor = SysTool.get().getPreferencesEditor(context);
+        SharedPreferences.Editor editor = SysTool.get().getPreferencesEditor();
         for (int i = 0; i < adapter.getCount(); i ++)
         {
             Tool tool = adapter.getTool(i);

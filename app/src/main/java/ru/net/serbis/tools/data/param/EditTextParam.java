@@ -1,6 +1,5 @@
 package ru.net.serbis.tools.data.param;
 
-import android.content.*;
 import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.*;
@@ -22,7 +21,7 @@ public class EditTextParam extends TextParam<EditText>
     public void initViewValue(View parent)
     {
         EditText view = getViewValue(parent);
-        setValue(view, getValue(context));
+        setValue(view, getValue());
     }
 
     @Override

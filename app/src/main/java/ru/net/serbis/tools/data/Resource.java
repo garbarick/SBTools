@@ -53,7 +53,7 @@ public class Resource implements Serializable, Comparable<Resource>
 
     public String getName(Context context)
     {
-        switch(Params.VIEW_TYPE.getValue(context))
+        switch(Params.VIEW_TYPE.getValue())
         {
             case JAVA:
                 return getJavaName();

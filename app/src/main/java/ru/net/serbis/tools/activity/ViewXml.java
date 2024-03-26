@@ -30,7 +30,7 @@ public class ViewXml extends TextActivity
     @Override
     protected void onOk()
     {
-        SysTool.get().setClipBoard(this, R.string.resource_clip_label, edit.getText().toString());
+        SysTool.get().setClipBoard(R.string.resource_clip_label, edit.getText().toString());
         super.onOk();
     }
 

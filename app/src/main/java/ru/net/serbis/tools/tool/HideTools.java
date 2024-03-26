@@ -29,7 +29,7 @@ public class HideTools extends Tool
 
     private void initVisible(Tool[] tools)
     {
-        SharedPreferences preferences = SysTool.get().getPreferences(context);
+        SharedPreferences preferences = SysTool.get().getPreferences();
         for (Tool tool : tools)
         {
             if (tool == Tools.HIDE_TOOLS)

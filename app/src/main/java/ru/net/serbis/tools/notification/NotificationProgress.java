@@ -28,11 +28,11 @@ public class NotificationProgress extends Notification.Builder
         old = Build.VERSION.SDK_INT < Build.VERSION_CODES.N;
         this.context = context;
         this.textId = textId;
-        type = Params.NOTIFY_TYPE.getValue(context);
+        type = Params.NOTIFY_TYPE.getValue();
         setSmallIcon(R.drawable.app);
         setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, Main.class), PendingIntent.FLAG_UPDATE_CURRENT));
         setOngoing(true);
-        manager = SysTool.get().getService(context, Context.NOTIFICATION_SERVICE);
+        manager = SysTool.get().getService(Context.NOTIFICATION_SERVICE);
         setContent(0, true);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)

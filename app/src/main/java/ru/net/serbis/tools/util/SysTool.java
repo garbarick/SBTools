@@ -5,7 +5,7 @@ import java.io.*;
 import ru.net.serbis.tools.data.*;
 import java.util.*;
 
-public class SysTool
+public class SysTool extends Util
 {
     private static final SysTool instance = new SysTool();
 
@@ -14,14 +14,14 @@ public class SysTool
         return instance;
     }
 
-    public <T> T getService(Context context, String name)
+    public <T> T getService(String name)
     {
         return (T) context.getSystemService(name);
     }
 
-    public void setClipBoard(Context context, int labelId, String text)
+    public void setClipBoard(int labelId, String text)
     {
-        ClipboardManager clipboard = getService(context, Context.CLIPBOARD_SERVICE);
+        ClipboardManager clipboard = getService(Context.CLIPBOARD_SERVICE);
         String label = context.getResources().getString(labelId);
         ClipData clip = ClipData.newPlainText(label, text);
         clipboard.setPrimaryClip(clip);
@@ -34,14 +34,14 @@ public class SysTool
         return writer.toString();
     }
 
-    public SharedPreferences getPreferences(Context context)
+    public SharedPreferences getPreferences()
     {
         return context.getSharedPreferences(Constants.APP, Context.MODE_PRIVATE);
     }
 
-    public SharedPreferences.Editor getPreferencesEditor(Context context)
+    public SharedPreferences.Editor getPreferencesEditor()
     {
-        return getPreferences(context).edit();
+        return getPreferences().edit();
     }
 
     public Set<String> getSet(Collection data)

@@ -21,7 +21,7 @@ public class TextViewParam extends TextParam<TextView>
     public void initViewValue(View parent)
     {
         TextView view = getViewValue(parent);
-        setValue(view, getValue(context));
+        setValue(view, getValue());
     }
 
     @Override

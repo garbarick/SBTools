@@ -25,13 +25,13 @@ public class ZipTask extends AsyncTask<Void, Integer, Boolean> implements Progre
     {
         try
         {
-            UITool.get().setProgress(context, true);
+            UITool.get().setProgress(true);
             publishProgress(0);
-            File dir = new File(Params.DIRECTORY.getValue(context));
-            File file = new File(dir, Params.ZIP_NAME.getValue(context));
-            int compression = Params.COMPRESSION.getValue(context).getLevel();
-            boolean deleteSourceFiles = Params.DELETE_SOURCE_FOLRS.getValue(context);
-            int bufferSize = Params.BUFFER_SIZE.getValue(context);
+            File dir = new File(Params.DIRECTORY.getValue());
+            File file = new File(dir, Params.ZIP_NAME.getValue());
+            int compression = Params.COMPRESSION.getValue().getLevel();
+            boolean deleteSourceFiles = Params.DELETE_SOURCE_FOLRS.getValue();
+            int bufferSize = Params.BUFFER_SIZE.getValue();
 
             if (dir.isDirectory() && dir.exists())
             {
@@ -71,7 +71,7 @@ public class ZipTask extends AsyncTask<Void, Integer, Boolean> implements Progre
     @Override
     protected void onPostExecute(Boolean result)
     {
-        UITool.get().setProgress(context, false);
+        UITool.get().setProgress(false);
         callback.onResult(result, error);
     }
 }
