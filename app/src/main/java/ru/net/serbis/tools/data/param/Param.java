@@ -23,6 +23,11 @@ public abstract class Param<T, V extends View>
         this.defaultValue = defaultValue;
     }
 
+    public String getName()
+    {
+        return name;
+    }
+
     public abstract int getLayoutId();
 
     public void initName(Context context)

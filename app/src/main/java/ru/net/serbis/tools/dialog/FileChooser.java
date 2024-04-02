@@ -11,13 +11,19 @@ public abstract class FileChooser extends AlertDialog.Builder implements DialogI
     private ListView list;
 	private FilesAdapter adapter;
 
-	public FileChooser(Context context, int title, boolean onlyFolder, boolean onlyFile)
+	public FileChooser(
+        Context context,
+        int title,
+        boolean onlyFolder,
+        boolean onlyFile,
+        File folder,
+        String ext)
 	{
 		super(context);
 
 		list = new ListView(context);
         list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-		adapter = new FilesAdapter(context, this, onlyFolder, onlyFile);
+		adapter = new FilesAdapter(context, this, onlyFolder, onlyFile, folder, ext);
 		list.setAdapter(adapter);
 		list.setOnItemClickListener(adapter);
 		adapter.initFiles();
@@ -28,6 +34,11 @@ public abstract class FileChooser extends AlertDialog.Builder implements DialogI
 		setNegativeButton(android.R.string.cancel, this);
 		show();
 	}
+
+    public FileChooser(Context context, int title, boolean onlyFolder, boolean onlyFile)
+	{
+        this(context, title, onlyFolder, onlyFile, null, null);
+    }
     
     public void onClick(DialogInterface dialog, int id)
     {

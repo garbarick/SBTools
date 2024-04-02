@@ -12,17 +12,30 @@ import ru.net.serbis.tools.util.*;
 
 public class FilesAdapter extends ArrayAdapter<File> implements AdapterView.OnItemClickListener
 {
-    private File folder = Environment.getExternalStorageDirectory();
+    private File folder;
     private FileChooser chooser;
     private boolean onlyFolder;
     private boolean onlyFile;
+    private String ext;
 
-    public FilesAdapter(Context context, FileChooser chooser, boolean onlyFolder, boolean onlyFile)
+    public FilesAdapter(
+        Context context,
+        FileChooser chooser,
+        boolean onlyFolder,
+        boolean onlyFile,
+        File folder,
+        String ext)
     {
         super(context, android.R.layout.simple_list_item_activated_1);
         this.chooser = chooser;
         this.onlyFolder = onlyFolder;
         this.onlyFile = onlyFile;
+        if (folder == null)
+        {
+            folder = Environment.getExternalStorageDirectory();
+        }
+        this.folder = folder;
+        this.ext = ext;
     }
 
     public File getSelected()
@@ -96,7 +109,26 @@ public class FilesAdapter extends ArrayAdapter<File> implements AdapterView.OnIt
             {
                 public boolean accept(File file)
                 {
-                    return onlyFolder && file.isDirectory() || !onlyFolder;
+                    if (file.isDirectory())
+                    {
+                        return true;
+                    }
+                    if (file.isFile())
+                    {
+                        if (onlyFolder)
+                        {
+                            return false;
+                        }
+                        if (ext != null && file.getName().endsWith(ext))
+                        {
+                            return true;
+                        }
+                        if (ext == null && !onlyFolder)
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
                 }
             }
         );

@@ -8,7 +8,7 @@ import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.util.*;
 
-public abstract class Tool implements View.OnClickListener
+public abstract class Tool implements View.OnClickListener, PopupMenu.OnMenuItemClickListener
 {
     private int layoutId;
     private int[] buttonIds;
@@ -67,6 +67,13 @@ public abstract class Tool implements View.OnClickListener
         {
             onClick(view.getId());
         }
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item)
+    {
+        onClick(item.getItemId());
+        return false;
     }
 
     protected abstract void onClick(int id);

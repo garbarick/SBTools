@@ -25,6 +25,9 @@
     <string name="clear_trash">Clear Trash</string>
     <string name="clear_trash_set">Settings for clear trash</string>
     <string name="hide_tools">Hide Tools</string>
+    <string name="export_import">Export and import</string>
+    <string name="export_import_set">Settings for export and import</string>
+    <string name="export_import_dir">Export and import dir</string>
 
     <string name="error_file_is_not_found">File is not found</string>
     <string name="error_no_files">There are no files</string>
@@ -34,6 +37,7 @@
     <string name="zip_name">Zip name</string>
     <string name="compression">Compression</string>
     <string name="choose_dir">Choose directory</string>
+    <string name="choose_file">Choose file</string>
     <string name="delete_source_files">Delete source files</string>
     <string name="resource_clip_label">Resource clip label</string>
     <string name="type">Type</string>
@@ -60,5 +64,8 @@
     <string name="last_clean_up">Last clean up</string>
     <string name="zip_size">Zip size: %s</string>
     <string name="files_count">Files count: %d</string>
+    <string name="export_params">Export params</string>
+    <string name="import_params">Import params</string>
+    <string name="done">Done</string>
 
 </resources>

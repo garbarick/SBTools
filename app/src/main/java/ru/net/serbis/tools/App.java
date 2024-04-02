@@ -2,7 +2,7 @@ package ru.net.serbis.tools;
 
 import android.app.*;
 import android.content.*;
-import java.lang.reflect.*;
+import java.util.*;
 import ru.net.serbis.tools.connection.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
@@ -53,31 +53,15 @@ public class App extends Application
 
     private void initParams()
     {
-        for (Field field : Params.class.getFields())
+        for (Param param : Reflection.get().getValues(Params.class, Param.class).values())
         {
-            if (Param.class.isAssignableFrom(field.getType()))
-            {
-                Param param = getValue(field);
-                param.initName(this);
-            }
-            else if (field.getType().isArray())
-            {
-                Param[] params = getValue(field);
-                Params.PARAMS.put(field.getName(), params);
-            }
+            param.initName(this);
         }
-    }
-
-    private <T> T getValue(Field field)
-    {
-        try
+        for (Map.Entry<String, Param[]> entry : Reflection.get().getArrayValues(Params.class, Param.class).entrySet())
         {
-            return (T) field.get(null);
-        }
-        catch (Exception e)
-        {
-            Log.error(this, e);
-            return null;
+            String name = entry.getKey();
+            Param[] params = entry.getValue();
+            Params.PARAMS.put(name, params);
         }
     }
 

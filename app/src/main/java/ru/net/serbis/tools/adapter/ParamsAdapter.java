@@ -72,10 +72,8 @@ public class ParamsAdapter
 
     public void reset()
     {
-        for (Map.Entry<Integer, Param> entry : params.entrySet())
+        for (Param param: params.values())
         {
-            int position = entry.getKey();
-            Param param = entry.getValue();
             param.saveValue(null);
         }
     }

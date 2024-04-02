@@ -11,4 +11,6 @@ public interface Constants
     String THROWABLE = "THROWABLE";
     String TITLE = "TITLE";
     String RESOURCE = "RESOURCE";
+    String JSON_EXT = ".json";
+    int BUFFER_SIZE = 10240;
 }

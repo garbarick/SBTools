@@ -107,57 +107,6 @@ public class ShareTools
         return null;
     }
 
-    public void getFileList(final TaskCallback<Set<String>> callback, String shareDir, final List<String> extensions)
-    {
-        TaskError error = validateGetFileList(shareDir);
-        if (error != null)
-        {
-            onResult(callback, null, error);
-            return;
-        }
-
-        Map<String, String> request = new HashMap<String, String>();
-        request.put(Share.PATH, shareDir);
-
-        sendServiceAction(
-            Share.ACTION_GET_FILES_LIST,
-            request,
-            new Handler(Looper.getMainLooper())
-            {
-                @Override
-                public void handleMessage(Message msg)
-                {
-                    if (msg.getData().containsKey(Share.FILES_LIST))
-                    {
-                        onResult(callback, IOTool.get().findFiles(msg.getData().getString(Share.FILES_LIST), extensions), null);
-                    }
-                    else if (msg.getData().containsKey(Share.ERROR) &&
-                             msg.getData().containsKey(Share.ERROR_CODE))
-                    {
-                        int errorCode = msg.getData().getInt(Share.ERROR_CODE);
-                        String error = msg.getData().getString(Share.ERROR);
-                        onResult(callback, null, new TaskError(errorCode, error));
-                    }
-                    else if (msg.getData().containsKey(Share.PROGRESS))
-                    {
-                        int progress = msg.getData().getInt(Share.PROGRESS);
-                        progress(callback, progress);
-                    }
-                }
-            }
-        );
-    }
-
-    private TaskError validateGetFileList(String shareDir)
-    {
-        TaskError error = error = new TaskError(context, Constants.ERROR_FILE_IS_NOT_FOUND, R.string.error_file_is_not_found);
-        if (TextUtils.isEmpty(shareDir))
-        {
-            return error;
-        }
-        return null;
-    }
-
     private int lastProgress = -1;
 
     public <T> void  progress(final TaskCallback<T> callback, int progress)

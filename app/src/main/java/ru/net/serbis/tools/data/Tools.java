@@ -19,6 +19,7 @@ public interface Tools
     Tool ACTIVITIES = new Activities();
     Tool CLEAR_TRASH = new ClearTrash();
     Tool HIDE_TOOLS = new HideTools();
+    Tool EXPORT_IMPORT = new ExportImport();
 
     Tool[] MAIN_TOOLS = new Tool[]{
         ZIP_DIR,
@@ -29,7 +30,8 @@ public interface Tools
         PROGRESS_IN_NOTIFICATION,
         ACTIVITIES,
         CLEAR_TRASH,
-        HIDE_TOOLS
+        HIDE_TOOLS,
+        EXPORT_IMPORT
     };
     
     Tool[] SYS_RESOURCES_TOOLS = new Tool[]{

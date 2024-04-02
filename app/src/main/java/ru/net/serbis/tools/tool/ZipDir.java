@@ -31,14 +31,14 @@ public class ZipDir extends Tool implements TaskCallback<Boolean>
                 break;
         }
     }
-    
+
     private void zipDir()
     {
         disable();
         notification = new NotificationProgress(context, R.string.zip_dir);
         new ZipTask(context, this).execute();
     }
-    
+
     @Override
     public void progress(int value)
     {

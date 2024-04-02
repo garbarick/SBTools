@@ -61,7 +61,7 @@ public class FilesParam extends Param<Set<String>, Button>
     @Override
     public Set<String> getValue()
     {
-        return SysTool.get().getPreferences().getStringSet(paramName, new TreeSet<String>());
+        return new TreeSet<String>(SysTool.get().getPreferences().getStringSet(paramName, new TreeSet<String>()));
     }
 
     @Override
@@ -75,13 +75,13 @@ public class FilesParam extends Param<Set<String>, Button>
     @Override
     public String typeToString(Set<String> value)
     {
-        return null;
+        return JsonTool.get().toJsonString(value);
     }
 
     @Override
     public Set<String> stringToType(String value)
     {
-        return null;
+        return JsonTool.get().toSet(value);
     }
 
     @Override

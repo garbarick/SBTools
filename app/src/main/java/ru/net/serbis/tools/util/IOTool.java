@@ -2,7 +2,8 @@ package ru.net.serbis.tools.util;
 
 import android.os.*;
 import java.io.*;
-import java.util.*;
+import org.json.*;
+import ru.net.serbis.tools.data.*;
 
 public class IOTool
 {
@@ -89,54 +90,43 @@ public class IOTool
     {
         return getDownloadFile(path).getAbsolutePath();
     }
-    
-    public Set<String> findFiles(String fileListPath, List<String> extensions)
+
+    public String getExternalFile(String path)
     {
-        Set<String> result = new TreeSet<String>();
-        File file = new File(fileListPath);
-        BufferedReader reader = null;
+        File dir = Environment.getExternalStorageDirectory();
+        return new File(dir, path).getAbsolutePath();
+    }
+
+    public void copy(JSONObject json, File file)
+    {
+        OutputStreamWriter os = null;
         try
         {
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-            String line;
-            while ((line = reader.readLine()) != null)
-            {
-                if (checkExt(line, extensions))
-                {
-                    result.add(line);
-                }
-            }
+            os = new OutputStreamWriter(new FileOutputStream(file));
+            os.write(json.toString(4));
         }
-        catch (Throwable e)
+        catch (Exception e)
         {
             Log.error(this, e);
         }
         finally
         {
-            close(reader);
-            file.delete();
+            close(os);
         }
-        return result;
-	}
-    
-    private String getExt(String fileName)
-    {
-        String ext = "";
-        int i = fileName.lastIndexOf('.');
-        if (i > 0)
-        {
-            ext = fileName.substring(i + 1).toLowerCase();
-        }
-        return ext;
     }
-    
-    public boolean checkExt(String fileName, List<String> extensions)
+
+    public String readFile(File file)
     {
-        return extensions.contains(getExt(fileName));
-	}
-    
-    public boolean checkExt(File file, List<String> extensions)
-    {
-        return checkExt(file.getName(), extensions);
-	}
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        try
+        {
+            InputStream is = new FileInputStream(file);
+            copy(is, os, true, true, Constants.BUFFER_SIZE);
+        }
+        catch (Exception e)
+        {
+            Log.error(this, e);
+        }
+        return os.toString();
+    }
 }

@@ -14,12 +14,13 @@ public interface Params
     ViewTypeParam VIEW_TYPE = new ViewTypeParam();
     FileParam FILE = new FileParam(R.string.file, IOTool.get().getDownloadPath(IOTool.get().getDownloadFile().getName() + ".zip"), false, true);
     ShareDirParam SHARE_DIR = new ShareDirParam(R.string.share_dir, null);
-    NumberParam BUFFER_SIZE = new NumberParam(R.string.buffer_size, 10240);
+    NumberParam BUFFER_SIZE = new NumberParam(R.string.buffer_size, Constants.BUFFER_SIZE);
     NotifyTypeParam NOTIFY_TYPE = new NotifyTypeParam();
     PeriodParam AUTO_CLEAN_UP = new PeriodParam(R.string.auto_clean_up);
     FilesParam TRASH_FILES = new FilesParam(R.string.trash_files, "clearTrash", false, false);
     FilesParam DIRS_TO_FILES = new FilesParam(R.string.dirs_to_files, true, false);
     DateTimeParam LAST_CLEAN_UP = new DateTimeParam(R.string.last_clean_up);
+    FileParam EXPORT_IMPORT_DIR = new FileParam(R.string.export_import_dir, IOTool.get().getExternalFile("backups"), true, false);
 
     Param[] ZIP_DIR_PARAMS = new Param[]{
         DIRECTORY,
@@ -64,6 +65,10 @@ public interface Params
         TRASH_FILES,
         DIRS_TO_FILES,
         LAST_CLEAN_UP
+    };
+
+    Param[] EXPORT_IMPORT_PARAMS = new Param[]{
+        EXPORT_IMPORT_DIR
     };
 
     Holder<String, Param[]> PARAMS = new Holder<String, Param[]>();
