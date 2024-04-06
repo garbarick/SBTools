@@ -24,7 +24,7 @@ public class SysThemes extends Tool
                 break;
 
             case R.id.sys_themes_set:
-                new ParamsFragment(context, R.string.sys_themes_set, Params.SYS_THEMES_PARAMS);
+                new ParamsFragment(context, R.string.settings, Params.SYS_THEMES_PARAMS);
                 break;
         }
     }

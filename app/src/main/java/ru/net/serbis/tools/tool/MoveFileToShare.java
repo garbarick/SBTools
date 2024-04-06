@@ -33,7 +33,7 @@ public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
                 break;
 
             case R.id.move_file_to_share_set:
-                dialog = new ParamsFragment(context, R.string.move_file_to_share_set, Params.MOVE_FILE_TO_SHARE_PARAMS);
+                dialog = new ParamsFragment(context, R.string.settings, Params.MOVE_FILE_TO_SHARE_PARAMS);
                 break;
         }
     }

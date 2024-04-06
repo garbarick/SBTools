@@ -2,7 +2,6 @@ package ru.net.serbis.tools.util;
 
 import android.content.*;
 import java.io.*;
-import ru.net.serbis.tools.data.*;
 import java.util.*;
 
 public class SysTool extends Util
@@ -32,16 +31,6 @@ public class SysTool extends Util
         StringWriter writer = new StringWriter();
         error.printStackTrace(new PrintWriter(writer));
         return writer.toString();
-    }
-
-    public SharedPreferences getPreferences()
-    {
-        return context.getSharedPreferences(Constants.APP, Context.MODE_PRIVATE);
-    }
-
-    public SharedPreferences.Editor getPreferencesEditor()
-    {
-        return getPreferences().edit();
     }
 
     public Set<String> getSet(Collection data)

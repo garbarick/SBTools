@@ -41,7 +41,7 @@ public class ExportImport extends Tool
                 break;
 
             case R.id.export_import_set:
-                new ParamsFragment(context, R.string.export_import_set, Params.EXPORT_IMPORT_PARAMS);
+                new ParamsFragment(context, R.string.settings, Params.EXPORT_IMPORT_PARAMS);
                 break;
 
             case R.id.export_params:

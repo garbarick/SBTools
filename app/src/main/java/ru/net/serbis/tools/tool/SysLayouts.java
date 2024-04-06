@@ -24,7 +24,7 @@ public class SysLayouts extends Tool
                 break;
 
             case R.id.sys_layouts_set:
-                new ParamsFragment(context, R.string.sys_layouts_set, Params.SYS_XML_PARAMS);
+                new ParamsFragment(context, R.string.settings, Params.SYS_XML_PARAMS);
                 break;
         }
     }

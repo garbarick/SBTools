@@ -24,7 +24,7 @@ public class SysStrings extends Tool
                 break;
 
             case R.id.sys_strings_set:
-                new ParamsFragment(context, R.string.sys_strings_set, Params.SYS_STRINGS_PARAMS);
+                new ParamsFragment(context, R.string.settings, Params.SYS_STRINGS_PARAMS);
                 break;
         }
     }

@@ -20,6 +20,8 @@ public interface Tools
     Tool CLEAR_TRASH = new ClearTrash();
     Tool HIDE_TOOLS = new HideTools();
     Tool EXPORT_IMPORT = new ExportImport();
+    Tool MARKS_TOOL = new MarksTool();
+    Tool PREFERENCES_TOOL = new PreferencesTool();
 
     Tool[] MAIN_TOOLS = new Tool[]{
         ZIP_DIR,
@@ -31,7 +33,9 @@ public interface Tools
         ACTIVITIES,
         CLEAR_TRASH,
         HIDE_TOOLS,
-        EXPORT_IMPORT
+        EXPORT_IMPORT,
+        MARKS_TOOL,
+        PREFERENCES_TOOL
     };
     
     Tool[] SYS_RESOURCES_TOOLS = new Tool[]{

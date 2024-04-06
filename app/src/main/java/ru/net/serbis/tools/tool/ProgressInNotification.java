@@ -25,7 +25,7 @@ public class ProgressInNotification extends Tool implements TaskCallback<Boolean
                 makeProgress();
                 break;
             case R.id.progress_in_notification_set:
-                new ParamsFragment(context, R.string.notification_set, Params.NOTIFICATION_PARAMS);
+                new ParamsFragment(context, R.string.settings, Params.NOTIFICATION_PARAMS);
                 break;
         }
     }

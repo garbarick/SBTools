@@ -21,6 +21,7 @@ public interface Params
     FilesParam DIRS_TO_FILES = new FilesParam(R.string.dirs_to_files, true, false);
     DateTimeParam LAST_CLEAN_UP = new DateTimeParam(R.string.last_clean_up);
     FileParam EXPORT_IMPORT_DIR = new FileParam(R.string.export_import_dir, IOTool.get().getExternalFile("backups"), true, false);
+    StringsParam HIDE_TOOLS = new StringsParam(R.string.hide_tools);
 
     Param[] ZIP_DIR_PARAMS = new Param[]{
         DIRECTORY,

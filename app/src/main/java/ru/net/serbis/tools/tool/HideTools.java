@@ -1,16 +1,13 @@
 package ru.net.serbis.tools.tool;
 
 import android.app.*;
-import android.content.*;
+import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.fragment.*;
-import ru.net.serbis.tools.util.*;
 
 public class HideTools extends Tool
 {
-    public static final String VISIBLE = "visible_";
-
     public HideTools()
     {
         super(
@@ -29,15 +26,15 @@ public class HideTools extends Tool
 
     private void initVisible(Tool[] tools)
     {
-        SharedPreferences preferences = SysTool.get().getPreferences();
+        Set<String> hides = Params.HIDE_TOOLS.getValue();
         for (Tool tool : tools)
         {
             if (tool == Tools.HIDE_TOOLS)
             {
                 continue;
             }
-            String name = HideTools.VISIBLE + tool.getNameId();
-            tool.setHidden(!preferences.getBoolean(name, true));
+            String name = context.getResources().getString(tool.getNameId());
+            tool.setHidden(hides.contains(name));
         }
     }
 

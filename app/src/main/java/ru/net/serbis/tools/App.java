@@ -23,6 +23,7 @@ public class App extends Application
         Context context = getApplicationContext();
         SysTool.get().set(context);
         UITool.get().set(context);
+        Preferences.get().set(context);
 
         initEnums();
         initParams();

@@ -24,7 +24,7 @@ public class SysDrawables extends Tool
                 break;
 
             case R.id.sys_drawables_set:
-                new ParamsFragment(context, R.string.sys_drawables_set, Params.SYS_DRAWABLES_PARAMS);
+                new ParamsFragment(context, R.string.settings, Params.SYS_DRAWABLES_PARAMS);
                 break;
         }
     }

@@ -27,7 +27,7 @@ public class ZipDir extends Tool implements TaskCallback<Boolean>
                 break;
 
             case R.id.zip_dir_set:
-                new ParamsFragment(context, R.string.zip_dir_set, Params.ZIP_DIR_PARAMS);
+                new ParamsFragment(context, R.string.settings, Params.ZIP_DIR_PARAMS);
                 break;
         }
     }

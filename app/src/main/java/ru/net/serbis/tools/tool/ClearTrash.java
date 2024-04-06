@@ -32,7 +32,7 @@ public class ClearTrash extends Tool implements TaskCallback<Integer>
                 break;
                 
             case R.id.clear_trash_set:
-                new ParamsFragment(context, R.string.clear_trash_set, Params.CLEAR_TRASH_PARAMS);
+                new ParamsFragment(context, R.string.settings, Params.CLEAR_TRASH_PARAMS);
                 break;
         }
     }

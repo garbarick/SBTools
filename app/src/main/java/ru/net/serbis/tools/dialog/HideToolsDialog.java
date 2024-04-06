@@ -9,7 +9,6 @@ import ru.net.serbis.tools.activity.*;
 import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.tool.*;
-import ru.net.serbis.tools.util.*;
 
 public class HideToolsDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener
 {
@@ -38,7 +37,7 @@ public class HideToolsDialog extends AlertDialog.Builder implements DialogInterf
         for (int i = 0; i < adapter.getCount(); i ++)
         {
             Tool tool = adapter.getTool(i);
-            list.setItemChecked(i, !tool.isHidden());
+            list.setItemChecked(i, tool.isHidden());
         }
     }
 
@@ -55,16 +54,18 @@ public class HideToolsDialog extends AlertDialog.Builder implements DialogInterf
 
     private void positive()
     {
-        SharedPreferences.Editor editor = SysTool.get().getPreferencesEditor();
+        Set<String> hides = new TreeSet<String>();
         for (int i = 0; i < adapter.getCount(); i ++)
         {
             Tool tool = adapter.getTool(i);
-            tool.setHidden(!list.isItemChecked(i));
-            String name = HideTools.VISIBLE + tool.getNameId();
-            editor.putBoolean(name, list.isItemChecked(i));
-            editor.commit();
+            tool.setHidden(list.isItemChecked(i));
+            if (list.isItemChecked(i))
+            {
+                String name = context.getResources().getString(tool.getNameId());
+                hides.add(name);
+            }
         }
-        editor.commit();
+        Params.HIDE_TOOLS.saveValue(hides);
         if (context instanceof ToolsActivity)
         {
             ((ToolsActivity) context).init();

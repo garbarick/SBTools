@@ -24,7 +24,7 @@ public class SysColors extends Tool
                 break;
 
             case R.id.sys_colors_set:
-                new ParamsFragment(context, R.string.sys_colors_set, Params.SYS_COLORS_PARAMS);
+                new ParamsFragment(context, R.string.settings, Params.SYS_COLORS_PARAMS);
                 break;
         }
     }
