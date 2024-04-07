@@ -9,6 +9,11 @@ public abstract class TextParam<V extends View> extends Param<String, V>
         super(nameId, defaultValue);
     }
 
+    public TextParam(String paramName, String defaultValue)
+    {
+        super(paramName, defaultValue);
+    }
+
     @Override
     public String typeToString(String value)
     {

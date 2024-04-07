@@ -51,4 +51,14 @@ public class Preferences extends Util
     {
         return getPreferences().getStringSet(name, defaultValue);
     }
+
+    public String get(String name)
+    {
+        return getPreferences().getAll().get(name).toString();
+    }
+
+    public Collection<String> getNames()
+    {
+        return getPreferences().getAll().keySet();
+    }
 }

@@ -13,4 +13,5 @@ public interface Constants
     String RESOURCE = "RESOURCE";
     String JSON_EXT = ".json";
     int BUFFER_SIZE = 10240;
+    String VALUE = "VALUE";
 }

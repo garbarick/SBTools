@@ -14,8 +14,7 @@ public class FilesParam extends StringsParam
 
     public FilesParam(int nameId, String paramName, boolean onlyFolder, boolean onlyFile)
     {
-        super(nameId);
-        this.paramName = paramName;
+        super(nameId, paramName);
         this.onlyFolder = onlyFolder;
         this.onlyFile = onlyFile;
     }

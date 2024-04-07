@@ -15,6 +15,11 @@ public class StringsParam extends Param<Set<String>, Button>
         super(nameId, new TreeSet<String>());
     }
 
+    public StringsParam(int nameId, String paramName)
+    {
+        super(nameId, paramName, new TreeSet<String>());
+    }
+
     @Override
     public int getLayoutId()
     {

@@ -13,7 +13,7 @@ public class ParamsDialog extends AlertDialog.Builder implements DialogInterface
     private Activity context;
     private ParamsAdapter adapter;
 
-    public ParamsDialog(Activity context, int titleId, Param[] params)
+    public ParamsDialog(Activity context, int titleId, Param[] params, boolean ok, boolean reset)
     {
         super(context);
         this.context = context;
@@ -24,9 +24,20 @@ public class ParamsDialog extends AlertDialog.Builder implements DialogInterface
 		adapter = new ParamsAdapter(context, view, params);
         setView(view);
 
-        setPositiveButton(android.R.string.ok, this);
-        setNeutralButton(R.string.reset, this);
+        if (ok)
+        {
+            setPositiveButton(android.R.string.ok, this);
+        }
+        if (reset)
+        {
+            setNeutralButton(R.string.reset, this);
+        }
         setNegativeButton(android.R.string.cancel, this);
+    }
+
+    public ParamsDialog(Activity context, int titleId, Param[] params)
+    {
+        this(context, titleId, params, true, true);
     }
 
     @Override

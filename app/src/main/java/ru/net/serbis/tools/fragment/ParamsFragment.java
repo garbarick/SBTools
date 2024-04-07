@@ -11,17 +11,26 @@ public class ParamsFragment extends DialogFragment
 {
     private int titleId;
     private String params;
+    private boolean ok;
+    private boolean reset;
     private ParamsDialog dialog;
 
     public ParamsFragment()
     {
     }
 
-    public ParamsFragment(Activity context, int titleId, Param[] params)
+    public ParamsFragment(Activity context, int titleId, Param[] params, boolean ok, boolean reset)
     {
         this.titleId = titleId;
         this.params = Params.PARAMS.getKey(params);
+        this.ok = ok;
+        this.reset = reset;
         show(context.getFragmentManager(), "params");
+    }
+
+    public ParamsFragment(Activity context, int titleId, Param[] params)
+    {
+        this(context, titleId, params, true, true);
     }
 
     @Override
@@ -29,7 +38,9 @@ public class ParamsFragment extends DialogFragment
     {
         titleId = UITool.get().getBundle(state, "titleId", titleId);
         params = UITool.get().getBundle(state, "params", params);
-        dialog = new ParamsDialog(getActivity(), titleId, Params.PARAMS.get(params));
+        ok = UITool.get().getBundle(state, "ok", ok);
+        reset = UITool.get().getBundle(state, "reset", reset);
+        dialog = new ParamsDialog(getActivity(), titleId, Params.PARAMS.get(params), ok, reset);
         Holder<Integer, String> values = UITool.get().getBundle(state, "values", new Holder<Integer, String>());
         dialog.setValues(values);
         return dialog.create();
@@ -40,6 +51,8 @@ public class ParamsFragment extends DialogFragment
     {
         state.putInt("titleId", titleId);
         state.putString("params", params);
+        state.putBoolean("ok", ok);
+        state.putBoolean("reset", reset);
         state.putSerializable("values", dialog.getValues());
     }
 

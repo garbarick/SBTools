@@ -40,6 +40,10 @@
             android:launchMode="singleTask">
         </activity>
 
+        <activity
+            android:name=".activity.ViewParam">
+        </activity>
+
     </application>
 
 </manifest>

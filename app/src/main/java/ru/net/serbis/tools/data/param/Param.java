@@ -17,10 +17,22 @@ public abstract class Param<T, V extends View>
     protected Activity context;
     protected ParamsAdapter adapter;
 
-    public Param(int nameId, T defaultValue)
+    public Param(int nameId, String paramName, T defaultValue)
     {
         this.nameId = nameId;
+        this.name = paramName;
+        this.paramName = paramName;
         this.defaultValue = defaultValue;
+    }
+
+    public Param(int nameId, T defaultValue)
+    {
+        this(nameId, null, defaultValue);
+    }
+
+    public Param(String paramName, T defaultValue)
+    {
+        this(0, paramName, defaultValue);
     }
 
     public String getName()

@@ -11,6 +11,11 @@ public class TextViewParam extends TextParam<TextView>
         super(nameId, defaultValue);
     }
 
+    public TextViewParam(String paramName, String defaultValue)
+    {
+        super(paramName, defaultValue);
+    }
+
     @Override
     public int getLayoutId()
     {
