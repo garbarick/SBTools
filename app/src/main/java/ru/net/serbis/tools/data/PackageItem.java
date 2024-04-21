@@ -1,8 +1,10 @@
 package ru.net.serbis.tools.data;
 
+import android.content.*;
 import android.graphics.drawable.*;
 import java.util.*;
-import android.content.*;
+import ru.net.serbis.tools.*;
+import ru.net.serbis.tools.util.*;
 
 public class PackageItem extends ActivityItem
 {
@@ -18,7 +20,7 @@ public class PackageItem extends ActivityItem
     @Override
     public String getName()
     {
-        return Strings.COUNT.getValue() + count;
+        return Strings.get().get(R.string.count) + count;
     }
 
     public void add(ActivityItem item)

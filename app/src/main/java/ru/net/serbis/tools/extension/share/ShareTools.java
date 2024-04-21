@@ -93,7 +93,7 @@ public class ShareTools
 
     private TaskError validateUploadFile(String filePath, String shareDir)
     {
-        TaskError error = error = new TaskError(context, Constants.ERROR_FILE_IS_NOT_FOUND, R.string.error_file_is_not_found);
+        TaskError error = error = new TaskError(Constants.ERROR_FILE_IS_NOT_FOUND, R.string.error_file_is_not_found);
         if (TextUtils.isEmpty(filePath) ||
             TextUtils.isEmpty(shareDir))
         {

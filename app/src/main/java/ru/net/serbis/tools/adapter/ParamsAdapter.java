@@ -93,6 +93,13 @@ public class ParamsAdapter
         return result;
     }
 
+    public <T> T getValue(Param param)
+    {
+        View view = getView(param);
+        View viewValue = param.getViewValue(view);
+        return (T) param.getValue(viewValue);
+    }
+
     public void setValues(Holder<Integer, String> values)
     {
         for (Map.Entry<Integer, String> entry : values.entrySet())

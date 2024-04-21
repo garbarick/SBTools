@@ -1,6 +1,7 @@
 package ru.net.serbis.tools.tool;
 
 import ru.net.serbis.tools.*;
+import ru.net.serbis.tools.util.*;
 
 public class UncaughtException extends Tool
 {
@@ -22,7 +23,7 @@ public class UncaughtException extends Tool
     private RuntimeException getError()
     {
         return new RuntimeException(
-            context.getResources().getString(R.string.uncaught_exception)
+            Strings.get().get(R.string.uncaught_exception)
         );
     }
 

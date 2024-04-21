@@ -21,7 +21,7 @@ public class SysTool extends Util
     public void setClipBoard(int labelId, String text)
     {
         ClipboardManager clipboard = getService(Context.CLIPBOARD_SERVICE);
-        String label = context.getResources().getString(labelId);
+        String label = Strings.get().get(labelId);
         ClipData clip = ClipData.newPlainText(label, text);
         clipboard.setPrimaryClip(clip);
     }

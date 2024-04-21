@@ -11,24 +11,13 @@ public class ParamViewer extends TextViewParam
 {
     public ParamViewer(String paramName, String defaultValue)
     {
-        super(paramName, defaultValue);
+        super(paramName, defaultValue, false);
     }
 
     @Override
     public int getLayoutId()
     {
         return R.layout.param_viewer;
-    }
-
-    @Override
-    public String getValue()
-    {
-        return defaultValue;
-    }
-
-    @Override
-    public void saveValue(String value)
-    {
     }
 
     @Override

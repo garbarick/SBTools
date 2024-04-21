@@ -5,6 +5,7 @@ import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.fragment.*;
+import ru.net.serbis.tools.util.*;
 
 public class HideTools extends Tool
 {
@@ -33,7 +34,7 @@ public class HideTools extends Tool
             {
                 continue;
             }
-            String name = context.getResources().getString(tool.getNameId());
+            String name = Strings.get().get(tool.getNameId());
             tool.setHidden(hides.contains(name));
         }
     }

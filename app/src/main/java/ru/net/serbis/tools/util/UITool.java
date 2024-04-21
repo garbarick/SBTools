@@ -1,6 +1,7 @@
 package ru.net.serbis.tools.util;
 
 import android.app.*;
+import android.graphics.drawable.*;
 import android.os.*;
 import android.view.*;
 import android.widget.*;
@@ -118,7 +119,12 @@ public class UITool extends Util
             }
         );
     }
-    
+
+    public void toast(int textId)
+    {
+        toast(Strings.get().get(textId));
+    }
+
     public void toast(int code, String text)
     {
         toast(code + ": " + text);
@@ -131,7 +137,7 @@ public class UITool extends Util
     
     public void notImplementedYet()
     {
-        toast(context.getResources().getString(R.string.error_not_implemented));
+        toast(Strings.get().get(R.string.error_not_implemented));
     }
 
     public int getPercent(long max, long cur)
@@ -173,5 +179,12 @@ public class UITool extends Util
             return defaultValue;
         }
         return value;
+    }
+    
+    public void setSandwitchView(Button button)
+    {
+        Drawable sandwitch = context.getResources().getDrawable(R.drawable.sandwitch);
+        sandwitch.setBounds(28, 0, 92, 64);
+        button.setCompoundDrawables(sandwitch, null, null, null);
     }
 }

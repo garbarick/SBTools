@@ -21,6 +21,7 @@ public class App extends Application
         super.onCreate();
 
         Context context = getApplicationContext();
+        Strings.get().set(context);
         SysTool.get().set(context);
         UITool.get().set(context);
         Preferences.get().set(context);
@@ -36,19 +37,15 @@ public class App extends Application
     {
         for (Compression item : Compression.class.getEnumConstants())
         {
-            item.initName(this);
-        }
-        for (Strings item : Strings.class.getEnumConstants())
-        {
-            item.initValue(this);
+            item.initName();
         }
         for (NotifyType item : NotifyType.class.getEnumConstants())
         {
-            item.initName(this);
+            item.initName();
         }
         for (Period item : Period.class.getEnumConstants())
         {
-            item.initName(this);
+            item.initName();
         }
     }
 
@@ -56,7 +53,7 @@ public class App extends Application
     {
         for (Param param : Reflection.get().getValues(Params.class, Param.class).values())
         {
-            param.initName(this);
+            param.initName();
         }
         for (Map.Entry<String, Param[]> entry : Reflection.get().getArrayValues(Params.class, Param.class).entrySet())
         {

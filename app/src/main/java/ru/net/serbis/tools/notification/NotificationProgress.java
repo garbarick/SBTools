@@ -37,7 +37,7 @@ public class NotificationProgress extends Notification.Builder
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
         {
-            String channelId = context.getResources().getString(R.string.progress);
+            String channelId = Strings.get().get(R.string.progress);
             setChannelId(channelId);
             NotificationChannel channel = new NotificationChannel(channelId, channelId, NotificationManager.IMPORTANCE_LOW);
             manager.createNotificationChannel(channel);
@@ -86,7 +86,7 @@ public class NotificationProgress extends Notification.Builder
     {
         if (init)
         {
-            setContentText(context.getResources().getString(textId));
+            setContentText(Strings.get().get(textId));
         }
         setContentTitle(progress + " %");
         setProgress(100, progress, false);
@@ -98,8 +98,8 @@ public class NotificationProgress extends Notification.Builder
         {
             views = new RemoteViews(context.getPackageName(), R.layout.progress);
             views.setImageViewResource(R.id.icon, R.drawable.app);
-            views.setTextViewText(R.id.name, context.getResources().getString(R.string.app));
-            views.setTextViewText(R.id.text, context.getResources().getString(textId));
+            views.setTextViewText(R.id.name, Strings.get().get(R.string.app));
+            views.setTextViewText(R.id.text, Strings.get().get(textId));
             setContent(views);
         }
         views.setTextViewText(R.id.title, progress + " %");

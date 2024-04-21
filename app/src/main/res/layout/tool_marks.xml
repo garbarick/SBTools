@@ -13,12 +13,4 @@
         android:layout_weight="1"
         android:textAllCaps="false"/>
 
-    <ImageButton
-        android:src="@android:drawable/ic_menu_preferences"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:id="@+id/marks_set"
-        android:duplicateParentState="true"
-        android:scaleType="fitXY"/>
-
 </LinearLayout>

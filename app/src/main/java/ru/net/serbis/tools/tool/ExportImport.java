@@ -71,7 +71,7 @@ public class ExportImport extends Tool
         File dir = new File(Params.EXPORT_IMPORT_DIR.getValue());
         dir.mkdirs();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-        String appName = context.getResources().getString(R.string.app);
+        String appName = Strings.get().get(R.string.app);
         File file = new File(dir, appName + "-" + format.format(new Date()) + Constants.JSON_EXT);
         JSONObject json = new JSONObject();
         for (Param param : Reflection.get().getValues(Params.class, Param.class).values())
@@ -118,7 +118,7 @@ public class ExportImport extends Tool
                 {
                     importParam(param, json);
                 }
-                UITool.get().toast(context.getResources().getString(R.string.done));
+                UITool.get().toast(R.string.done);
             }
         };
     }

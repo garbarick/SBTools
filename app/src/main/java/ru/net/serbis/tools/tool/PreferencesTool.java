@@ -40,7 +40,7 @@ public class PreferencesTool extends Tool
         {
             paramList.add(new ParamViewer(name, Preferences.get().get(name)));
         }
-        String name = context.getResources().getString(R.string.preferences);
+        String name = Strings.get().get(R.string.preferences);
         Param[] params = paramList.toArray(new Param[paramList.size()]);
         Params.PARAMS.put(name, params);
         new ParamsFragment(context, R.string.preferences, params, false, false);

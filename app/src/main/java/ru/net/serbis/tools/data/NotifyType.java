@@ -3,6 +3,7 @@ package ru.net.serbis.tools.data;
 import android.content.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
+import ru.net.serbis.tools.util.*;
 
 public enum NotifyType
 {
@@ -19,9 +20,9 @@ public enum NotifyType
         this.nameId = nameId;
     }
 
-    public void initName(Context context)
+    public void initName()
     {
-        name = context.getResources().getString(nameId);
+        name = Strings.get().get(nameId);
         VALUES.put(name, this);
     }
 

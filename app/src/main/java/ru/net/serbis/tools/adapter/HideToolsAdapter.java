@@ -5,6 +5,7 @@ import android.widget.*;
 import java.util.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.tool.*;
+import ru.net.serbis.tools.util.*;
 
 public class HideToolsAdapter extends ArrayAdapter<String>
 {
@@ -13,16 +14,16 @@ public class HideToolsAdapter extends ArrayAdapter<String>
     public HideToolsAdapter(Context context)
     {
         super(context, android.R.layout.simple_list_item_multiple_choice);
-        initItems(context);
+        initItems();
     }
 
-    private void initItems(Context context)
+    private void initItems()
     {
-        initItems(context, Tools.MAIN_TOOLS);
-        initItems(context, Tools.SYS_RESOURCES_TOOLS);
+        initItems(Tools.MAIN_TOOLS);
+        initItems(Tools.SYS_RESOURCES_TOOLS);
     }
 
-    private void initItems(Context context, Tool[] tools)
+    private void initItems(Tool[] tools)
     {
         for (Tool tool : tools)
         {
@@ -30,7 +31,7 @@ public class HideToolsAdapter extends ArrayAdapter<String>
             {
                 continue;
             }
-            String name = context.getResources().getString(tool.getNameId());
+            String name = Strings.get().get(tool.getNameId());
             items.add(tool);
             add(name);
         }

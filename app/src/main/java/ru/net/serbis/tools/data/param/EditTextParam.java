@@ -11,6 +11,11 @@ public class EditTextParam extends TextParam<EditText>
         super(nameId, defaultValue);
     }
 
+    public EditTextParam(String paramName, String defaultValue, boolean stored)
+    {
+        super(paramName, defaultValue, stored);
+    }
+
     @Override
     public int getLayoutId()
     {

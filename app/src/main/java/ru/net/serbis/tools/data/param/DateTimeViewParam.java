@@ -2,16 +2,17 @@ package ru.net.serbis.tools.data.param;
 
 import android.view.*;
 import android.widget.*;
+import java.util.*;
 import ru.net.serbis.tools.*;
 
-public class TextViewParam extends TextParam<TextView>
+public class DateTimeViewParam extends DateTimeParam<TextView>
 {
-    public TextViewParam(int nameId, String defaultValue)
+    public DateTimeViewParam(int nameId, Date defaultValue)
     {
         super(nameId, defaultValue);
     }
 
-    public TextViewParam(String paramName, String defaultValue, boolean stored)
+    public DateTimeViewParam(String paramName, Date defaultValue, boolean stored)
     {
         super(paramName, defaultValue, stored);
     }
@@ -30,14 +31,14 @@ public class TextViewParam extends TextParam<TextView>
     }
 
     @Override
-    public void setValue(TextView view, String value)
+    public void setValue(TextView view, Date value)
     {
-        view.setText(value);
+        view.setText(typeToString(value));
     }
 
     @Override
-    public String getValue(TextView view)
+    public Date getValue(TextView view)
     {
-        return view.getText().toString();
+        return stringToType(view.getText().toString());
     }
 }

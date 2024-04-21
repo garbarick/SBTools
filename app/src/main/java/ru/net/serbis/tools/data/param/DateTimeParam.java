@@ -1,34 +1,35 @@
 package ru.net.serbis.tools.data.param;
 
-import android.app.*;
 import android.text.*;
 import android.view.*;
 import java.text.*;
 import java.util.*;
 
-public class DateTimeParam extends TextViewParam
+public abstract class DateTimeParam<V extends View> extends Param<Date, V>
 {
-    public DateTimeParam(int nameId)
+    public DateTimeParam(int nameId, Date defaultValue)
     {
-        super(nameId, null);
+        super(nameId, defaultValue);
+    }
+
+    public DateTimeParam(String paramName, Date defaultValue, boolean stored)
+    {
+        super(paramName, defaultValue, stored);
     }
 
     @Override
-    public void initViewValue(View parent)
+    public String typeToString(Date value)
     {
-        super.initViewValue(parent);
+        if (value == null)
+        {
+            return null;
+        }
+        return getFormat().format(value);
     }
 
-    public void updateValue(Activity context)
+    @Override
+    public Date stringToType(String value)
     {
-        setContext(context);
-        String value = getFormat().format(new Date());
-        saveValue(value);
-    }
-
-    public Date getDateValue()
-    {
-        String value = getValue();
         if (TextUtils.isEmpty(value))
         {
             return null;
@@ -43,7 +44,7 @@ public class DateTimeParam extends TextViewParam
         }
     }
 
-    private SimpleDateFormat getFormat()
+    protected SimpleDateFormat getFormat()
     {
         return new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
     }

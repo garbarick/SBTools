@@ -1,9 +1,9 @@
 package ru.net.serbis.tools.data;
 
-import android.content.*;
 import java.util.*;
 import java.util.concurrent.*;
 import ru.net.serbis.tools.*;
+import ru.net.serbis.tools.util.*;
 
 public enum Period
 {
@@ -25,9 +25,9 @@ public enum Period
         this.days = days;
     }
 
-    public void initName(Context context)
+    public void initName()
     {
-        name = context.getResources().getString(nameId);
+        name = Strings.get().get(nameId);
         VALUES.put(name, this);
     }
 

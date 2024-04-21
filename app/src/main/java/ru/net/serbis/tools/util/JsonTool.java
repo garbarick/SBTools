@@ -1,4 +1,5 @@
 package ru.net.serbis.tools.util;
+
 import java.io.*;
 import java.util.*;
 import org.json.*;
@@ -78,11 +79,16 @@ public class JsonTool
     public JSONObject parse(File file)
     {
         String content = IOTool.get().readFile(file);
+        return parse(content);
+    }
+
+    public JSONObject parse(String text)
+    {
         try
         {
-            return new JSONObject(content);
+            return new JSONObject(text);
         }
-        catch (JSONException e)
+        catch (Exception e)
         {
             Log.error(this, e);
             return new JSONObject();

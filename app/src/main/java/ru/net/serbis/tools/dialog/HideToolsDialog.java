@@ -9,6 +9,7 @@ import ru.net.serbis.tools.activity.*;
 import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.tool.*;
+import ru.net.serbis.tools.util.*;
 
 public class HideToolsDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener
 {
@@ -61,7 +62,7 @@ public class HideToolsDialog extends AlertDialog.Builder implements DialogInterf
             tool.setHidden(list.isItemChecked(i));
             if (list.isItemChecked(i))
             {
-                String name = context.getResources().getString(tool.getNameId());
+                String name = Strings.get().get(tool.getNameId());
                 hides.add(name);
             }
         }

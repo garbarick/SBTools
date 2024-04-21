@@ -47,6 +47,7 @@
     <string name="buffer_size">Buffer size</string>
     <string name="add">Add</string>
     <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
     <string name="notify_type">Notify type</string>
     <string name="auto_clean_up">Auto clean up</string>
     <string name="trash_files">Trash files</string>
@@ -60,5 +61,10 @@
     <string name="export_params">Export params</string>
     <string name="import_params">Import params</string>
     <string name="done">Done</string>
+    <string name="close">Close</string>
+    <string name="name">Name</string>
+    <string name="last_date">Last date</string>
+    <string name="last_petiod">Last period</string>
+    <string name="period">Period</string>
 
 </resources>

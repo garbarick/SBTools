@@ -36,13 +36,20 @@ public class StringsParam extends Param<Set<String>, Button>
     @Override
     public Set<String> getValue()
     {
-        return Preferences.get().getStringSet(paramName);
+        if (stored)
+        {
+            return Preferences.get().getStringSet(paramName);
+        }
+        return defaultValue;
     }
 
     @Override
     public void saveValue(Set<String> value)
     {
-        Preferences.get().setStringSet(paramName, value);
+        if (stored)
+        {
+            Preferences.get().setStringSet(paramName, value);
+        }
     }
 
     @Override

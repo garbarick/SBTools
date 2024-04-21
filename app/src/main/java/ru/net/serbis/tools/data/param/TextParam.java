@@ -9,9 +9,9 @@ public abstract class TextParam<V extends View> extends Param<String, V>
         super(nameId, defaultValue);
     }
 
-    public TextParam(String paramName, String defaultValue)
+    public TextParam(String paramName, String defaultValue, boolean stored)
     {
-        super(paramName, defaultValue);
+        super(paramName, defaultValue, stored);
     }
 
     @Override

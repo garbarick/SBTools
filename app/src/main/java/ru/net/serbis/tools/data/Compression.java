@@ -1,8 +1,8 @@
 package ru.net.serbis.tools.data;
 
-import android.content.*;
-import ru.net.serbis.tools.*;
 import java.util.*;
+import ru.net.serbis.tools.*;
+import ru.net.serbis.tools.util.*;
 
 public enum Compression
 {
@@ -34,9 +34,9 @@ public enum Compression
         return level;
     }
 
-    public void initName(Context context)
+    public void initName()
     {
-        name = context.getResources().getString(nameId);
+        name = Strings.get().get(nameId);
         VALUES.put(name, this);
     }
 

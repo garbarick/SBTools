@@ -19,9 +19,10 @@ public interface Params
     PeriodParam AUTO_CLEAN_UP = new PeriodParam(R.string.auto_clean_up);
     FilesParam TRASH_FILES = new FilesParam(R.string.trash_files, "clearTrash", false, false);
     FilesParam DIRS_TO_FILES = new FilesParam(R.string.dirs_to_files, true, false);
-    DateTimeParam LAST_CLEAN_UP = new DateTimeParam(R.string.last_clean_up);
+    DateTimeViewParam LAST_CLEAN_UP = new DateTimeViewParam(R.string.last_clean_up, null);
     FileParam EXPORT_IMPORT_DIR = new FileParam(R.string.export_import_dir, IOTool.get().getExternalFile("backups"), true, false);
     StringsParam HIDE_TOOLS = new StringsParam(R.string.hide_tools);
+    StringsParam MARKS = new StringsParam(R.string.marks);
 
     Param[] ZIP_DIR_PARAMS = new Param[]{
         DIRECTORY,

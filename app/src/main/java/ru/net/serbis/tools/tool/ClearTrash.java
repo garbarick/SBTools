@@ -68,11 +68,11 @@ public class ClearTrash extends Tool implements TaskCallback<Integer>
         }
         else
         {
-            String format = context.getResources().getString(R.string.files_deleted);
+            String format = Strings.get().get(R.string.files_deleted);
             String text = String.format(format, result);
             UITool.get().toast(text);
         }
-        Params.LAST_CLEAN_UP.updateValue(context);
+        Params.LAST_CLEAN_UP.saveValue(new Date());
     }
 
     @Override
@@ -81,7 +81,7 @@ public class ClearTrash extends Tool implements TaskCallback<Integer>
         super.setMain(main);
         if (start)
         {
-            Date last = Params.LAST_CLEAN_UP.getDateValue();
+            Date last = Params.LAST_CLEAN_UP.getValue();
             Period period = Params.AUTO_CLEAN_UP.getValue();
             switch(period)
             {

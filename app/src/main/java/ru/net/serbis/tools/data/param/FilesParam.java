@@ -6,6 +6,7 @@ import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.dialog.*;
 import ru.net.serbis.tools.listener.*;
+import ru.net.serbis.tools.util.*;
 
 public class FilesParam extends StringsParam
 {
@@ -63,7 +64,7 @@ public class FilesParam extends StringsParam
         }
         else
         {
-            String format = context.getResources().getString(R.string.chosen_files);
+            String format = Strings.get().get(R.string.chosen_files);
             String text = String.format(format, values.size());
             button.setText(text);
         }

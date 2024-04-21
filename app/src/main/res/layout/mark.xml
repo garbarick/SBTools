@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal"
+	android:id="@+id/mark"
+	android:background="?android:attr/activatedBackgroundIndicator">
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="name"
+		android:id="@+id/name"
+		android:layout_weight="1"
+		android:layout_gravity="center"
+		android:layout_marginRight="10dp"
+		android:layout_marginLeft="10dp"/>
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		android:layout_marginRight="10dp">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="last date"
+			android:id="@+id/last_date"
+			android:layout_weight="1"
+			android:layout_gravity="center"/>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="next date"
+			android:id="@+id/next_date"
+			android:layout_weight="1"
+			android:layout_gravity="center"
+			android:textAlignment="gravity"
+			android:gravity="right|center_vertical"
+			android:textSize="10sp"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		android:layout_marginRight="10dp">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="last period"
+			android:id="@+id/last_period"
+			android:layout_weight="1"
+			android:layout_gravity="center"/>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="period"
+			android:id="@+id/period"
+			android:layout_weight="1"
+			android:layout_gravity="center"
+			android:textAlignment="gravity"
+			android:gravity="right|center_vertical"
+			android:textSize="10sp"/>
+
+	</LinearLayout>
+
+	<ImageButton
+		android:src="@android:drawable/stat_notify_sync"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/update"/>
+
+</LinearLayout>
+

@@ -6,7 +6,6 @@ import java.io.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.util.*;
-import ru.net.serbis.tools.adapter.*;
 
 public class ZipTask extends AsyncTask<Void, Integer, Boolean> implements Progress
 {
@@ -40,7 +39,7 @@ public class ZipTask extends AsyncTask<Void, Integer, Boolean> implements Progre
             }
             else
             {
-                error = new TaskError(context, Constants.ERROR_FILE_IS_NOT_FOUND, R.string.error_file_is_not_found);
+                error = new TaskError(Constants.ERROR_FILE_IS_NOT_FOUND, R.string.error_file_is_not_found);
                 return false;
             }
         }

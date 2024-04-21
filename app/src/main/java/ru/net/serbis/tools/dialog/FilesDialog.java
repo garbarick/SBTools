@@ -2,19 +2,17 @@ package ru.net.serbis.tools.dialog;
 
 import android.app.*;
 import android.content.*;
-import android.graphics.drawable.*;
 import android.view.*;
 import android.widget.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.adapter.*;
+import ru.net.serbis.tools.util.*;
 
 public abstract class FilesDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener, View.OnClickListener, PopupMenu.OnMenuItemClickListener
 {
-    private AlertDialog dialog;
     private ListView list;
     private FilePathAdapter adapter;
-    private Button neutral;
     private PopupMenu menu;
     private boolean onlyFolder;
     private boolean onlyFile;
@@ -40,40 +38,29 @@ public abstract class FilesDialog extends AlertDialog.Builder implements DialogI
     }
 
     @Override
-    public AlertDialog create()
-    {
-        dialog = super.create();
-        return dialog;
-    }
-
-    @Override
     public AlertDialog show()
     {
-        dialog = super.show();
-        initButtons();
+        AlertDialog dialog = super.show();
+        initButtons(dialog);
         return dialog;
     }
 
-    public void initButtons()
+    public void initButtons(AlertDialog dialog)
     {
-        neutral = dialog.getButton(Dialog.BUTTON_NEUTRAL);
-        Drawable sandwitch = getContext().getResources().getDrawable(R.drawable.sandwitch);
-        sandwitch.setBounds(28, 0, 92, 64);
-        neutral.setCompoundDrawables(sandwitch, null, null, null);
+        Button neutral = dialog.getButton(Dialog.BUTTON_NEUTRAL);
+        neutral.setId(Dialog.BUTTON_NEUTRAL);
+        UITool.get().setSandwitchView(neutral);
         neutral.setOnClickListener(this);
 
         menu = new PopupMenu(getContext(), neutral);
-        menu.getMenuInflater().inflate(R.menu.files_menu, menu.getMenu());
+        menu.getMenuInflater().inflate(R.menu.add_delete, menu.getMenu());
         menu.setOnMenuItemClickListener(this);
     }
 
     @Override
-    public void onClick(View button)
+    public void onClick(View view)
     {
-        if (button == neutral)
-        {
-            menu.show();
-        }
+        onClick(null, view.getId());
     }
 
     @Override
@@ -98,6 +85,9 @@ public abstract class FilesDialog extends AlertDialog.Builder implements DialogI
         {
             case Dialog.BUTTON_POSITIVE:
                 onResult(getPathes());
+                break;
+            case Dialog.BUTTON_NEUTRAL:
+                menu.show();
                 break;
         }
     }

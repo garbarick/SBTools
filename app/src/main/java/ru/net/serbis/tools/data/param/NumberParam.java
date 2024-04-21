@@ -12,6 +12,11 @@ public class NumberParam extends Param<Integer, EditText>
         super(nameId, defaultValue);
     }
 
+    public NumberParam(String paramName, Integer defaultValue, boolean stored)
+    {
+        super(paramName, defaultValue, stored);
+    }
+
     @Override
     public int getLayoutId()
     {

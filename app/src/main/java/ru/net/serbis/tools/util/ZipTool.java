@@ -43,7 +43,7 @@ public class ZipTool
         List<File> files = getFiles(dir);
         if (files.isEmpty())
         {
-            throw new Exception(context.getResources().getString(R.string.error_no_files));
+            throw new Exception(Strings.get().get(R.string.error_no_files));
         }
         if (result.exists())
         {
@@ -216,9 +216,9 @@ public class ZipTool
 
     private void showResult()
     {
-        String text = String.format(context.getResources().getString(R.string.zip_size), getFileSize(result));
+        String text = String.format(Strings.get().get(R.string.zip_size), getFileSize(result));
         text += ", ";
-        text += String.format(context.getResources().getString(R.string.files_count), entryCount);
+        text += String.format(Strings.get().get(R.string.files_count), entryCount);
         UITool.get().toast(text);
     }
 

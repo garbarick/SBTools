@@ -46,10 +46,10 @@ public class ParamsDialog extends AlertDialog.Builder implements DialogInterface
         switch(id)
         {
             case Dialog.BUTTON_POSITIVE:
-                adapter.saveValues();
+                ok(adapter);
                 break;
             case Dialog.BUTTON_NEUTRAL:
-                adapter.reset();
+                reset(adapter);
                 break;
         }
     }
@@ -67,5 +67,15 @@ public class ParamsDialog extends AlertDialog.Builder implements DialogInterface
     public void setValues(Holder<Integer, String> values)
     {
         adapter.setValues(values);
+    }
+
+    public void ok(ParamsAdapter adapter)
+    {
+        adapter.saveValues();
+    }
+
+    public void reset(ParamsAdapter adapter)
+    {
+        adapter.reset();
     }
 }

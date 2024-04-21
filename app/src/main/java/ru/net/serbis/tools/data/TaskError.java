@@ -1,6 +1,6 @@
 package ru.net.serbis.tools.data;
 
-import android.content.*;
+import ru.net.serbis.tools.util.*;
 
 public class TaskError
 {
@@ -13,9 +13,9 @@ public class TaskError
         this.message = message;
     }
 
-    public TaskError(Context context, int code, int message)
+    public TaskError(int code, int message)
     {
-        this(code, context.getResources().getString(message));
+        this(code, Strings.get().get(message));
     }
 
     public int getCode()

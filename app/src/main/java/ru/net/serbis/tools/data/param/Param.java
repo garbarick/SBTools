@@ -1,7 +1,6 @@
 package ru.net.serbis.tools.data.param;
 
 import android.app.*;
-import android.content.*;
 import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.*;
@@ -16,13 +15,20 @@ public abstract class Param<T, V extends View>
     protected T defaultValue;
     protected Activity context;
     protected ParamsAdapter adapter;
+    protected boolean stored;
 
-    public Param(int nameId, String paramName, T defaultValue)
+    public Param(int nameId, String paramName, T defaultValue, boolean stored)
     {
         this.nameId = nameId;
         this.name = paramName;
         this.paramName = paramName;
         this.defaultValue = defaultValue;
+        this.stored = stored;
+    }
+
+    public Param(int nameId, String paramName, T defaultValue)
+    {
+        this(nameId, paramName, defaultValue, true);
     }
 
     public Param(int nameId, T defaultValue)
@@ -30,9 +36,9 @@ public abstract class Param<T, V extends View>
         this(nameId, null, defaultValue);
     }
 
-    public Param(String paramName, T defaultValue)
+    public Param(String paramName, T defaultValue, boolean stored)
     {
-        this(0, paramName, defaultValue);
+        this(0, paramName, defaultValue, stored);
     }
 
     public String getName()
@@ -42,9 +48,9 @@ public abstract class Param<T, V extends View>
 
     public abstract int getLayoutId();
 
-    public void initName(Context context)
+    public void initName()
     {
-        name = context.getResources().getString(nameId);
+        name = Strings.get().get(nameId);
         if (paramName == null)
         {
             paramName = name;
@@ -71,15 +77,22 @@ public abstract class Param<T, V extends View>
 
     public void saveValue(T value)
     {
-        String data = value == null ? null : typeToString(value);
-        Preferences.get().setString(paramName, data);
+        if (stored)
+        {
+            String data = value == null ? null : typeToString(value);
+            Preferences.get().setString(paramName, data);
+        }
     }
 
     public abstract String typeToString(T value);
 
     public T getValue()
     {
-        return stringToType(Preferences.get().getString(paramName, typeToString(defaultValue)));
+        if (stored)
+        {
+            return stringToType(Preferences.get().getString(paramName, typeToString(defaultValue)));
+        }
+        return defaultValue;
     }
 
     public abstract T stringToType(String value);
