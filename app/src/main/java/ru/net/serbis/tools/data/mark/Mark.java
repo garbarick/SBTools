@@ -175,6 +175,7 @@ public class Mark
             setLastDate(result.getString("ld"));
             setLastPeriod(result.getInt("lp"));
             setPeriod(result.getInt("p"));
+            setNextDate();
         }
         catch (Exception e)
         {
