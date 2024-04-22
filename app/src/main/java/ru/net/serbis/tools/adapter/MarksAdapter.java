@@ -99,6 +99,7 @@ public class MarksAdapter extends ArrayAdapter<Mark>
     {
         Mark mark = getItem(position);
         mark.update();
+        save();
         notifyDataSetChanged();
     }
 
