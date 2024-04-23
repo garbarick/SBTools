@@ -53,4 +53,12 @@ public enum Period
         long days = TimeUnit.DAYS.convert(mills, TimeUnit.MILLISECONDS);
         return days >= this.days;
     }
+
+    public static void initNames()
+    {
+        for (Period item : Period.class.getEnumConstants())
+        {
+            item.initName();
+        }
+    }
 }

@@ -35,18 +35,10 @@ public class App extends Application
 
     private void initEnums()
     {
-        for (Compression item : Compression.class.getEnumConstants())
-        {
-            item.initName();
-        }
-        for (NotifyType item : NotifyType.class.getEnumConstants())
-        {
-            item.initName();
-        }
-        for (Period item : Period.class.getEnumConstants())
-        {
-            item.initName();
-        }
+        Compression.initNames();
+        NotifyType.initNames();
+        Period.initNames();
+        Unit.initNames();
     }
 
     private void initParams()

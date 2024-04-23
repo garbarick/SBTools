@@ -64,7 +64,12 @@
     <string name="close">Close</string>
     <string name="name">Name</string>
     <string name="last_date">Last date</string>
-    <string name="last_petiod">Last period</string>
+    <string name="last_petiod">Last period (days)</string>
     <string name="period">Period</string>
+    <string name="days">Days</string>
+    <string name="weeks">Weeks</string>
+    <string name="months">Months</string>
+    <string name="years">Years</string>
+    <string name="period_units">Period units</string>
 
 </resources>

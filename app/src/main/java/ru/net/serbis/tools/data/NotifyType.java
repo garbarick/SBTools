@@ -36,4 +36,12 @@ public enum NotifyType
     {
         return VALUES.get(name);
     }
+
+    public static void initNames()
+    {
+        for (NotifyType item : NotifyType.class.getEnumConstants())
+        {
+            item.initName();
+        }
+    }
 }

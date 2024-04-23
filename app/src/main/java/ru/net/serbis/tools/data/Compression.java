@@ -50,4 +50,12 @@ public enum Compression
     {
         return VALUES.get(name);
     }
+
+    public static void initNames()
+    {
+        for (Compression item : Compression.class.getEnumConstants())
+        {
+            item.initName();
+        }
+    }
 }

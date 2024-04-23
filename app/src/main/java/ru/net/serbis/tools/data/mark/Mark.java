@@ -4,33 +4,18 @@ import java.text.*;
 import java.util.*;
 import java.util.concurrent.*;
 import org.json.*;
+import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.util.*;
+import android.text.format.*;
 
 public class Mark
 {
-    private String name;
-    private Date lastDate;
+    private String name = "";
+    private Date lastDate = currentDate();
     private Date nextDate;
     private int lastPeriod;
     private int period;
-
-    public Mark(String name, Date lastDate, int period)
-    {
-        this.name = name;
-        this.lastDate = lastDate;
-        this.period = period;
-        setNextDate();
-    }
-    
-    public Mark(String name)
-    {
-        this(name, new Date(), 0);
-    }
-
-    public Mark()
-    {
-        this("");
-    }
+    private Unit periodUnit = Unit.DAYS;
 
     public void setName(String name)
     {
@@ -72,11 +57,6 @@ public class Mark
         return period;
     }
 
-    public String getPeriodString()
-    {
-        return "" + period;
-    }
-
     public void setLastPeriod(int lastPeriod)
     {
         this.lastPeriod = lastPeriod;
@@ -87,20 +67,10 @@ public class Mark
         return lastPeriod;
     }
 
-    public String getLastPeriodString()
-    {
-        return "" + lastPeriod;
-    }
-
     public int getCurrentPeriod()
     {
-        long diff = new Date().getTime() - lastDate.getTime();
+        long diff = currentDate().getTime() - lastDate.getTime();
         return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-    }
-
-    public String getCurrentPeriodString()
-    {
-        return "" + getCurrentPeriod();
     }
 
     private SimpleDateFormat getFormat()
@@ -110,10 +80,22 @@ public class Mark
 
     public void setNextDate()
     {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(lastDate);
-        calendar.add(Calendar.DATE, period);
-        nextDate = calendar.getTime();
+        nextDate = periodUnit.getNext(lastDate, period);
+    }
+
+    public void setPeriodUnit(Unit periodUnit)
+    {
+        this.periodUnit = periodUnit;
+    }
+
+    public void setPeriodUnit(String periodUnit)
+    {
+        this.periodUnit = Unit.get(periodUnit);
+    }
+
+    public Unit getPeriodUnit()
+    {
+        return periodUnit;
     }
 
     public String getNextDateString()
@@ -136,18 +118,29 @@ public class Mark
     public void update()
     {
         setLastPeriod(getCurrentPeriod());
-        setLastDate(new Date());
+        setLastDate(currentDate());
         setNextDate();
     }
 
     public boolean isExpired()
     {
-        return getCurrentPeriod() > getPeriod();
+        return currentDate().after(nextDate);
     }
 
     public boolean isWarning()
     {
-        return getCurrentPeriod() == getPeriod();
+        return currentDate().equals(nextDate);
+    }
+    
+    private Date currentDate()
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar.getTime();
     }
 
     public JSONObject toJson()
@@ -157,8 +150,9 @@ public class Mark
         {
             result.put("n", name);
             result.put("ld", getLastDateString());
-            result.put("p", period);
             result.put("lp", lastPeriod);
+            result.put("p", period);
+            result.put("pu", periodUnit);
         }
         catch (Exception e)
         {
@@ -167,14 +161,30 @@ public class Mark
         return result;
     }
 
-    public void parse(JSONObject result)
+    public void parse(JSONObject json)
     {
         try
         {
-            setName(result.getString("n"));
-            setLastDate(result.getString("ld"));
-            setLastPeriod(result.getInt("lp"));
-            setPeriod(result.getInt("p"));
+            if (json.has("n"))
+            {
+                setName(json.getString("n"));
+            }
+            if (json.has("ld"))
+            {
+                setLastDate(json.getString("ld"));
+            }
+            if (json.has("lp"))
+            {
+                setLastPeriod(json.getInt("lp"));
+            }
+            if (json.has("p"))
+            {
+                setPeriod(json.getInt("p"));
+            }
+            if (json.has("pu"))
+            {
+                setPeriodUnit(json.getString("pu"));
+            }
             setNextDate();
         }
         catch (Exception e)

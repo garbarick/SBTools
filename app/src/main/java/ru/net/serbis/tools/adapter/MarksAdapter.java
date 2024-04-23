@@ -47,10 +47,10 @@ public class MarksAdapter extends ArrayAdapter<Mark>
         nextDate.setText(mark.getNextDateString());
 
         TextView lastPeriod = UITool.get().findView(view, R.id.last_period);
-        lastPeriod.setText(mark.getLastPeriodString());
+        lastPeriod.setText("" + mark.getLastPeriod());
 
         TextView period = UITool.get().findView(view, R.id.period);
-        period.setText(mark.getCurrentPeriodString());
+        period.setText("" + mark.getCurrentPeriod());
 
         return view;
     }

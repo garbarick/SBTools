@@ -14,6 +14,12 @@ public abstract class SpinnerParam<T> extends Param<T, Spinner>
         this.values = values;
     }
 
+    public SpinnerParam(String paramName, T defaultValue, boolean stored, T[] values)
+    {
+        super(paramName, defaultValue, stored);
+        this.values = values;
+    }
+
     @Override
     public int getLayoutId()
     {
