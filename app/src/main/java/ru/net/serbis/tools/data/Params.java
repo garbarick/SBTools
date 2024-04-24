@@ -38,23 +38,7 @@ public interface Params
         BUFFER_SIZE
     };
 
-    Param[] SYS_DRAWABLES_PARAMS = new Param[]{
-        VIEW_TYPE
-    };
-
-    Param[] SYS_STRINGS_PARAMS = new Param[]{
-        VIEW_TYPE
-    };
-
-    Param[] SYS_XML_PARAMS = new Param[]{
-        VIEW_TYPE
-    };
-
-    Param[] SYS_COLORS_PARAMS = new Param[]{
-        VIEW_TYPE
-    };
-
-    Param[] SYS_THEMES_PARAMS = new Param[]{
+    Param[] SYS_RESOURSES = new Param[]{
         VIEW_TYPE
     };
 

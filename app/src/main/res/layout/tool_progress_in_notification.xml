@@ -1,24 +1,32 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:duplicateParentState="true">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:duplicateParentState="true">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:id="@+id/progress_in_notification"
-        android:text="@string/progress_in_notification"
-        android:duplicateParentState="true"
-        android:textAllCaps="false"
-        android:layout_weight="1"/>
+	<ImageView
+		android:src="@drawable/tool_progress_in_notification"
+		android:layout_width="50dp"
+		android:layout_height="match_parent"
+		android:duplicateParentState="true"/>
 
-    <ImageButton
-        android:src="@android:drawable/ic_menu_preferences"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:id="@+id/progress_in_notification_set"
-        android:duplicateParentState="true"
-        android:scaleType="fitXY"/>
+	<Button
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:id="@+id/progress_in_notification"
+		android:text="@string/progress_in_notification"
+		android:duplicateParentState="true"
+		android:textAllCaps="false"
+		android:layout_weight="1"/>
+
+	<ImageButton
+		android:background="@android:drawable/ic_menu_preferences"
+		android:layout_width="50dp"
+		android:layout_height="match_parent"
+		android:id="@+id/progress_in_notification_set"
+		android:duplicateParentState="true"/>
 
 </LinearLayout>
+

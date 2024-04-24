@@ -6,10 +6,18 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:id="@+id/sys_resources"
         android:text="@string/sys_resources"
+        android:layout_weight="1"
         android:duplicateParentState="true"
         android:textAllCaps="false"/>
+
+    <ImageButton
+        android:background="@android:drawable/ic_menu_preferences"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:id="@+id/sys_resources_set"
+        android:duplicateParentState="true"/>
 
 </LinearLayout>

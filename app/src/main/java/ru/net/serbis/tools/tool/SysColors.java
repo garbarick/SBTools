@@ -1,7 +1,6 @@
 package ru.net.serbis.tools.tool;
 
 import ru.net.serbis.tools.*;
-import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.fragment.*;
 
 public class SysColors extends Tool
@@ -10,8 +9,7 @@ public class SysColors extends Tool
     {
         super(
             R.layout.tool_sys_colors,
-            R.id.sys_colors,
-            R.id.sys_colors_set);
+            R.id.sys_colors);
     }
 
     @Override
@@ -21,10 +19,6 @@ public class SysColors extends Tool
         {
             case R.id.sys_colors:
                 new ColorsFragment(context);
-                break;
-
-            case R.id.sys_colors_set:
-                new ParamsFragment(context, R.string.settings, Params.SYS_COLORS_PARAMS);
                 break;
         }
     }

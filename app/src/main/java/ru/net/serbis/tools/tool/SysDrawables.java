@@ -1,7 +1,6 @@
 package ru.net.serbis.tools.tool;
 
 import ru.net.serbis.tools.*;
-import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.fragment.*;
 
 public class SysDrawables extends Tool
@@ -10,8 +9,7 @@ public class SysDrawables extends Tool
     {
         super(
             R.layout.tool_sys_drawables,
-            R.id.sys_drawables,
-            R.id.sys_drawables_set);
+            R.id.sys_drawables);
     }
 
     @Override
@@ -21,10 +19,6 @@ public class SysDrawables extends Tool
         {
             case R.id.sys_drawables:
                 new DrawablesFragment(context);
-                break;
-
-            case R.id.sys_drawables_set:
-                new ParamsFragment(context, R.string.settings, Params.SYS_DRAWABLES_PARAMS);
                 break;
         }
     }

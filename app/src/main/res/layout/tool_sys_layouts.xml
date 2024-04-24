@@ -6,22 +6,20 @@
 	android:layout_height="wrap_content"
 	android:duplicateParentState="true">
 
+	<ImageView
+		android:src="@drawable/tool_sys_layouts"
+		android:layout_width="50dp"
+		android:layout_height="match_parent"
+		android:duplicateParentState="true"/>
+
 	<Button
 		android:layout_width="match_parent"
-		android:layout_height="60dp"
+		android:layout_height="50dp"
 		android:id="@+id/sys_layouts"
 		android:text="@string/sys_layouts"
 		android:duplicateParentState="true"
 		android:textAllCaps="false"
 		android:layout_weight="1"/>
-
-	<ImageButton
-		android:src="@android:drawable/ic_menu_preferences"
-		android:layout_width="60dp"
-		android:layout_height="60dp"
-		android:id="@+id/sys_layouts_set"
-		android:duplicateParentState="true"
-		android:scaleType="fitXY"/>
 
 </LinearLayout>
 
