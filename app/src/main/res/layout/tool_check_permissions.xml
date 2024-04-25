@@ -9,12 +9,13 @@
 	<ImageView
 		android:src="@drawable/tool_check_permissions"
 		android:layout_width="50dp"
-		android:layout_height="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
 		android:duplicateParentState="true"/>
 
 	<Button
 		android:layout_width="match_parent"
-		android:layout_height="50dp"
+		android:layout_height="60dp"
 		android:id="@+id/check_permissions"
 		android:text="@string/check_permissions"
 		android:duplicateParentState="true"
