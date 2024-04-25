@@ -148,6 +148,7 @@ public class MarksDialog extends AlertDialog.Builder implements DialogInterface.
         mark.setLastPeriod((Integer) paramsAdapter.getValue(params.get(R.string.last_petiod)));
         mark.setPeriod((Integer) paramsAdapter.getValue(params.get(R.string.period)));
         mark.setPeriodUnit((Unit) paramsAdapter.getValue(params.get(R.string.period_units)));
+        mark.setNextDate();
         if (add)
         {
             adapter.add(mark);
