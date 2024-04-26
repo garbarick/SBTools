@@ -5,27 +5,27 @@ import ru.net.serbis.tools.fragment.*;
 
 public class SysLayouts extends Tool
 {
-    public SysLayouts()
-    {
-        super(
-            R.layout.tool_sys_layouts,
-            R.id.sys_layouts);
-    }
-
     @Override
-    public void onClick(int id)
+    protected void tool()
     {
-        switch (id)
-        {
-            case R.id.sys_layouts:
-                new XmlFragment(context);
-                break;
-        }
+        new XmlFragment(context);
     }
 
     @Override
     public int getNameId()
     {
         return R.string.sys_layouts;
+    }
+
+    @Override
+    public int getImageId()
+    {
+        return R.drawable.tool_sys_layouts;
+    }
+
+    @Override
+    protected boolean hasSettings()
+    {
+        return false;
     }
 }

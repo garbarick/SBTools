@@ -5,27 +5,27 @@ import ru.net.serbis.tools.fragment.*;
 
 public class SysThemes extends Tool
 {
-    public SysThemes()
-    {
-        super(
-            R.layout.tool_sys_themes,
-            R.id.sys_themes);
-    }
-
     @Override
-    public void onClick(int id)
+    protected void tool()
     {
-        switch (id)
-        {
-            case R.id.sys_themes:
-                new ThemesFragment(context);
-                break;
-        }
+        new ThemesFragment(context);
     }
 
     @Override
     public int getNameId()
     {
         return R.string.sys_themes;
+    }
+
+    @Override
+    public int getImageId()
+    {
+        return R.drawable.tool_sys_themes;
+    }
+
+    @Override
+    protected boolean hasSettings()
+    {
+        return false;
     }
 }

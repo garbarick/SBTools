@@ -16,14 +16,6 @@ public class ExportImport extends Tool
 {
     private PopupMenu menu;
 
-    public ExportImport()
-    {
-        super(
-            R.layout.tool_export_import,
-            R.id.export_import,
-            R.id.export_import_set);
-    }
-
     @Override
     public int getNameId()
     {
@@ -31,19 +23,30 @@ public class ExportImport extends Tool
     }
 
     @Override
-    public void onClick(int id)
+    public int getImageId()
     {
+        return R.drawable.tool_export_import;
+    }
+
+    @Override
+    protected void tool()
+    {
+        initMenu();
+        menu.show();
+    }
+
+    @Override
+    protected void settings()
+    {
+        new ParamsFragment(context, R.string.settings, Params.EXPORT_IMPORT_PARAMS);
+    }
+
+    @Override
+    protected void onClick(int id)
+    {
+        super.onClick(id);
         switch (id)
         {
-            case R.id.export_import:
-                initMenu();
-                menu.show();
-                break;
-
-            case R.id.export_import_set:
-                new ParamsFragment(context, R.string.settings, Params.EXPORT_IMPORT_PARAMS);
-                break;
-
             case R.id.export_params:
                 exportParams();
                 break;
@@ -60,7 +63,7 @@ public class ExportImport extends Tool
         {
             return;
         }
-        Button button = UITool.get().findView(context, R.id.export_import);
+        Button button = UITool.get().findView(context, toolId);
         menu = new PopupMenu(context, button);
         menu.getMenuInflater().inflate(R.menu.export_import, menu.getMenu());
         menu.setOnMenuItemClickListener(this);

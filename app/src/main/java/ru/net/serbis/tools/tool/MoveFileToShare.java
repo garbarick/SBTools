@@ -15,30 +15,8 @@ public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
 {
     private ParamsFragment dialog;
 
-    public MoveFileToShare()
-    {
-        super(
-            R.layout.tool_move_file_to_share,
-            R.id.move_file_to_share,
-            R.id.move_file_to_share_set);
-    }
-
     @Override
-    public void onClick(int id)
-    {
-        switch (id)
-        {
-            case R.id.move_file_to_share:
-                moveFileToShare();
-                break;
-
-            case R.id.move_file_to_share_set:
-                dialog = new ParamsFragment(context, R.string.settings, Params.MOVE_FILE_TO_SHARE_PARAMS);
-                break;
-        }
-    }
-
-    private void moveFileToShare()
+    protected void tool()
     {
         UITool.get().setProgress(true);
         disable();
@@ -48,7 +26,13 @@ public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
         Integer bufferSize = Params.BUFFER_SIZE.getValue();
         new ShareTools(context).uploadFile(this, filePath, shareDir, bufferSize);
     }
-    
+
+    @Override
+    protected void settings()
+    {
+        dialog = new ParamsFragment(context, R.string.settings, Params.MOVE_FILE_TO_SHARE_PARAMS);
+    }
+
     @Override
     public void progress(int value)
     {
@@ -91,5 +75,11 @@ public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
     public int getNameId()
     {
         return R.string.move_file_to_share;
+    }
+
+    @Override
+    public int getImageId()
+    {
+        return R.drawable.tool_move_file_to_share;
     }
 }

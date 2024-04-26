@@ -5,27 +5,27 @@ import ru.net.serbis.tools.dialog.*;
 
 public class MarksTool extends Tool
 {
-    public MarksTool()
-    {
-        super(
-            R.layout.tool_marks,
-            R.id.marks);
-    }
-
     @Override
-    public void onClick(int id)
+    protected void tool()
     {
-        switch (id)
-        {
-            case R.id.marks:
-                new MarksDialog(context);
-                break;
-        }
+        new MarksDialog(context);
     }
 
     @Override
     public int getNameId()
     {
         return R.string.marks;
+    }
+
+    @Override
+    public int getImageId()
+    {
+        return R.drawable.tool_marks;
+    }
+
+    @Override
+    protected boolean hasSettings()
+    {
+        return false;
     }
 }

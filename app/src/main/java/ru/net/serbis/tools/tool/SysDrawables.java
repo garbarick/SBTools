@@ -5,27 +5,27 @@ import ru.net.serbis.tools.fragment.*;
 
 public class SysDrawables extends Tool
 {
-    public SysDrawables()
-    {
-        super(
-            R.layout.tool_sys_drawables,
-            R.id.sys_drawables);
-    }
-
     @Override
-    public void onClick(int id)
+    protected void tool()
     {
-        switch (id)
-        {
-            case R.id.sys_drawables:
-                new DrawablesFragment(context);
-                break;
-        }
+        new DrawablesFragment(context);
     }
 
     @Override
     public int getNameId()
     {
         return R.string.sys_drawables;
+    }
+
+    @Override
+    public int getImageId()
+    {
+        return R.drawable.tool_sys_drawables;
+    }
+
+    @Override
+    protected boolean hasSettings()
+    {
+        return false;
     }
 }

@@ -9,14 +9,6 @@ import ru.net.serbis.tools.util.*;
 
 public class HideTools extends Tool
 {
-    public HideTools()
-    {
-        super(
-            R.layout.tool_hide_tools,
-            R.id.hide_tools
-        );
-    }
-
     @Override
     public void setContext(Activity context)
     {
@@ -40,19 +32,20 @@ public class HideTools extends Tool
     }
 
     @Override
-    protected void onClick(int id)
+    protected void tool()
     {
-        switch (id)
-        {
-            case R.id.hide_tools:
-                new HideToolsFragment(context);
-                break;
-        }
+        new HideToolsFragment(context);
     }
 
     @Override
     public int getNameId()
     {
         return R.string.hide_tools;
+    }
+
+    @Override
+    protected boolean hasSettings()
+    {
+        return false;
     }
 }

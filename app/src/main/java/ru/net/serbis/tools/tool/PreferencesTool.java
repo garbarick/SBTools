@@ -9,31 +9,20 @@ import ru.net.serbis.tools.util.*;
 
 public class PreferencesTool extends Tool
 {
-    public PreferencesTool()
-    {
-        super(
-            R.layout.tool_preferences,
-            R.id.preferences);
-    }
-
-    @Override
-    public void onClick(int id)
-    {
-        switch (id)
-        {
-            case R.id.preferences:
-                preferences();
-                break;
-        }
-    }
-
     @Override
     public int getNameId()
     {
         return R.string.preferences;
     }
 
-    private void preferences()
+    @Override
+    protected boolean hasSettings()
+    {
+        return false;
+    }
+
+    @Override
+    protected void tool()
     {
         List<Param> paramList = new ArrayList<Param>();
         for (String name : new TreeSet<String>(Preferences.get().getNames()))

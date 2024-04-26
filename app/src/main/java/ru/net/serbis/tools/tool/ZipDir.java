@@ -9,34 +9,18 @@ import ru.net.serbis.tools.util.*;
 
 public class ZipDir extends Tool implements TaskCallback<Boolean>
 {
-    public ZipDir()
-    {
-        super(
-            R.layout.tool_zip_dir,
-            R.id.zip_dir,
-            R.id.zip_dir_set);
-    }
-
     @Override
-    public void onClick(int id)
-    {
-        switch (id)
-        {
-            case R.id.zip_dir:
-                zipDir();
-                break;
-
-            case R.id.zip_dir_set:
-                new ParamsFragment(context, R.string.settings, Params.ZIP_DIR_PARAMS);
-                break;
-        }
-    }
-
-    private void zipDir()
+    protected void tool()
     {
         disable();
         notification = new NotificationProgress(context, R.string.zip_dir);
         new ZipTask(context, this).execute();
+    }
+
+    @Override
+    protected void settings()
+    {
+        new ParamsFragment(context, R.string.settings, Params.ZIP_DIR_PARAMS);
     }
 
     @Override
@@ -61,5 +45,11 @@ public class ZipDir extends Tool implements TaskCallback<Boolean>
     public int getNameId()
     {
         return R.string.zip_dir;
+    }
+
+    @Override
+    public int getImageId()
+    {
+        return R.drawable.tool_zip_dir;
     }
 }

@@ -5,27 +5,27 @@ import ru.net.serbis.tools.fragment.*;
 
 public class SysStrings extends Tool
 {
-    public SysStrings()
-    {
-        super(
-            R.layout.tool_sys_strings,
-            R.id.sys_strings);
-    }
-
     @Override
-    public void onClick(int id)
+    protected void tool()
     {
-        switch (id)
-        {
-            case R.id.sys_strings:
-                new StringsFragment(context);
-                break;
-        }
+        new StringsFragment(context);
     }
 
     @Override
     public int getNameId()
     {
         return R.string.sys_strings;
+    }
+
+    @Override
+    public int getImageId()
+    {
+        return R.drawable.tool_sys_strings;
+    }
+
+    @Override
+    protected boolean hasSettings()
+    {
+        return false;
     }
 }

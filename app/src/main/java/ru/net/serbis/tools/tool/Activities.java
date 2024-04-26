@@ -5,25 +5,27 @@ import ru.net.serbis.tools.fragment.*;
 
 public class Activities extends Tool
 {
-    public Activities()
-    {
-        super(R.layout.tool_activities, R.id.activities);
-    }
-
     @Override
-    protected void onClick(int id)
+    protected void tool()
     {
-        switch (id)
-        {
-            case R.id.activities:
-                new ActivitiesFragment(context);
-                break;
-        }
+        new ActivitiesFragment(context);
     }
 
     @Override
     public int getNameId()
     {
         return R.string.activities;
+    }
+
+    @Override
+    public int getImageId()
+    {
+        return R.drawable.tool_activities;
+    }
+
+    @Override
+    protected boolean hasSettings()
+    {
+        return false;
     }
 }

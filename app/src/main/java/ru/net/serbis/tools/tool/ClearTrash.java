@@ -13,28 +13,18 @@ public class ClearTrash extends Tool implements TaskCallback<Integer>
 {
     private boolean start = true;
 
-    public ClearTrash()
+    @Override
+    protected void tool()
     {
-        super(
-            R.layout.tool_clear_trash,
-            R.id.clear_trash,
-            R.id.clear_trash_set
-        );
+        disable();
+        notification = new NotificationProgress(context, R.string.clear_trash);
+        new ClearTrashTask(context, this).execute();
     }
 
     @Override
-    protected void onClick(int id)
+    protected void settings()
     {
-        switch (id)
-        {
-            case R.id.clear_trash:
-                clearTrash();
-                break;
-                
-            case R.id.clear_trash_set:
-                new ParamsFragment(context, R.string.settings, Params.CLEAR_TRASH_PARAMS);
-                break;
-        }
+        new ParamsFragment(context, R.string.settings, Params.CLEAR_TRASH_PARAMS);
     }
 
     @Override
@@ -43,11 +33,10 @@ public class ClearTrash extends Tool implements TaskCallback<Integer>
         return R.string.clear_trash;
     }
 
-    private void clearTrash()
+    @Override
+    public int getImageId()
     {
-        disable();
-        notification = new NotificationProgress(context, R.string.clear_trash);
-        new ClearTrashTask(context, this).execute();
+        return R.drawable.tool_clear_trash;
     }
 
     @Override
@@ -88,14 +77,14 @@ public class ClearTrash extends Tool implements TaskCallback<Integer>
                 case DISABLED:
                     break;
                 case EVERY_TIME:
-                    clearTrash();
+                    tool();
                     break;
                 case ONCE_A_DAY:
                 case ONCE_TWO_DAYS:
                 case ONCE_A_WEEK:
                     if (period.checkDays(last))
                     {
-                        clearTrash();
+                        tool();
                     }
                     break;
             }

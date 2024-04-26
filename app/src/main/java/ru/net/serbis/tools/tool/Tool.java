@@ -10,30 +10,20 @@ import ru.net.serbis.tools.util.*;
 
 public abstract class Tool implements View.OnClickListener, PopupMenu.OnMenuItemClickListener
 {
-    private int layoutId;
-    private int[] buttonIds;
+    protected int iconId;
+    protected int toolId;
+    protected int settingsId;
     protected Activity context;
     protected LinearLayout main;
     protected NotificationProgress notification;
     protected ProgressBar bar;
-    private boolean hidden;
-
-    public Tool(int layoutId, int ... buttonIds)
-    {
-        this.layoutId = layoutId;
-        this.buttonIds = buttonIds;
-    }
-
-    public int getLayoutId()
-    {
-        return layoutId;
-    }
+    protected boolean hidden;
 
     public int[] getButtonIds()
     {
-        return buttonIds;
+        return new int[]{iconId, toolId, settingsId};
     }
-    
+
     public void setContext(Activity context)
     {
         this.context = context;
@@ -43,6 +33,34 @@ public abstract class Tool implements View.OnClickListener, PopupMenu.OnMenuItem
     public void setMain(LinearLayout main)
     {
         this.main = main;
+    }
+
+    public void setView(View view)
+    {
+        ImageView icon = UITool.get().findView(view, R.id.icon);
+        iconId = icon.generateViewId();
+        icon.setId(iconId);
+        if (getImageId() > 0)
+        {
+            icon.setBackgroundResource(getImageId());
+        }
+        else
+        {
+            icon.setVisibility(View.GONE);
+        }
+
+        Button tool = UITool.get().findView(view, R.id.tool);
+        toolId = tool.generateViewId();
+        tool.setId(toolId);
+        tool.setText(getNameId());
+
+        ImageButton settings = UITool.get().findView(view, R.id.settings);
+        settingsId = settings.generateViewId();
+        settings.setId(settingsId);
+        if (!hasSettings())
+        {
+            settings.setVisibility(View.GONE);
+        }
     }
 
     protected boolean isEnabled()
@@ -76,8 +94,18 @@ public abstract class Tool implements View.OnClickListener, PopupMenu.OnMenuItem
         return false;
     }
 
-    protected abstract void onClick(int id);
-    
+    protected void onClick(int id)
+    {
+        if (id == toolId)
+        {
+            tool();
+        }
+        else if (id == settingsId)
+        {
+            settings();
+        }
+    }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
     }
@@ -93,4 +121,22 @@ public abstract class Tool implements View.OnClickListener, PopupMenu.OnMenuItem
     }
 
     public abstract int getNameId();
+
+    public int getImageId()
+    {
+        return 0;
+    }
+
+    protected boolean hasSettings()
+    {
+        return true;
+    }
+
+    protected void tool()
+    {
+    }
+
+    protected void settings()
+    {
+    }
 }
