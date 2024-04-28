@@ -1,7 +1,9 @@
 package ru.net.serbis.tools.fragment;
 
 import android.app.*;
+import android.content.*;
 import android.os.*;
+import ru.net.serbis.tools.activity.*;
 import ru.net.serbis.tools.dialog.*;
 import ru.net.serbis.tools.util.*;
 
@@ -34,11 +36,19 @@ public class ActivitiesFragment extends DialogFragment
         dialog.initButtons();
         dialog.initItems();
         dialog.setPosition(position);
+        dialog.setOnDismissListener(this);
     }
 
     @Override
     public void onSaveInstanceState(Bundle state)
     {
         state.putInt("position", dialog.getPosition());
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog)
+    {
+        super.onDismiss(dialog);
+        ((ToolsActivity) getActivity()).closeTool();
     }
 }

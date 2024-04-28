@@ -1,6 +1,5 @@
 package ru.net.serbis.tools.data;
 
-import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.tool.*;
 
 public interface Tools
@@ -45,4 +44,6 @@ public interface Tools
         SYS_COLORS,
         SYS_THEMES
     };
+
+    Holder<String, Tool> TOOLS_MAP = new Holder<String, Tool>();
 }

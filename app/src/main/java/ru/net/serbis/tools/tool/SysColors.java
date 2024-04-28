@@ -6,7 +6,7 @@ import ru.net.serbis.tools.fragment.*;
 public class SysColors extends Tool
 {
     @Override
-    protected void tool()
+    public void tool()
     {
         new ColorsFragment(context);
     }

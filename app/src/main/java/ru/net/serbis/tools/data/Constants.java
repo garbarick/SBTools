@@ -14,4 +14,6 @@ public interface Constants
     String JSON_EXT = ".json";
     int BUFFER_SIZE = 10240;
     String VALUE = "VALUE";
+    String WIDGET = "WIDGET";
+    String START = "START";
 }

@@ -1,10 +1,10 @@
 package ru.net.serbis.tools.tool;
 
-import android.app.*;
 import android.content.*;
 import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.*;
+import ru.net.serbis.tools.activity.*;
 import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.util.*;
 
@@ -13,7 +13,7 @@ public abstract class Tool implements View.OnClickListener, PopupMenu.OnMenuItem
     protected int iconId;
     protected int toolId;
     protected int settingsId;
-    protected Activity context;
+    protected ToolsActivity context;
     protected LinearLayout main;
     protected NotificationProgress notification;
     protected ProgressBar bar;
@@ -24,7 +24,7 @@ public abstract class Tool implements View.OnClickListener, PopupMenu.OnMenuItem
         return new int[]{iconId, toolId, settingsId};
     }
 
-    public void setContext(Activity context)
+    public void setContext(ToolsActivity context)
     {
         this.context = context;
         bar = UITool.get().findView(context, R.id.progress);
@@ -132,7 +132,7 @@ public abstract class Tool implements View.OnClickListener, PopupMenu.OnMenuItem
         return true;
     }
 
-    protected void tool()
+    public void tool()
     {
     }
 

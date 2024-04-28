@@ -6,7 +6,7 @@ import ru.net.serbis.tools.dialog.*;
 public class MarksTool extends Tool
 {
     @Override
-    protected void tool()
+    public void tool()
     {
         new MarksDialog(context);
     }

@@ -1,8 +1,8 @@
 package ru.net.serbis.tools.tool;
 
-import android.app.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
+import ru.net.serbis.tools.activity.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.tools.util.*;
@@ -10,7 +10,7 @@ import ru.net.serbis.tools.util.*;
 public class HideTools extends Tool
 {
     @Override
-    public void setContext(Activity context)
+    public void setContext(ToolsActivity context)
     {
         super.setContext(context);
         initVisible(Tools.MAIN_TOOLS);
@@ -32,7 +32,7 @@ public class HideTools extends Tool
     }
 
     @Override
-    protected void tool()
+    public void tool()
     {
         new HideToolsFragment(context);
     }

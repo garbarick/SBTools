@@ -7,7 +7,7 @@ public class CheckPermissions extends Tool
 {
 
     @Override
-    protected void tool()
+    public void tool()
     {
         new PermissionsFragment(context);
     }

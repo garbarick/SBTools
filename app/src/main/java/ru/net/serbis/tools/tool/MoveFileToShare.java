@@ -16,7 +16,7 @@ public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
     private ParamsFragment dialog;
 
     @Override
-    protected void tool()
+    public void tool()
     {
         UITool.get().setProgress(true);
         disable();
@@ -55,6 +55,7 @@ public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
         notification.cancel();
         enable();
         UITool.get().setProgress(false);
+        context.closeTool();
     }
 
     @Override

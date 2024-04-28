@@ -9,7 +9,7 @@ import ru.net.serbis.tools.task.*;
 public class ProgressInNotification extends Tool implements TaskCallback<Boolean>
 {
     @Override
-    protected void tool()
+    public void tool()
     {
         disable();
         notification = new NotificationProgress(context, R.string.in_progress);

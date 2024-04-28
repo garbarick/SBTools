@@ -17,7 +17,6 @@
 
         <activity
             android:name=".activity.Main"
-            android:label="@string/app"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -43,6 +42,28 @@
         <activity
             android:name=".activity.ViewParam">
         </activity>
+
+        <activity
+            android:name=".activity.ConfigStartTool">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.StartToolActivity"
+            android:launchMode="singleTask"/>
+
+        <receiver
+            android:name=".widget.StartTool"
+            android:label="@string/start_tool">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_start_tool"/>
+        </receiver>
 
     </application>
 

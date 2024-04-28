@@ -23,13 +23,7 @@ public class ExportImport extends Tool
     }
 
     @Override
-    public int getImageId()
-    {
-        return R.drawable.tool_export_import;
-    }
-
-    @Override
-    protected void tool()
+    public void tool()
     {
         initMenu();
         menu.show();

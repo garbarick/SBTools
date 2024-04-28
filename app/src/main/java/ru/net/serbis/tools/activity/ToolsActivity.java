@@ -40,18 +40,24 @@ public abstract class ToolsActivity extends Activity
     private Tool[] getVisibleTools()
     {
         List<Tool> result = new ArrayList<Tool>();
-        for (Tool tool : getTools())
+        Tool[] tools = getTools();
+        for (Tool tool : tools)
         {
             tool.setContext(this);
         }
-        for (Tool tool : getTools())
+        for (Tool tool : tools)
         {
-            if (!tool.isHidden())
+            if (!isHidden(tool))
             {
                 result.add(tool);
             }
         }
         return result.toArray(new Tool[result.size()]);
+    }
+
+    protected boolean isHidden(Tool tool)
+    {
+        return tool.isHidden();
     }
 
     @Override
@@ -67,5 +73,9 @@ public abstract class ToolsActivity extends Activity
         {
             super.onBackPressed();
         }
+    }
+
+    public void closeTool()
+    {
     }
 }

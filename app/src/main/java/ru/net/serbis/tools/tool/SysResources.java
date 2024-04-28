@@ -9,7 +9,7 @@ import ru.net.serbis.tools.fragment.*;
 public class SysResources extends Tool
 {
     @Override
-    protected void tool()
+    public void tool()
     {
         Intent intent = new Intent(context, SysResourcesActivity.class);
         context.startActivity(intent);

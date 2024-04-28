@@ -6,7 +6,7 @@ import ru.net.serbis.tools.util.*;
 public class UncaughtException extends Tool
 {
     @Override
-    protected void tool()
+    public void tool()
     {
         throw new RuntimeException(
             Strings.get().get(R.string.uncaught_exception)

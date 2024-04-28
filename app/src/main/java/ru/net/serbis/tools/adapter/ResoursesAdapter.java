@@ -26,6 +26,11 @@ public abstract class ResoursesAdapter extends ArrayAdapter<Resource>
         selected = position;
     }
 
+    public int getSelection()
+    {
+        return selected;
+    }
+
     protected void init(ResType type)
     {
         ResourceLoader.get().load();

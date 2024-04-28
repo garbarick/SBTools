@@ -5,10 +5,12 @@ import android.content.*;
 import android.os.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.dialog.*;
+import ru.net.serbis.tools.util.*;
 
 public class ThemesFragment extends ResourcesFragment
 {
     protected Resource resource;
+    private boolean noDismiss;
 
     public ThemesFragment()
     {
@@ -60,7 +62,18 @@ public class ThemesFragment extends ResourcesFragment
     
     protected void reopenFragment(Resource resource)
     {
+        noDismiss = true;
         dismiss();
         new ThemesFragment(getActivity(), resource);
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog)
+    {
+        if (noDismiss)
+        {
+            return;
+        }
+        super.onDismiss(dialog);
     }
 }

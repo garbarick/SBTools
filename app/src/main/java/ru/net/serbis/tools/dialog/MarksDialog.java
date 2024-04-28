@@ -12,15 +12,17 @@ import ru.net.serbis.tools.data.mark.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.tools.util.*;
+import android.widget.PopupMenu.*;
+import ru.net.serbis.tools.activity.*;
 
-public class MarksDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener, View.OnClickListener, PopupMenu.OnMenuItemClickListener
+public class MarksDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener, View.OnClickListener, PopupMenu.OnMenuItemClickListener, DialogInterface.OnDismissListener
 {
-    private Activity context;
+    private ToolsActivity context;
     private ListView list;
     private MarksAdapter adapter;
     private PopupMenu menu;
 
-    public MarksDialog(Activity context)
+    public MarksDialog(ToolsActivity context)
     {
         super(context);
         this.context = context;
@@ -34,6 +36,7 @@ public class MarksDialog extends AlertDialog.Builder implements DialogInterface.
 
         setNeutralButton(" ", null);
         setNegativeButton(R.string.close, this);
+        setOnDismissListener(this);
 
         show();
     }
@@ -156,5 +159,11 @@ public class MarksDialog extends AlertDialog.Builder implements DialogInterface.
         adapter.sort();
         adapter.notifyDataSetChanged();
         adapter.save();
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog)
+    {
+        context.closeTool();
     }
 }

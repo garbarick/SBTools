@@ -3,6 +3,7 @@ package ru.net.serbis.tools.fragment;
 import android.app.*;
 import android.content.*;
 import android.os.*;
+import ru.net.serbis.tools.activity.*;
 import ru.net.serbis.tools.dialog.*;
 import ru.net.serbis.tools.util.*;
 
@@ -27,6 +28,13 @@ public abstract class ResourcesFragment extends DialogFragment
         return dialog.create();
     }
 
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        dialog.setOnDismissListener(this);
+    }
+
     protected void initTop(Bundle state)
     {
         int top = UITool.get().getBundle(state, "top", 0);
@@ -39,5 +47,11 @@ public abstract class ResourcesFragment extends DialogFragment
     public void onSaveInstanceState(Bundle state)
     {
         state.putInt("top", dialog.getTop());
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog)
+    {
+        ((ToolsActivity) getActivity()).closeTool();
     }
 }

@@ -5,7 +5,7 @@ import java.io.*;
 
 public class Holder<K, V> implements Serializable
 {
-    private Map<K, V> data = new HashMap<K, V>();
+    private Map<K, V> data = new TreeMap<K, V>();
 
     public void put(K key, V value)
     {

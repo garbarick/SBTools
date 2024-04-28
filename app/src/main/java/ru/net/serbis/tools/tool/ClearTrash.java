@@ -14,7 +14,7 @@ public class ClearTrash extends Tool implements TaskCallback<Integer>
     private boolean start = true;
 
     @Override
-    protected void tool()
+    public void tool()
     {
         disable();
         notification = new NotificationProgress(context, R.string.clear_trash);
@@ -62,6 +62,7 @@ public class ClearTrash extends Tool implements TaskCallback<Integer>
             UITool.get().toast(text);
         }
         Params.LAST_CLEAN_UP.saveValue(new Date());
+        context.closeTool();
     }
 
     @Override

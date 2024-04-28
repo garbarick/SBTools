@@ -14,7 +14,7 @@ public class Reflection
     
     public <T> Map<String, T> getValues(Class holder, Class<T> type)
     {
-        Map<String, T> result = new HashMap<String, T>();
+        Map<String, T> result = new TreeMap<String, T>();
         for (Field field : holder.getFields())
         {
             if (type.isAssignableFrom(field.getType()))
@@ -28,7 +28,7 @@ public class Reflection
 
     public <T> Map<String, T[]> getArrayValues(Class holder, Class<T> type)
     {
-        Map<String, T[]> result = new HashMap<String, T[]>();
+        Map<String, T[]> result = new TreeMap<String, T[]>();
         for (Field field : holder.getFields())
         {
             if (field.getType().isArray() &&

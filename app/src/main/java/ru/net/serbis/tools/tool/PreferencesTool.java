@@ -22,7 +22,7 @@ public class PreferencesTool extends Tool
     }
 
     @Override
-    protected void tool()
+    public void tool()
     {
         List<Param> paramList = new ArrayList<Param>();
         for (String name : new TreeSet<String>(Preferences.get().getNames()))

@@ -71,5 +71,7 @@
     <string name="months">Months</string>
     <string name="years">Years</string>
     <string name="period_units">Period units</string>
+    <string name="start_tool">Start tool</string>
+    <string name="create">Create</string>
 
 </resources>

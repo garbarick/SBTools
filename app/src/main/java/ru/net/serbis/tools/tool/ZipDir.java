@@ -10,7 +10,7 @@ import ru.net.serbis.tools.util.*;
 public class ZipDir extends Tool implements TaskCallback<Boolean>
 {
     @Override
-    protected void tool()
+    public void tool()
     {
         disable();
         notification = new NotificationProgress(context, R.string.zip_dir);
@@ -39,6 +39,7 @@ public class ZipDir extends Tool implements TaskCallback<Boolean>
         }
         notification.cancel();
         enable();
+        context.closeTool();
     }
 
     @Override

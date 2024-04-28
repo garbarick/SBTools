@@ -9,7 +9,7 @@ import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.util.*;
 
-public abstract class ResourcesDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener, View.OnClickListener, DialogInterface.OnDismissListener
+public abstract class ResourcesDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener, View.OnClickListener
 {
     protected ListView list;
     protected ResoursesAdapter adapter;
@@ -112,11 +112,19 @@ public abstract class ResourcesDialog extends AlertDialog.Builder implements Dia
         {
             SysTool.get().setClipBoard(R.string.resource_clip_label, resource.getName(getContext()));
         }
+        else
+        {
+            UITool.get().toast("resource is null");
+        }
     }
     
     public Resource getSelected()
     {
         int selected = list.getCheckedItemPosition();
+        if (selected == -1)
+        {
+            selected = adapter.getSelection();
+        }
         if (selected > -1)
         {
             return adapter.getItem(selected);
@@ -149,11 +157,5 @@ public abstract class ResourcesDialog extends AlertDialog.Builder implements Dia
     public void setTop(int top)
     {
         list.setSelection(top);
-    }
-
-    @Override
-    public void onDismiss(DialogInterface dialog)
-    {
-        UITool.get().toast("dismiss");
     }
 }

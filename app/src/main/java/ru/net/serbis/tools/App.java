@@ -21,16 +21,31 @@ public class App extends Application
         super.onCreate();
 
         Context context = getApplicationContext();
+        init(context);
+    }
+
+    public void init(Context context)
+    {
         Strings.get().set(context);
         SysTool.get().set(context);
         UITool.get().set(context);
         Preferences.get().set(context);
 
+        initTools();
         initEnums();
         initParams();
         shareConnection.bind();
 
-        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(getApplicationContext()));
+        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(context));
+    }
+
+    private void initTools()
+    {
+        for (Tool tool : Reflection.get().getValues(Tools.class, Tool.class).values())
+        {
+            String name = Strings.get().get(tool.getNameId());
+            Tools.TOOLS_MAP.put(name, tool);
+        }
     }
 
     private void initEnums()
