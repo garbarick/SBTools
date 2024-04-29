@@ -12,7 +12,7 @@ import ru.net.serbis.tools.dialog.*;
 import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.tools.util.*;
 
-public class ExportImport extends Tool
+public class ExportImport extends NoImageTool
 {
     private PopupMenu menu;
 

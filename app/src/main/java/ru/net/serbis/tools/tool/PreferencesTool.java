@@ -7,7 +7,7 @@ import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.tools.util.*;
 
-public class PreferencesTool extends Tool
+public class PreferencesTool extends NoImageTool
 {
     @Override
     public int getNameId()

@@ -7,7 +7,7 @@ import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.tools.util.*;
 
-public class HideTools extends Tool
+public class HideTools extends NoImageTool
 {
     @Override
     public void setContext(ToolsActivity context)

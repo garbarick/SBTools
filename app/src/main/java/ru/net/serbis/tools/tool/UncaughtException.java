@@ -3,7 +3,7 @@ package ru.net.serbis.tools.tool;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.util.*;
 
-public class UncaughtException extends Tool
+public class UncaughtException extends NoImageTool
 {
     @Override
     public void tool()

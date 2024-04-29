@@ -3,9 +3,8 @@ package ru.net.serbis.tools.tool;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.fragment.*;
 
-public class CheckPermissions extends Tool
+public class CheckPermissions extends NoImageTool
 {
-
     @Override
     public void tool()
     {

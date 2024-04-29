@@ -6,7 +6,7 @@ import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.task.*;
 
-public class ProgressInNotification extends Tool implements TaskCallback<Boolean>
+public class ProgressInNotification extends NoImageTool implements TaskCallback<Boolean>
 {
     @Override
     public void tool()

@@ -6,7 +6,7 @@ import ru.net.serbis.tools.activity.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.fragment.*;
 
-public class SysResources extends Tool
+public class SysResources extends NoImageTool
 {
     @Override
     public void tool()

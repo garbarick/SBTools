@@ -38,23 +38,34 @@ public abstract class Tool implements View.OnClickListener, PopupMenu.OnMenuItem
     public void setView(View view)
     {
         ImageView icon = UITool.get().findView(view, R.id.icon);
+        initImage(icon);
+
+        Button tool = UITool.get().findView(view, R.id.tool);
+        initToolButton(tool);
+
+        ImageButton settings = UITool.get().findView(view, R.id.settings);
+        initSettingsButton(settings);
+    }
+
+    protected void initImage(ImageView icon)
+    {
         iconId = icon.generateViewId();
         icon.setId(iconId);
         if (getImageId() > 0)
         {
             icon.setBackgroundResource(getImageId());
         }
-        else
-        {
-            icon.setVisibility(View.GONE);
-        }
+    }
 
-        Button tool = UITool.get().findView(view, R.id.tool);
+    protected void initToolButton(Button tool)
+    {
         toolId = tool.generateViewId();
         tool.setId(toolId);
         tool.setText(getNameId());
+    }
 
-        ImageButton settings = UITool.get().findView(view, R.id.settings);
+    protected void initSettingsButton(ImageButton settings)
+    {
         settingsId = settings.generateViewId();
         settings.setId(settingsId);
         if (!hasSettings())
@@ -122,10 +133,7 @@ public abstract class Tool implements View.OnClickListener, PopupMenu.OnMenuItem
 
     public abstract int getNameId();
 
-    public int getImageId()
-    {
-        return 0;
-    }
+    public abstract int getImageId()
 
     protected boolean hasSettings()
     {
