@@ -2,7 +2,7 @@ package ru.net.serbis.tools.tool;
 
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.fragment.*;
+import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.task.*;
 
@@ -17,9 +17,9 @@ public class ProgressInNotification extends NoImageTool implements TaskCallback<
     }
 
     @Override
-    protected void settings()
+    protected Param[] getParams()
     {
-        new ParamsFragment(context, R.string.settings, Params.NOTIFICATION_PARAMS);
+        return Params.NOTIFICATION_PARAMS;
     }
 
     @Override

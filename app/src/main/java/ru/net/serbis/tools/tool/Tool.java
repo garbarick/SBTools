@@ -5,8 +5,10 @@ import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.activity.*;
+import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.util.*;
+import ru.net.serbis.tools.data.param.*;
 
 public abstract class Tool implements View.OnClickListener, PopupMenu.OnMenuItemClickListener
 {
@@ -18,6 +20,7 @@ public abstract class Tool implements View.OnClickListener, PopupMenu.OnMenuItem
     protected NotificationProgress notification;
     protected ProgressBar bar;
     protected boolean hidden;
+    protected ParamsFragment paramsDialog;
 
     public int[] getButtonIds()
     {
@@ -140,11 +143,18 @@ public abstract class Tool implements View.OnClickListener, PopupMenu.OnMenuItem
         return true;
     }
 
+    protected Param[] getParams()
+    {
+        return new Param[]{};
+    }
+
     public void tool()
     {
+        UITool.get().notImplementedYet();
     }
 
     protected void settings()
     {
+        paramsDialog = new ParamsFragment(context, R.string.settings, getParams());
     }
 }

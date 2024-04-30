@@ -4,7 +4,7 @@ import android.content.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.activity.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.fragment.*;
+import ru.net.serbis.tools.data.param.*;
 
 public class SysResources extends NoImageTool
 {
@@ -16,9 +16,9 @@ public class SysResources extends NoImageTool
     }
 
     @Override
-    protected void settings()
+    protected Param[] getParams()
     {
-        new ParamsFragment(context, R.string.settings, Params.SYS_RESOURSES);
+        return Params.SYS_RESOURSES;
     }
 
     @Override

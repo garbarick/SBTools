@@ -1,6 +1,5 @@
 package ru.net.serbis.tools.data;
 
-import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.util.*;
@@ -23,6 +22,10 @@ public interface Params
     FileParam EXPORT_IMPORT_DIR = new FileParam(R.string.export_import_dir, IOTool.get().getExternalFile("backups"), true, false);
     StringsParam HIDE_TOOLS = new StringsParam(R.string.hide_tools);
     StringsParam MARKS = new StringsParam(R.string.marks);
+    FileParam SOURCE_DIRECTORY = new FileParam(R.string.source_dir, null, true, false);
+    SourcePackageParam SOURCE_PACKAGE = new SourcePackageParam(R.string.source_package);
+    FileParam TARGET_DIRECTORY = new FileParam(R.string.target_dir, null, true, false);
+    EditTextParam TARGET_PACKAGE = new EditTextParam(R.string.target_package, "com.test");
 
     Param[] ZIP_DIR_PARAMS = new Param[]{
         DIRECTORY,
@@ -56,6 +59,11 @@ public interface Params
     Param[] EXPORT_IMPORT_PARAMS = new Param[]{
         EXPORT_IMPORT_DIR
     };
-
-    Holder<String, Param[]> PARAMS = new Holder<String, Param[]>();
+    
+    Param[] COPY_SOURCE_PARAMS = new Param[]{
+        SOURCE_DIRECTORY,
+        SOURCE_PACKAGE,
+        TARGET_DIRECTORY,
+        TARGET_PACKAGE
+    };
 }

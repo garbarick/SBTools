@@ -5,16 +5,14 @@ import android.content.*;
 import java.io.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
+import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.extension.share.*;
-import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.task.*;
 import ru.net.serbis.tools.util.*;
 
 public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
 {
-    private ParamsFragment dialog;
-
     @Override
     public void tool()
     {
@@ -28,9 +26,9 @@ public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
     }
 
     @Override
-    protected void settings()
+    protected Param[] getParams()
     {
-        dialog = new ParamsFragment(context, R.string.settings, Params.MOVE_FILE_TO_SHARE_PARAMS);
+        return Params.MOVE_FILE_TO_SHARE_PARAMS;
     }
 
     @Override
@@ -61,13 +59,13 @@ public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-        if (dialog != null && Activity.RESULT_OK == resultCode)
+        if (paramsDialog != null && Activity.RESULT_OK == resultCode)
         {
             ShareFolders folders = new ShareFolders();
             if (folders.isMineResult(requestCode, data))
             {
                 String path = new ShareFolders().getPath(data);
-                dialog.updateValue(Params.SHARE_DIR, path);
+                paramsDialog.updateValue(Params.SHARE_DIR, path);
             }
         }
     }

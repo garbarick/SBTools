@@ -2,7 +2,6 @@ package ru.net.serbis.tools;
 
 import android.app.*;
 import android.content.*;
-import java.util.*;
 import ru.net.serbis.tools.connection.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
@@ -61,12 +60,6 @@ public class App extends Application
         for (Param param : Reflection.get().getValues(Params.class, Param.class).values())
         {
             param.initName();
-        }
-        for (Map.Entry<String, Param[]> entry : Reflection.get().getArrayValues(Params.class, Param.class).entrySet())
-        {
-            String name = entry.getKey();
-            Param[] params = entry.getValue();
-            Params.PARAMS.put(name, params);
         }
     }
 

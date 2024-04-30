@@ -2,7 +2,7 @@ package ru.net.serbis.tools.tool;
 
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.fragment.*;
+import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.task.*;
 import ru.net.serbis.tools.util.*;
@@ -18,9 +18,9 @@ public class ZipDir extends Tool implements TaskCallback<Boolean>
     }
 
     @Override
-    protected void settings()
+    protected Param[] getParams()
     {
-        new ParamsFragment(context, R.string.settings, Params.ZIP_DIR_PARAMS);
+        return Params.ZIP_DIR_PARAMS;
     }
 
     @Override

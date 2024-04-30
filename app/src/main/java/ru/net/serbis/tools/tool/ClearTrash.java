@@ -4,7 +4,7 @@ import android.widget.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.fragment.*;
+import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.task.*;
 import ru.net.serbis.tools.util.*;
@@ -22,9 +22,9 @@ public class ClearTrash extends Tool implements TaskCallback<Integer>
     }
 
     @Override
-    protected void settings()
+    protected Param[] getParams()
     {
-        new ParamsFragment(context, R.string.settings, Params.CLEAR_TRASH_PARAMS);
+        return Params.CLEAR_TRASH_PARAMS;
     }
 
     @Override

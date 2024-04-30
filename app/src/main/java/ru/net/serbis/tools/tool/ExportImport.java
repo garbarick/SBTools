@@ -9,7 +9,6 @@ import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.dialog.*;
-import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.tools.util.*;
 
 public class ExportImport extends NoImageTool
@@ -30,9 +29,9 @@ public class ExportImport extends NoImageTool
     }
 
     @Override
-    protected void settings()
+    protected Param[] getParams()
     {
-        new ParamsFragment(context, R.string.settings, Params.EXPORT_IMPORT_PARAMS);
+        return Params.EXPORT_IMPORT_PARAMS;
     }
 
     @Override

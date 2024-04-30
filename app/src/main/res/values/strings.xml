@@ -21,6 +21,7 @@
     <string name="export_import_dir">Export and import dir</string>
     <string name="marks">Marks</string>
     <string name="preferences">Preferences</string>
+    <string name="copy_source">Copy source</string>
 
     <string name="error_file_is_not_found">File is not found</string>
     <string name="error_no_files">There are no files</string>
@@ -73,5 +74,9 @@
     <string name="period_units">Period units</string>
     <string name="start_tool">Start tool</string>
     <string name="create">Create</string>
+    <string name="source_dir">Source directory</string>
+    <string name="source_package">Source package</string>
+    <string name="target_dir">Target directory</string>
+    <string name="target_package">Target package</string>
 
 </resources>
