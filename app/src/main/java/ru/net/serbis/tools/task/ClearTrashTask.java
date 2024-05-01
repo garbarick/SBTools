@@ -97,11 +97,6 @@ public class ClearTrashTask extends AsyncTask<Void, Integer, Integer>
     @Override
     protected void onPostExecute(Integer result)
     {
-        if (error == null)
-        {
-            callback.onResult(result, null);
-            return;
-        }
-        callback.onResult(null, error);
+        callback.onResult(result, error);
     }
 }

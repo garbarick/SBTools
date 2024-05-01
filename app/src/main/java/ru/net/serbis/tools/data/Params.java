@@ -22,9 +22,9 @@ public interface Params
     FileParam EXPORT_IMPORT_DIR = new FileParam(R.string.export_import_dir, IOTool.get().getExternalFile("backups"), true, false);
     StringsParam HIDE_TOOLS = new StringsParam(R.string.hide_tools);
     StringsParam MARKS = new StringsParam(R.string.marks);
-    FileParam SOURCE_DIRECTORY = new FileParam(R.string.source_dir, null, true, false);
+    SourceParam SOURCE = new SourceParam(R.string.source);
     SourcePackageParam SOURCE_PACKAGE = new SourcePackageParam(R.string.source_package);
-    FileParam TARGET_DIRECTORY = new FileParam(R.string.target_dir, null, true, false);
+    FileParam TARGET = new FileParam(R.string.target, null, true, false);
     EditTextParam TARGET_PACKAGE = new EditTextParam(R.string.target_package, "com.test");
 
     Param[] ZIP_DIR_PARAMS = new Param[]{
@@ -61,9 +61,9 @@ public interface Params
     };
     
     Param[] COPY_SOURCE_PARAMS = new Param[]{
-        SOURCE_DIRECTORY,
+        SOURCE,
         SOURCE_PACKAGE,
-        TARGET_DIRECTORY,
+        TARGET,
         TARGET_PACKAGE
     };
 }

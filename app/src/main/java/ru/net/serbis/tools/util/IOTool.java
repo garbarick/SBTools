@@ -99,11 +99,23 @@ public class IOTool
 
     public void copy(JSONObject json, File file)
     {
+        try
+        {
+            copy(json.toString(4), file);
+        }
+        catch (Exception e)
+        {
+            Log.error(this, e);
+        }
+    }
+
+    public void copy(String content, File file)
+    {
         OutputStreamWriter os = null;
         try
         {
             os = new OutputStreamWriter(new FileOutputStream(file));
-            os.write(json.toString(4));
+            os.write(content);
         }
         catch (Exception e)
         {

@@ -124,11 +124,6 @@ public class PackagesLoader extends AsyncTask<PackageItem, Integer, Collection<A
     @Override
     protected void onPostExecute(Collection<ActivityItem> result)
     {
-        if (error == null)
-        {
-            callback.onResult(result, null);
-            return;
-        }
-        callback.onResult(null, error);
+        callback.onResult(result, error);
     }
 }

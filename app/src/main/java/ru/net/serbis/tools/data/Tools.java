@@ -21,7 +21,7 @@ public interface Tools
     Tool EXPORT_IMPORT = new ExportImport();
     Tool MARKS_TOOL = new MarksTool();
     Tool PREFERENCES_TOOL = new PreferencesTool();
-    Tool COPY_SOURCE = new CopySource();
+    CopySource COPY_SOURCE = new CopySource();
 
     Tool[] MAIN_TOOLS = new Tool[]{
         ZIP_DIR,

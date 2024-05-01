@@ -30,9 +30,13 @@ public class FilesAdapter extends ArrayAdapter<File> implements AdapterView.OnIt
         this.chooser = chooser;
         this.onlyFolder = onlyFolder;
         this.onlyFile = onlyFile;
-        if (folder == null)
+        if (folder == null || !folder.exists())
         {
             folder = Environment.getExternalStorageDirectory();
+        }
+        else if (folder.isFile())
+        {
+            folder = folder.getParentFile();
         }
         this.folder = folder;
         this.ext = ext;
