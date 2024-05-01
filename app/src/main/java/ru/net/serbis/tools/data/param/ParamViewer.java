@@ -34,7 +34,7 @@ public class ParamViewer extends TextViewParam
                     Intent intent = new Intent(context, ViewParam.class);
                     intent.putExtra(Constants.TITLE, paramName);
                     intent.putExtra(Constants.VALUE, defaultValue);
-                    context.startActivity(intent);
+                    context.startActivityForResult(intent, Constants.DELETE_PROPERTY);
                 }
             }
         );

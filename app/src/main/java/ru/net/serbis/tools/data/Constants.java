@@ -10,6 +10,7 @@ public interface Constants
     int ERROR_LOAD_FILE_LIST = 404;
     int ERROR_SEARCH_PACKAGE = 405;
     int ERROR_COPY = 406;
+    int DELETE_PROPERTY = 407;
     String THROWABLE = "THROWABLE";
     String TITLE = "TITLE";
     String RESOURCE = "RESOURCE";

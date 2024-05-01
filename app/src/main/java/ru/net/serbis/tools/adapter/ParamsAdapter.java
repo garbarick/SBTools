@@ -112,4 +112,18 @@ public class ParamsAdapter
             param.setValue(viewValue, param.stringToType(value));
         }
     }
+
+    public void deleteParam(String name)
+    {
+        for (Map.Entry<Integer, Param> entry : params.entrySet())
+        {
+            int position = entry.getKey();
+            Param param = entry.getValue();
+            if (name.equals(param.getName()))
+            {
+                View view = views.get(position);
+                view.setVisibility(View.GONE);
+            }
+        }
+    }
 }

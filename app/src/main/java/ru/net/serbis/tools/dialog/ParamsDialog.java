@@ -78,4 +78,9 @@ public class ParamsDialog extends AlertDialog.Builder implements DialogInterface
     {
         adapter.reset();
     }
+
+    public void deleteParam(String name)
+    {
+        adapter.deleteParam(name);
+    }
 }

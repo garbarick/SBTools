@@ -1,5 +1,6 @@
 package ru.net.serbis.tools.activity;
 
+import android.app.*;
 import android.content.*;
 import android.os.*;
 import android.widget.*;
@@ -29,6 +30,7 @@ public class ViewParam extends TextActivity
     {
         String name = getTitle().toString();
         Preferences.get().setString(name, null);
+        setResult(Activity.RESULT_OK, getIntent());
         super.onOk();
     }
 }

@@ -58,4 +58,9 @@ public class ParamsFragment extends DialogFragment
     {
         dialog.updateValue(param, value);
     }
+
+    public void deleteParam(String name)
+    {
+        dialog.deleteParam(name);
+    }
 }
