@@ -19,6 +19,6 @@ public class MarkSorter implements Comparator<Mark>
     
     public Long getWeight(Mark mark)
     {
-        return current - mark.getNextDate().getTime();
+        return Math.max(0, current - mark.getNextDate().getTime());
     }
 }
