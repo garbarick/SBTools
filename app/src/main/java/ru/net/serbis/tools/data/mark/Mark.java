@@ -98,6 +98,11 @@ public class Mark
         return periodUnit;
     }
 
+    public Date getNextDate()
+    {
+        return nextDate;
+    }
+
     public String getNextDateString()
     {
         return getFormat().format(nextDate);
