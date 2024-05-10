@@ -30,10 +30,16 @@ public abstract class SpinnerParam<T> extends Param<T, Spinner>
     public void initViewValue(View parent)
     {
         Spinner view = getViewValue(parent);
-        ArrayAdapter<T> adapter = new ArrayAdapter<T>(view.getContext(), android.R.layout.simple_spinner_item, this.values);  
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<T> adapter = getAdapter();
         view.setAdapter(adapter);
         setValue(view, getValue());
+    }
+
+    protected ArrayAdapter<T> getAdapter()
+    {
+        ArrayAdapter<T> adapter = new ArrayAdapter<T>(context, android.R.layout.simple_spinner_item, this.values);  
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        return adapter;
     }
 
     @Override

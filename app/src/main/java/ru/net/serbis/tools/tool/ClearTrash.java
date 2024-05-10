@@ -17,7 +17,7 @@ public class ClearTrash extends Tool implements TaskCallback<Integer>
     public void tool()
     {
         disable();
-        notification = new NotificationProgress(context, R.string.clear_trash);
+        notification = new NotificationProgress(context, R.string.clear_trash, getImageId());
         new ClearTrashTask(context, this).execute();
     }
 

@@ -50,6 +50,7 @@
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="notify_type">Notify type</string>
+    <string name="notify_icon">Notify icon</string>
     <string name="auto_clean_up">Auto clean up</string>
     <string name="trash_files">Trash files</string>
     <string name="dirs_to_files">Dirs to files</string>

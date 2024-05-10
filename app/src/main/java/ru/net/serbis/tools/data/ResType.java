@@ -1,5 +1,7 @@
 package ru.net.serbis.tools.data;
 
+import ru.net.serbis.tools.*;
+
 public enum ResType
 {
     STRING(android.R.string.class),
@@ -8,7 +10,8 @@ public enum ResType
     COLOR(android.R.color.class),
     STYLE(android.R.style.class),
     ATTR(android.R.attr.class),
-    ID(android.R.id.class);
+    ID(android.R.id.class),
+    LOCAL_DRAWABLE(R.drawable.class),;
 
     private Class clazz;
 

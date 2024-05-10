@@ -12,7 +12,8 @@ public class ProgressInNotification extends NoImageTool implements TaskCallback<
     public void tool()
     {
         disable();
-        notification = new NotificationProgress(context, R.string.in_progress);
+        Resource icon = Params.NOTIFY_ICON.getValue();
+        notification = new NotificationProgress(context, R.string.in_progress, icon.getId());
         new ProgressTask(context, this).execute(1000, 10);
     }
 

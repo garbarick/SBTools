@@ -33,7 +33,6 @@ public abstract class ResoursesAdapter extends ArrayAdapter<Resource>
 
     protected void init(ResType type)
     {
-        ResourceLoader.get().load();
         for (Resource resource : ResourceLoader.get().get(type))
         {
             add(resource);
@@ -47,6 +46,12 @@ public abstract class ResoursesAdapter extends ArrayAdapter<Resource>
        Resource resource = getItem(position);
        initView(view, resource, position);
        return view;
+    }
+
+    @Override
+    public View getDropDownView(int position, View view, ViewGroup parent)
+    {
+        return getView(position, view, parent);
     }
 
     protected void initView(View view, Resource resource, int position)

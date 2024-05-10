@@ -15,6 +15,7 @@ public interface Params
     ShareDirParam SHARE_DIR = new ShareDirParam(R.string.share_dir, null);
     NumberParam BUFFER_SIZE = new NumberParam(R.string.buffer_size, Constants.BUFFER_SIZE);
     NotifyTypeParam NOTIFY_TYPE = new NotifyTypeParam();
+    NotifyIconParam NOTIFY_ICON = new NotifyIconParam();
     PeriodParam AUTO_CLEAN_UP = new PeriodParam(R.string.auto_clean_up);
     FilesParam TRASH_FILES = new FilesParam(R.string.trash_files, "clearTrash", false, false);
     FilesParam DIRS_TO_FILES = new FilesParam(R.string.dirs_to_files, true, false);
@@ -46,7 +47,8 @@ public interface Params
     };
 
     Param[] NOTIFICATION_PARAMS = new Param[]{
-        NOTIFY_TYPE
+        NOTIFY_TYPE,
+        NOTIFY_ICON
     };
 
     Param[] CLEAR_TRASH_PARAMS = new Param[]{

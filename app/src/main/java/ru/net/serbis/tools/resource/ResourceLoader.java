@@ -1,6 +1,5 @@
 package ru.net.serbis.tools.resource;
 
-import java.lang.reflect.*;
 import java.util.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.util.*;
@@ -8,53 +7,37 @@ import ru.net.serbis.tools.util.*;
 public class ResourceLoader
 {
     private static final ResourceLoader instance = new ResourceLoader();
-    private boolean loaded;
     private Map<Integer, Resource> resources = new HashMap<Integer, Resource>();
+    private Map<ResType, Map<String, Resource>> typeNames = new HashMap<ResType, Map<String, Resource>>();
 
     public static ResourceLoader get()
     {
         return instance;
     }
 
-    public void load()
+    private void load(ResType type)
     {
-        if (loaded)
+        if (typeNames.containsKey(type))
         {
             return;
         }
-        for (ResType type : ResType.class.getEnumConstants())
+        Map<String, Resource> names = new HashMap<String, Resource>();
+        typeNames.put(type, names);
+        for (Map.Entry<String, Integer> entry : Reflection.get().getValues(type.getClazz(), int.class).entrySet())
         {
-            load(type);
-        }
-        loaded = true;
-    }
-
-    private void load(ResType type)
-    {
-        for (Field field : type.getClazz().getFields())
-        {
-            try
-            {
-                int id = field.get(null);
-                resources.put(id, new Resource(field.getName(), id, type));
-            }
-            catch (Exception e)
-            {
-                Log.error(this, e);
-            }
+            String name = entry.getKey();
+            int id = entry.getValue();
+            Resource resource = new Resource(name, id, type);
+            resources.put(id, resource);
+            names.put(name, resource);
         }
     }
 
     public List<Resource> get(ResType type)
     {
+        load(type);
         List<Resource> result = new ArrayList<Resource>();
-        for (Resource resource : resources.values())
-        {
-            if (type.equals(resource.getType()))
-            {
-                result.add(resource);
-            }
-        }
+        result.addAll(typeNames.get(type).values());
         Collections.sort(result, new ResourceComparator());
         return result;
     }
@@ -62,5 +45,10 @@ public class ResourceLoader
     public Resource get(int id)
     {
         return resources.get(id);
+    }
+
+    public Resource get(ResType type, String name)
+    {
+        return typeNames.get(type).get(name);
     }
 }

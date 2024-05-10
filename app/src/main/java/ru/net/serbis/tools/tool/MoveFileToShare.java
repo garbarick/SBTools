@@ -18,7 +18,7 @@ public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
     {
         UITool.get().setProgress(true);
         disable();
-        notification = new NotificationProgress(context, R.string.move_file_to_share);
+        notification = new NotificationProgress(context, R.string.move_file_to_share, getImageId());
         String filePath = Params.FILE.getValue();
         String shareDir = Params.SHARE_DIR.getValue();
         Integer bufferSize = Params.BUFFER_SIZE.getValue();

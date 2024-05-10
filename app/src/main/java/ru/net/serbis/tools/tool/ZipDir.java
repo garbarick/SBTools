@@ -13,7 +13,7 @@ public class ZipDir extends Tool implements TaskCallback<Boolean>
     public void tool()
     {
         disable();
-        notification = new NotificationProgress(context, R.string.zip_dir);
+        notification = new NotificationProgress(context, R.string.zip_dir, getImageId());
         new ZipTask(context, this).execute();
     }
 

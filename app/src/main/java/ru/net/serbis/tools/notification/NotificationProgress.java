@@ -15,6 +15,7 @@ public class NotificationProgress extends Notification.Builder
     private int id = new Random(new Date().getTime()).nextInt();
     private Context context;
     private int textId;
+    private int iconId;
     private NotifyType type;
     private NotificationManager manager;
     private RemoteViews views;
@@ -22,14 +23,15 @@ public class NotificationProgress extends Notification.Builder
     private int oldProgress = -1;
     private WakeLocker wakeLocker = new WakeLocker();
 
-    public NotificationProgress(Context context, int textId)
+    public NotificationProgress(Context context, int textId, int iconId)
     {
         super(context);
         old = Build.VERSION.SDK_INT < Build.VERSION_CODES.N;
         this.context = context;
         this.textId = textId;
+        this.iconId = iconId;
         type = Params.NOTIFY_TYPE.getValue();
-        setSmallIcon(R.drawable.app);
+        setSmallIcon(iconId);
         setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, Main.class), PendingIntent.FLAG_UPDATE_CURRENT));
         setOngoing(true);
         manager = SysTool.get().getService(Context.NOTIFICATION_SERVICE);
@@ -42,6 +44,11 @@ public class NotificationProgress extends Notification.Builder
             NotificationChannel channel = new NotificationChannel(channelId, channelId, NotificationManager.IMPORTANCE_LOW);
             manager.createNotificationChannel(channel);
         }
+    }
+
+    public NotificationProgress(Context context, int textId)
+    {
+        this(context, textId, R.drawable.app);
     }
 
     synchronized
@@ -97,7 +104,7 @@ public class NotificationProgress extends Notification.Builder
         if (init)
         {
             views = new RemoteViews(context.getPackageName(), R.layout.progress);
-            views.setImageViewResource(R.id.icon, R.drawable.app);
+            views.setImageViewResource(R.id.icon, iconId);
             views.setTextViewText(R.id.name, Strings.get().get(R.string.app));
             views.setTextViewText(R.id.text, Strings.get().get(textId));
             setContent(views);
