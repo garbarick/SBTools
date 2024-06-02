@@ -21,7 +21,8 @@ public interface Tools
     Tool EXPORT_IMPORT = new ExportImport();
     Tool MARKS_TOOL = new MarksTool();
     Tool PREFERENCES_TOOL = new PreferencesTool();
-    CopySource COPY_SOURCE = new CopySource();
+    CopySourceCode COPY_SOURCE_CODE = new CopySourceCode();
+    Tool ZIP_SOURCE_CODE = new ZipSourceCode();;
 
     Tool[] MAIN_TOOLS = new Tool[]{
         ZIP_DIR,
@@ -36,7 +37,8 @@ public interface Tools
         EXPORT_IMPORT,
         MARKS_TOOL,
         PREFERENCES_TOOL,
-        COPY_SOURCE
+        COPY_SOURCE_CODE,
+        ZIP_SOURCE_CODE
     };
     
     Tool[] SYS_RESOURCES_TOOLS = new Tool[]{

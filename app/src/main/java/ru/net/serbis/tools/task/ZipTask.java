@@ -2,12 +2,11 @@ package ru.net.serbis.tools.task;
 
 import android.content.*;
 import android.os.*;
-import java.io.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.util.*;
 
-public class ZipTask extends AsyncTask<Void, Integer, Boolean> implements Progress
+public class ZipTask extends AsyncTask<ZipParams, Integer, Boolean> implements Progress
 {
     private Context context;
     private TaskCallback<Boolean> callback;
@@ -20,21 +19,16 @@ public class ZipTask extends AsyncTask<Void, Integer, Boolean> implements Progre
     }
 
     @Override
-    protected Boolean doInBackground(Void... params)
+    protected Boolean doInBackground(ZipParams ... data)
     {
         try
         {
             UITool.get().setProgress(true);
             publishProgress(0);
-            File dir = new File(Params.DIRECTORY.getValue());
-            File file = new File(dir, Params.ZIP_NAME.getValue());
-            int compression = Params.COMPRESSION.getValue().getLevel();
-            boolean deleteSourceFiles = Params.DELETE_SOURCE_FOLRS.getValue();
-            int bufferSize = Params.BUFFER_SIZE.getValue();
-
-            if (dir.isDirectory() && dir.exists())
+            ZipParams params = data[0];
+            if (params.dir.isDirectory() && params.dir.exists())
             {
-                new ZipTool(context, this, dir, file, compression, deleteSourceFiles, bufferSize).make();
+                new ZipTool(context, this, params).make();
                 return true;
             }
             else

@@ -14,6 +14,6 @@ public class SourceParam extends FileParam
     protected void onChoose(TextView view, String path)
     {
         super.onChoose(view, path);
-        Tools.COPY_SOURCE.searchPackage(path);
+        Tools.COPY_SOURCE_CODE.searchPackage(path);
     }
 }

@@ -4,59 +4,49 @@ import android.content.*;
 import java.io.*;
 import java.nio.file.attribute.*;
 import java.util.*;
+import java.util.regex.*;
 import java.util.zip.*;
 import ru.net.serbis.tools.*;
+import ru.net.serbis.tools.data.*;
 
 public class ZipTool
 {
     private Context context;
     private Progress progress;
-    private File dir;
-    private File result;
+    private ZipParams params;
     private int current;
     private int all;
     private File temp;
-    private int compression;
-    private boolean deleteSourceFiles;
-    private int bufferZise;
     private int entryCount;
 
     public ZipTool(Context context, 
                    Progress progress,
-                   File dir,
-                   File result,
-                   int compression,
-                   boolean deleteSourceFiles,
-                   int bufferSize)
+                   ZipParams params)
     {
         this.context = context;
         this.progress = progress;
-        this.dir = dir;
-        this.result = result;
-        this.compression = compression;
-        this.deleteSourceFiles = deleteSourceFiles;
-        this.bufferZise = bufferSize;
+        this.params = params;
     }
 
     public void make() throws Exception
     {
-        List<File> files = getFiles(dir);
+        List<File> files = getFiles(params.dir);
         if (files.isEmpty())
         {
             throw new Exception(Strings.get().get(R.string.error_no_files));
         }
-        if (result.exists())
+        if (params.result.exists())
         {
-            temp = File.createTempFile(result.getName(), ".zip", dir);
+            temp = File.createTempFile(params.result.getName(), ".zip", params.dir);
             updateFiles(files);
-            result.delete();
-            temp.renameTo(result);
+            params.result.delete();
+            temp.renameTo(params.result);
         }
         else
         {
             addFiles(files);
         }
-        if (deleteSourceFiles)
+        if (params.deleteSourceFiles)
         {
             clearFiles(files);
         }
@@ -71,7 +61,7 @@ public class ZipTool
             return Collections.emptyList();
         }
         List<File> result = new ArrayList<File>(Arrays.asList(files));
-        result.remove(this.result);
+        result.remove(params.result);
         if (temp != null)
         {
             result.remove(temp);
@@ -84,8 +74,8 @@ public class ZipTool
         ZipOutputStream out = null;
         try
         {
-            out = new ZipOutputStream(new FileOutputStream(result));
-            out.setLevel(compression);
+            out = new ZipOutputStream(new FileOutputStream(params.result));
+            out.setLevel(params.compression);
             addFiles(files, out);
         }
         finally
@@ -101,7 +91,7 @@ public class ZipTool
         {
             all = getEntriesCount();
             out = new ZipOutputStream(new FileOutputStream(temp));
-            out.setLevel(compression);
+            out.setLevel(params.compression);
             addFiles(out);
             addFiles(files, out);
         }
@@ -117,7 +107,7 @@ public class ZipTool
         ZipFile zip = null;
         try
         {
-            zip = new ZipFile(result);
+            zip = new ZipFile(params.result);
             Enumeration<? extends ZipEntry> entries = zip.entries();
             while (entries.hasMoreElements())
             {
@@ -137,14 +127,14 @@ public class ZipTool
         ZipInputStream in = null;
         try
         {
-            in = new ZipInputStream(new FileInputStream(result));
+            in = new ZipInputStream(new FileInputStream(params.result));
             ZipEntry inEntry = null;
             while ((inEntry = in.getNextEntry()) != null)
             {
                 ZipEntry outEntry = new ZipEntry(inEntry);
                 out.putNextEntry(outEntry);
                 entryCount ++;
-                IOTool.get().copy(in, out, false, false, bufferZise);
+                IOTool.get().copy(in, out, false, false, params.bufferSize);
                 current ++;
                 progress.progress(UITool.get().getPercent(all, current));
             }
@@ -164,7 +154,10 @@ public class ZipTool
         all += files.size();
         for (File file : files)
         {
-            if (file.isDirectory())
+            if (isExclude(file))
+            {
+            }
+            else if (file.isDirectory())
             {
                 addFiles(getFiles(file), out);
             }
@@ -175,7 +168,7 @@ public class ZipTool
                     out.putNextEntry(createEntry(file));
                     entryCount ++;
                     FileInputStream in = new FileInputStream(file);
-                    IOTool.get().copy(in, out, true, false, bufferZise);
+                    IOTool.get().copy(in, out, true, false, params.bufferSize);
                     out.closeEntry();
                 }
                 catch (Exception e)
@@ -189,7 +182,7 @@ public class ZipTool
 
     private ZipEntry createEntry(File file)
     {
-        String path = dir.toPath().relativize(file.toPath()).toString();
+        String path = params.dir.toPath().relativize(file.toPath()).toString();
         ZipEntry entry = new ZipEntry(path);
         entry.setLastModifiedTime(FileTime.fromMillis(file.lastModified()));
         return entry;
@@ -216,7 +209,7 @@ public class ZipTool
 
     private void showResult()
     {
-        String text = String.format(Strings.get().get(R.string.zip_size), getFileSize(result));
+        String text = String.format(Strings.get().get(R.string.zip_size), getFileSize(params.result));
         text += ", ";
         text += String.format(Strings.get().get(R.string.files_count), entryCount);
         UITool.get().toast(text);
@@ -244,5 +237,18 @@ public class ZipTool
             return String.format("%,.2f Gb", size / sizeGb);
         }
         return "";
+    }
+    
+    private boolean isExclude(File file)
+    {
+        String path = params.dir.toPath().relativize(file.toPath()).toString();
+        for (Pattern exclude : params.excludes)
+        {
+            if (exclude.matcher(path).matches())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

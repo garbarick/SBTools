@@ -27,7 +27,9 @@ public interface Params
     SourcePackageParam SOURCE_PACKAGE = new SourcePackageParam(R.string.source_package);
     FileParam TARGET = new FileParam(R.string.target, null, true, false);
     EditTextParam TARGET_PACKAGE = new EditTextParam(R.string.target_package, "com.test");
-
+    FileParam SOURCE_APP_DIR = new FileParam(R.string.source_app_dir, IOTool.get().getExternalFile("AppProjects/SBTools"), true, false);
+    FileParam ZIP_RESULT_DIR = new FileParam(R.string.zip_result_dir, IOTool.get().getDownloadPath(), true, false);
+    
     Param[] ZIP_DIR_PARAMS = new Param[]{
         DIRECTORY,
         ZIP_NAME,
@@ -67,5 +69,10 @@ public interface Params
         SOURCE_PACKAGE,
         TARGET,
         TARGET_PACKAGE
+    };
+    
+    Param[] ZIP_SOURCE_CODE_PARAMS = new Param[]{
+        SOURCE_APP_DIR,
+        ZIP_RESULT_DIR
     };
 }

@@ -1,5 +1,6 @@
 package ru.net.serbis.tools.tool;
 
+import java.io.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
@@ -14,7 +15,15 @@ public class ZipDir extends Tool implements TaskCallback<Boolean>
     {
         disable();
         notification = new NotificationProgress(context, R.string.zip_dir, getImageId());
-        new ZipTask(context, this).execute();
+
+        ZipParams params = new ZipParams();
+        params.dir = new File(Params.DIRECTORY.getValue());
+        params.result = new File(params.dir, Params.ZIP_NAME.getValue());
+        params.compression = Params.COMPRESSION.getValue().getLevel();
+        params.deleteSourceFiles = Params.DELETE_SOURCE_FOLRS.getValue();
+        params.bufferSize = Params.BUFFER_SIZE.getValue();
+
+        new ZipTask(context, this).execute(params);
     }
 
     @Override

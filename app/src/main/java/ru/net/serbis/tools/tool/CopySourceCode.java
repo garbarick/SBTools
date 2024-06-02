@@ -7,12 +7,12 @@ import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.task.*;
 import ru.net.serbis.tools.util.*;
 
-public class CopySource extends NoImageTool
+public class CopySourceCode extends NoImageTool
 {
     @Override
     public int getNameId()
     {
-        return R.string.copy_source;
+        return R.string.copy_source_code;
     }
 
     @Override
@@ -31,13 +31,13 @@ public class CopySource extends NoImageTool
                 @Override
                 public void progress(int progress)
                 {
-                    CopySource.this.progress(progress);
+                    CopySourceCode.this.progress(progress);
                 }
 
                 @Override
                 public void onResult(String result, TaskError error)
                 {
-                    CopySource.this.onResult(error);
+                    CopySourceCode.this.onResult(error);
                     if (paramsDialog != null)
                     {
                         paramsDialog.updateValue(Params.SOURCE_PACKAGE, result);
@@ -74,13 +74,13 @@ public class CopySource extends NoImageTool
                 @Override
                 public void progress(int progress)
                 {
-                    CopySource.this.progress(progress);
+                    CopySourceCode.this.progress(progress);
                 }
 
                 @Override
                 public void onResult(Boolean result, TaskError error)
                 {
-                    CopySource.this.onResult(error);
+                    CopySourceCode.this.onResult(error);
                 }
             }
         ).execute();
