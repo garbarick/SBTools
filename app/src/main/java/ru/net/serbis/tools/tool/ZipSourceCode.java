@@ -7,10 +7,12 @@ import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.task.*;
 import ru.net.serbis.tools.util.*;
-import java.util.regex.*;
 
 public class ZipSourceCode extends NoImageTool implements TaskCallback<Boolean>
 {
+    private int countTask;
+    private int currenTask;
+    
     @Override
     public int getNameId()
     {
@@ -28,7 +30,24 @@ public class ZipSourceCode extends NoImageTool implements TaskCallback<Boolean>
     {
         disable();
         notification = new NotificationProgress(context, R.string.zip_source_code);
+        currenTask = 0;
+        countTask = 0;
+        if (Params.RELEASE_APK.getValue())
+        {
+            countTask ++;
+            new ReleaseApkTask(context, this).execute();
+        }
+        if (Params.RELEASE_JAR.getValue())
+        {
+            countTask ++;
+            startReleaseJar();
+        }
+        countTask ++;
+        startZipSource();
+    }
 
+    private void startZipSource()
+    {
         ZipParams params = new ZipParams();
         params.dir = new File(Params.SOURCE_APP_DIR.getValue());
         params.result = new File(Params.ZIP_RESULT_DIR.getValue(), params.dir.getName() + ".zip");
@@ -56,14 +75,36 @@ public class ZipSourceCode extends NoImageTool implements TaskCallback<Boolean>
     }
 
     @Override
+    synchronized
     public void onResult(Boolean result, TaskError error)
     {
         if (!result)
         {
             UITool.get().toast(error);
         }
+        currenTask ++;
+        if (currenTask < countTask)
+        {
+            return;
+        }
         notification.cancel();
         enable();
         context.closeTool();
+    }
+
+    private void startReleaseJar()
+    {
+        ZipParams params = new ZipParams();
+        File dir = new File(Params.SOURCE_APP_DIR.getValue());
+        params.dir = new File(dir, "app/build/bin/classesrelease");
+        params.result = new File(dir, "release/" + dir.getName() + ".jar");
+        params.result.delete();
+        params.compression = 6;
+        params.deleteSourceFiles = false;
+        params.bufferSize = Constants.BUFFER_SIZE;
+        params.addExclude("adrt/.*");
+        params.addExclude(".*?\\.dex");
+
+        new ZipTask(context, this).execute(params);
     }
 }

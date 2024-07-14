@@ -84,5 +84,7 @@
     <string name="can_not_by_empty">‘%s’ can not be empty</string>
     <string name="source_app_dir">Source app dir</string>
     <string name="zip_result_dir">Zip result dir</string>
+    <string name="release_apk">Release APK</string>
+    <string name="release_jar">Release JAR</string>
 
 </resources>

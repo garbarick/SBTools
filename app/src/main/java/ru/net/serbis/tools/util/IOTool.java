@@ -141,4 +141,17 @@ public class IOTool
         }
         return os.toString();
     }
+
+    public void copy(File source, File dest)
+    {
+        try
+        {
+            dest.getParentFile().mkdirs();
+            copy(new FileInputStream(source), new FileOutputStream(dest), true, true, Constants.BUFFER_SIZE);
+        }
+        catch (Exception e)
+        {
+            Log.error(this, e);
+        }
+    }
 }
