@@ -32,15 +32,12 @@ public class ZipSourceCode extends NoImageTool implements TaskCallback<Boolean>
         notification = new NotificationProgress(context, R.string.zip_source_code);
         currenTask = 0;
         countTask = 0;
-        if (Params.RELEASE_APK.getValue())
+        if (Params.RELEASE_APK.getValue() ||
+            Params.RELEASE_JAR.getValue())
         {
             countTask ++;
-            new ReleaseApkTask(context, this).execute();
-        }
-        if (Params.RELEASE_JAR.getValue())
-        {
-            countTask ++;
-            startReleaseJar();
+            String appName = new File(Params.SOURCE_APP_DIR.getValue()).getName();
+            new SearchAppTask(context, this, new ReleaseApkTask(context, this)).execute(appName);
         }
         countTask ++;
         startZipSource();
@@ -90,21 +87,5 @@ public class ZipSourceCode extends NoImageTool implements TaskCallback<Boolean>
         notification.cancel();
         enable();
         context.closeTool();
-    }
-
-    private void startReleaseJar()
-    {
-        ZipParams params = new ZipParams();
-        File dir = new File(Params.SOURCE_APP_DIR.getValue());
-        params.dir = new File(dir, "app/build/bin/classesrelease");
-        params.result = new File(dir, "release/" + dir.getName() + ".jar");
-        params.result.delete();
-        params.compression = 6;
-        params.deleteSourceFiles = false;
-        params.bufferSize = Constants.BUFFER_SIZE;
-        params.addExclude("adrt/.*");
-        params.addExclude(".*?\\.dex");
-
-        new ZipTask(context, this).execute(params);
     }
 }

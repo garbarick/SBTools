@@ -7,11 +7,12 @@ import java.io.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.util.*;
 
-public class ReleaseApkTask extends AsyncTask<Void, Integer, Boolean>
+public class ReleaseApkTask extends AsyncTask<PackageInfo, Integer, Boolean>
 {
     private Context context;
     private TaskCallback<Boolean> callback;
     private TaskError error;
+    private PackageInfo packInfo;
 
     public ReleaseApkTask(Context context, TaskCallback<Boolean> callback)
     {
@@ -20,13 +21,20 @@ public class ReleaseApkTask extends AsyncTask<Void, Integer, Boolean>
     }
 
     @Override
-    protected Boolean doInBackground(Void... params)
+    protected Boolean doInBackground(PackageInfo... params)
     {
         try
         {
             UITool.get().setProgress(true);
             publishProgress(0);
-            copyApk();
+            if (params.length > 0)
+            {
+                packInfo = params[0];
+                if (Params.RELEASE_APK.getValue())
+                {
+                    copyApk();
+                }
+            }
             return true;
         }
         catch(Throwable e)
@@ -44,23 +52,15 @@ public class ReleaseApkTask extends AsyncTask<Void, Integer, Boolean>
     private void copyApk()
     {
         File appDir = new File(Params.SOURCE_APP_DIR.getValue());
-        String name = appDir.getName();
+        String appName = appDir.getName();
         File dir = new File(Params.ZIP_RESULT_DIR.getValue());
         File releaseDir = new File(appDir, "release");
-
-        PackageManager packageManager = context.getPackageManager();
-        for (PackageInfo packageInfo : packageManager.getInstalledPackages(PackageManager.SIGNATURE_MATCH))
-        {
-            ApplicationInfo appInfo = packageInfo.applicationInfo;
-            String appName = appInfo.loadLabel(packageManager).toString();
-            if (name.equals(appName))
-            {
-                File apk = new File(appInfo.publicSourceDir);
-                String apkName = name + "  " + packageInfo.versionName + ".apk";
-                IOTool.get().copy(apk, new File(dir, apkName));
-                IOTool.get().copy(apk, new File(releaseDir, apkName));
-            }
-        }
+        
+        ApplicationInfo appInfo = packInfo.applicationInfo;
+        File apk = new File(appInfo.publicSourceDir);
+        String apkName = appName + "  " + packInfo.versionName + ".apk";
+        IOTool.get().copy(apk, new File(dir, apkName));
+        IOTool.get().copy(apk, new File(releaseDir, apkName));
     }
 
     @Override
@@ -72,7 +72,34 @@ public class ReleaseApkTask extends AsyncTask<Void, Integer, Boolean>
     @Override
     protected void onPostExecute(Boolean result)
     {
-        UITool.get().setProgress(false);
-        callback.onResult(result, error);
+        if (packInfo != null && Params.RELEASE_JAR.getValue())
+        {
+            startReleaseJar();
+        }
+        else
+        {
+            UITool.get().setProgress(false);
+            callback.onResult(result, error);
+        }
+    }
+
+    private void startReleaseJar()
+    {
+        File appDir = new File(Params.SOURCE_APP_DIR.getValue());
+        String appName = appDir.getName();
+        String jarName = appName + "  " + packInfo.versionName + ".jar";
+
+        ZipParams params = new ZipParams();
+        params.dir = new File(appDir, "app/build/bin/classesrelease");
+        params.result = new File(appDir, "release/" + jarName);
+        params.result.delete();
+        params.compression = 6;
+        params.deleteSourceFiles = false;
+        params.bufferSize = Constants.BUFFER_SIZE;
+        params.addExclude("adrt/.*");
+        params.addExclude(".*?\\.dex");
+        params.notifyResult = false;
+
+        new ZipTask(context, callback).execute(params);
     }
 }

@@ -50,7 +50,10 @@ public class ZipTool
         {
             clearFiles(files);
         }
-        showResult();
+        if (params.notifyResult)
+        {
+            showResult();
+        }
     }
 
     private List<File> getFiles(File dir)

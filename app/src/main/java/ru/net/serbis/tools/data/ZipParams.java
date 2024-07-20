@@ -12,6 +12,7 @@ public class ZipParams
     public boolean deleteSourceFiles;
     public int bufferSize;
     public List<Pattern> excludes = new ArrayList<Pattern>();
+    public boolean notifyResult = true;
 
     public void addExclude(String exclude)
     {
