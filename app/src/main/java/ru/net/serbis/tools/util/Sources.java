@@ -7,6 +7,9 @@ import java.util.regex.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.result.*;
+import ru.net.serbis.utils.*;
+
+import ru.net.serbis.tools.R;
 
 public class Sources
 {
@@ -65,7 +68,7 @@ public class Sources
 
     private String getPackage(File file)
     {
-        String content = IOTool.get().readFile(file);
+        String content = IOTool.get().readFile(file,Constants.BUFFER_SIZE);
         Matcher matcher = PACKAGE.matcher(content);
         if (matcher.find())
         {
@@ -93,7 +96,7 @@ public class Sources
         if (targetFile != null)
         {
             targetFile.getParentFile().mkdirs();
-            String content = IOTool.get().readFile(source);
+            String content = IOTool.get().readFile(source, Constants.BUFFER_SIZE);
             content = result.changePackage(content);
             IOTool.get().copy(content, targetFile);
             result.addFile();

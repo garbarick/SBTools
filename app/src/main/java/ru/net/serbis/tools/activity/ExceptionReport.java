@@ -3,7 +3,7 @@ package ru.net.serbis.tools.activity;
 import android.content.*;
 import android.os.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class ExceptionReport extends TextActivity
 {

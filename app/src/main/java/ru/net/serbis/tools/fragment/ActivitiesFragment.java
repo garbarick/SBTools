@@ -5,7 +5,7 @@ import android.content.*;
 import android.os.*;
 import ru.net.serbis.tools.activity.*;
 import ru.net.serbis.tools.dialog.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class ActivitiesFragment extends DialogFragment
 {

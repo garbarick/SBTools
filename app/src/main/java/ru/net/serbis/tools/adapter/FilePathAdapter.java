@@ -6,7 +6,7 @@ import android.widget.*;
 import java.io.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class FilePathAdapter extends ArrayAdapter<String> implements AdapterView.OnItemClickListener
 {

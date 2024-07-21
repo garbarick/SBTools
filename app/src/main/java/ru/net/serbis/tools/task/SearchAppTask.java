@@ -3,7 +3,7 @@ package ru.net.serbis.tools.task;
 import android.content.*;
 import android.content.pm.*;
 import android.os.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class SearchAppTask extends AsyncTask<String, Integer, PackageInfo>
 {

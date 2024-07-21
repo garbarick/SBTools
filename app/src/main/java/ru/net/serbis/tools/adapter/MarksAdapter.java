@@ -3,12 +3,11 @@ package ru.net.serbis.tools.adapter;
 import android.content.*;
 import android.view.*;
 import android.widget.*;
-import ru.net.serbis.tools.*;
-import ru.net.serbis.tools.data.mark.*;
-import ru.net.serbis.tools.util.*;
-import android.graphics.*;
 import java.util.*;
+import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
+import ru.net.serbis.tools.data.mark.*;
+import ru.net.serbis.utils.*;
 
 public class MarksAdapter extends ArrayAdapter<Mark>
 {

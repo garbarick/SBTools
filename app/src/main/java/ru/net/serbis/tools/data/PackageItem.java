@@ -4,7 +4,7 @@ import android.content.*;
 import android.graphics.drawable.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class PackageItem extends ActivityItem
 {

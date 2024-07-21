@@ -2,7 +2,7 @@ package ru.net.serbis.tools.resource;
 
 import java.util.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class ResourceLoader
 {

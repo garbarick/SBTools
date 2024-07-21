@@ -26,7 +26,6 @@
     
     <string name="error_file_is_not_found">File is not found</string>
     <string name="error_no_files">There are no files</string>
-    <string name="error_not_implemented">It is not implemented</string>
 
     <string name="dir">Directory</string>
     <string name="zip_name">Zip name</string>

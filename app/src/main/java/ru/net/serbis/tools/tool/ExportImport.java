@@ -9,7 +9,7 @@ import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.dialog.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class ExportImport extends NoImageTool
 {
@@ -109,7 +109,7 @@ public class ExportImport extends NoImageTool
             @Override
             public void onChoose(String path)
             {
-                JSONObject json = JsonTool.get().parse(new File(path));
+                JSONObject json = JsonTool.get().parse(new File(path), Constants.BUFFER_SIZE);
                 for (Param param : Reflection.get().getValues(Params.class, Param.class).values())
                 {
                     importParam(param, json);

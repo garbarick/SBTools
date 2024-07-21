@@ -7,7 +7,7 @@ import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.fragment.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class PreferencesTool extends NoImageTool
 {

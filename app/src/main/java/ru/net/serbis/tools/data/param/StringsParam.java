@@ -3,8 +3,7 @@ package ru.net.serbis.tools.data.param;
 import android.view.*;
 import android.widget.*;
 import java.util.*;
-import ru.net.serbis.tools.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class StringsParam extends Param<Set<String>, Button>
 {

@@ -5,7 +5,7 @@ import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class ResoursesImgAdapter extends ResoursesAdapter
 {

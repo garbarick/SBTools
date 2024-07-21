@@ -2,7 +2,7 @@ package ru.net.serbis.tools.task;
 
 import android.content.*;
 import android.os.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class ProgressTask extends AsyncTask<Integer, Integer, Boolean>
 {

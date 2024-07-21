@@ -5,7 +5,7 @@ import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.activity.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.fragment.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class HideTools extends NoImageTool
 {

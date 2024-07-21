@@ -8,7 +8,9 @@ import java.io.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.dialog.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
+
+import ru.net.serbis.tools.R;
 
 public class FilesAdapter extends ArrayAdapter<File> implements AdapterView.OnItemClickListener
 {

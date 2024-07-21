@@ -2,6 +2,7 @@ package ru.net.serbis.tools.util;
 
 import android.content.*;
 import android.os.*;
+import ru.net.serbis.utils.*;
 
 public class WakeLocker
 {

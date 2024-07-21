@@ -6,14 +6,13 @@ import android.view.*;
 import android.widget.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
+import ru.net.serbis.tools.activity.*;
 import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.mark.*;
 import ru.net.serbis.tools.data.param.*;
-import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.tools.util.*;
-import android.widget.PopupMenu.*;
-import ru.net.serbis.tools.activity.*;
+import ru.net.serbis.utils.*;
 
 public class MarksDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener, View.OnClickListener, PopupMenu.OnMenuItemClickListener, DialogInterface.OnDismissListener
 {
@@ -53,7 +52,7 @@ public class MarksDialog extends AlertDialog.Builder implements DialogInterface.
     {
         Button neutral = dialog.getButton(Dialog.BUTTON_NEUTRAL);
         neutral.setId(Dialog.BUTTON_NEUTRAL);
-        UITool.get().setSandwitchView(neutral);
+        ViewTool.get().setSandwitchView(neutral);
         neutral.setOnClickListener(this);
 
         menu = new PopupMenu(getContext(), neutral);

@@ -3,7 +3,7 @@ package ru.net.serbis.tools.data;
 import java.util.*;
 import java.util.concurrent.*;
 import ru.net.serbis.tools.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public enum Period
 {

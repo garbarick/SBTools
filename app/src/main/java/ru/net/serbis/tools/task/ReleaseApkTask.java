@@ -5,7 +5,8 @@ import android.content.pm.*;
 import android.os.*;
 import java.io.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.bean.*;
 
 public class ReleaseApkTask extends AsyncTask<PackageInfo, Integer, Boolean>
 {
@@ -59,8 +60,8 @@ public class ReleaseApkTask extends AsyncTask<PackageInfo, Integer, Boolean>
         ApplicationInfo appInfo = packInfo.applicationInfo;
         File apk = new File(appInfo.publicSourceDir);
         String apkName = appName + "  " + packInfo.versionName + ".apk";
-        IOTool.get().copy(apk, new File(dir, apkName));
-        IOTool.get().copy(apk, new File(releaseDir, apkName));
+        IOTool.get().copy(apk, new File(dir, apkName), Constants.BUFFER_SIZE);
+        IOTool.get().copy(apk, new File(releaseDir, apkName), Constants.BUFFER_SIZE);
     }
 
     @Override
@@ -92,12 +93,16 @@ public class ReleaseApkTask extends AsyncTask<PackageInfo, Integer, Boolean>
         ZipParams params = new ZipParams();
         params.dir = new File(appDir, "app/build/bin/classesrelease");
         params.result = new File(appDir, "release/" + jarName);
+        params.result.getParentFile().mkdirs();
         params.result.delete();
         params.compression = 6;
         params.deleteSourceFiles = false;
         params.bufferSize = Constants.BUFFER_SIZE;
         params.addExclude("adrt/.*");
         params.addExclude(".*?\\.dex");
+        params.addExclude(".*?/R\\.class");
+        params.addExclude(".*?/R\\$.*?\\.class");
+        params.addExclude(".*?/BuildConfig.class");
         params.notifyResult = false;
 
         new ZipTask(context, callback).execute(params);

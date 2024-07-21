@@ -5,7 +5,7 @@ import android.os.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.dialog.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class ParamsFragment extends DialogFragment
 {

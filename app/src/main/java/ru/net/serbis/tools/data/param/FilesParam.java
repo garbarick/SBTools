@@ -6,7 +6,7 @@ import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.dialog.*;
 import ru.net.serbis.tools.listener.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class FilesParam extends StringsParam
 {

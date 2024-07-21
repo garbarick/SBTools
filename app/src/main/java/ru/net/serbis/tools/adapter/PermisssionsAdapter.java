@@ -3,7 +3,7 @@ package ru.net.serbis.tools.adapter;
 import android.content.*;
 import android.content.pm.*;
 import android.widget.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class PermisssionsAdapter extends ArrayAdapter<String>
 {

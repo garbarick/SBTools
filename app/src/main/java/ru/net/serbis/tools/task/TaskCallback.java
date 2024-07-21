@@ -1,6 +1,6 @@
 package ru.net.serbis.tools.task;
 
-import ru.net.serbis.tools.data.*;
+import ru.net.serbis.utils.bean.*;
 
 public interface TaskCallback<R>
 {

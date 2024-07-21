@@ -4,6 +4,8 @@ import android.os.*;
 import java.util.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.bean.*;
 
 public class SearchPackage extends AsyncTask<String, Integer, String> implements Progress
 {

@@ -5,7 +5,7 @@ import android.widget.*;
 import java.util.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.tool.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class HideToolsAdapter extends ArrayAdapter<String>
 {

@@ -2,7 +2,7 @@ package ru.net.serbis.tools.data;
 
 import android.content.*;
 import android.graphics.drawable.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class ActivityItem implements Comparable<ActivityItem>
 {

@@ -1,6 +1,7 @@
 package ru.net.serbis.tools.data.result;
 
 import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class Result
 {

@@ -9,7 +9,7 @@ import ru.net.serbis.tools.activity.*;
 import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.tool.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class HideToolsDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener
 {

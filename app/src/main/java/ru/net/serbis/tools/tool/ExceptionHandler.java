@@ -3,7 +3,7 @@ package ru.net.serbis.tools.tool;
 import android.content.*;
 import ru.net.serbis.tools.activity.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class ExceptionHandler implements Thread.UncaughtExceptionHandler
 {

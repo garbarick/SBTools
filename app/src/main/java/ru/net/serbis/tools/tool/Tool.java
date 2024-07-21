@@ -5,10 +5,10 @@ import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.activity.*;
+import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.tools.notification.*;
-import ru.net.serbis.tools.util.*;
-import ru.net.serbis.tools.data.param.*;
+import ru.net.serbis.utils.*;
 
 public abstract class Tool implements View.OnClickListener, PopupMenu.OnMenuItemClickListener
 {

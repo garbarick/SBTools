@@ -1,9 +1,8 @@
 package ru.net.serbis.tools.data;
 
-import android.content.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public enum NotifyType
 {

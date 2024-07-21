@@ -7,6 +7,7 @@ import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.extension.share.*;
 import ru.net.serbis.tools.tool.*;
+import ru.net.serbis.utils.*;
 import ru.net.serbis.tools.util.*;
 
 public class App extends Application
@@ -29,6 +30,8 @@ public class App extends Application
         SysTool.get().set(context);
         UITool.get().set(context);
         Preferences.get().set(context);
+        Preferences.get().setApp(Constants.APP);
+        ViewTool.get().set(context);
 
         initTools();
         initEnums();

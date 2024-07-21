@@ -49,7 +49,7 @@ public abstract class FilesDialog extends AlertDialog.Builder implements DialogI
     {
         Button neutral = dialog.getButton(Dialog.BUTTON_NEUTRAL);
         neutral.setId(Dialog.BUTTON_NEUTRAL);
-        UITool.get().setSandwitchView(neutral);
+        ViewTool.get().setSandwitchView(neutral);
         neutral.setOnClickListener(this);
 
         menu = new PopupMenu(getContext(), neutral);

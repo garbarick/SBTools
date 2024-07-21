@@ -1,7 +1,7 @@
 package ru.net.serbis.tools.tool;
 
 import ru.net.serbis.tools.*;
-import ru.net.serbis.tools.util.*;
+import ru.net.serbis.utils.*;
 
 public class UncaughtException extends NoImageTool
 {
