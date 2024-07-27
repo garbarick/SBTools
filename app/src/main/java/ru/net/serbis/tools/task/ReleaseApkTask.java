@@ -92,9 +92,13 @@ public class ReleaseApkTask extends AsyncTask<PackageInfo, Integer, Boolean>
 
         ZipParams params = new ZipParams();
         params.dir = new File(appDir, "app/build/bin/classesrelease");
+
         params.result = new File(appDir, "release/" + jarName);
         params.result.getParentFile().mkdirs();
         params.result.delete();
+
+        params.result2 = new File(Params.ZIP_RESULT_DIR.getValue(), jarName);
+
         params.compression = 6;
         params.deleteSourceFiles = false;
         params.bufferSize = Constants.BUFFER_SIZE;

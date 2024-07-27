@@ -8,6 +8,7 @@ public class ZipParams
 {
     public File dir;
     public File result;
+    public File result2;
     public int compression;
     public boolean deleteSourceFiles;
     public int bufferSize;

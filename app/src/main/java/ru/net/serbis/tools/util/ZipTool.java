@@ -57,6 +57,10 @@ public class ZipTool
         {
             showResult();
         }
+        if (params.result2 != null)
+        {
+            IOTool.get().copy(params.result, params.result2, Constants.BUFFER_SIZE);
+        }
     }
 
     private List<File> getFiles(File dir)
