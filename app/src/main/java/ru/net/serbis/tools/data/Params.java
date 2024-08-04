@@ -15,7 +15,7 @@ public interface Params
     ViewTypeParam VIEW_TYPE = new ViewTypeParam();
     FileParam FILE = new FileParam(R.string.file, IOTool.get().getDownloadPath(IOTool.get().getDownloadFile().getName() + ".zip"), false, true);
     ShareDirParam SHARE_DIR = new ShareDirParam(R.string.share_dir, null);
-    NumberParam BUFFER_SIZE = new NumberParam(R.string.buffer_size, Constants.BUFFER_SIZE);
+    EditNumberParam BUFFER_SIZE = new EditNumberParam(R.string.buffer_size, Constants.BUFFER_SIZE);
     NotifyTypeParam NOTIFY_TYPE = new NotifyTypeParam();
     NotifyIconParam NOTIFY_ICON = new NotifyIconParam();
     PeriodParam AUTO_CLEAN_UP = new PeriodParam(R.string.auto_clean_up);
@@ -33,6 +33,7 @@ public interface Params
     FileParam ZIP_RESULT_DIR = new FileParam(R.string.zip_result_dir, IOTool.get().getDownloadPath(), true, false);
     BooleanParam RELEASE_APK = new BooleanParam(R.string.release_apk, true);
     BooleanParam RELEASE_JAR = new BooleanParam(R.string.release_jar, false);
+    SeekBarParam BRIGHTNESS = new SeekBarParam(R.string.brightness, 60, 180, 120);
 
     Param[] ZIP_DIR_PARAMS = new Param[]{
         DIRECTORY,
@@ -67,18 +68,22 @@ public interface Params
     Param[] EXPORT_IMPORT_PARAMS = new Param[]{
         EXPORT_IMPORT_DIR
     };
-    
+
     Param[] COPY_SOURCE_PARAMS = new Param[]{
         SOURCE,
         SOURCE_PACKAGE,
         TARGET,
         TARGET_PACKAGE
     };
-    
+
     Param[] ZIP_SOURCE_CODE_PARAMS = new Param[]{
         SOURCE_APP_DIR,
         ZIP_RESULT_DIR,
         RELEASE_APK,
         RELEASE_JAR
+    };
+
+    Param[] SCREEN_FILTER_PARAMS = new Param[]{
+        BRIGHTNESS
     };
 }

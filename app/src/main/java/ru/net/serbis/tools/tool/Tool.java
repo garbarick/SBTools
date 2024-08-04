@@ -157,4 +157,9 @@ public abstract class Tool implements View.OnClickListener, PopupMenu.OnMenuItem
     {
         paramsDialog = new ParamsFragment(context, R.string.settings, getParams());
     }
+
+    public boolean closeParent()
+    {
+        return false;
+    }
 }

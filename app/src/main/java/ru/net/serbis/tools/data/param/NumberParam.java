@@ -1,13 +1,9 @@
 package ru.net.serbis.tools.data.param;
 
 import android.view.*;
-import android.widget.*;
-import ru.net.serbis.tools.*;
 import ru.net.serbis.utils.*;
 
-import ru.net.serbis.tools.R;
-
-public class NumberParam extends Param<Integer, EditText>
+public abstract class NumberParam<V extends View> extends Param<Integer, V>
 {
     public NumberParam(int nameId, Integer defaultValue)
     {
@@ -17,19 +13,6 @@ public class NumberParam extends Param<Integer, EditText>
     public NumberParam(String paramName, Integer defaultValue, boolean stored)
     {
         super(paramName, defaultValue, stored);
-    }
-
-    @Override
-    public int getLayoutId()
-    {
-        return R.layout.param_number;
-    }
-
-    @Override
-    public void initViewValue(View parent)
-    {
-        EditText view = getViewValue(parent);
-        setValue(view, getValue());
     }
 
     @Override
@@ -50,17 +33,5 @@ public class NumberParam extends Param<Integer, EditText>
             Log.error(this, e);
             return defaultValue;
         }
-    }
-
-    @Override
-    public void setValue(EditText view, Integer value)
-    {
-        view.setText(typeToString(value));
-    }
-
-    @Override
-    public Integer getValue(EditText view)
-    {
-        return stringToType(view.getText().toString());
     }
 }

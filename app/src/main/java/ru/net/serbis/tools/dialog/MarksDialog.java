@@ -117,8 +117,8 @@ public class MarksDialog extends AlertDialog.Builder implements DialogInterface.
         final Map<Integer, Param> params = new LinkedHashMap<Integer, Param>();
         params.put(R.string.name, new EditTextParam(Strings.get().get(R.string.name), mark.getName(), false));
         params.put(R.string.last_date, new EditDateParam(Strings.get().get(R.string.last_date), mark.getLastDate(), false));
-        params.put(R.string.last_petiod, new NumberParam(Strings.get().get(R.string.last_petiod), mark.getLastPeriod(), false));
-        params.put(R.string.period, new NumberParam(Strings.get().get(R.string.period), mark.getPeriod(), false));
+        params.put(R.string.last_petiod, new EditNumberParam(Strings.get().get(R.string.last_petiod), mark.getLastPeriod(), false));
+        params.put(R.string.period, new EditNumberParam(Strings.get().get(R.string.period), mark.getPeriod(), false));
         params.put(R.string.period_units, new UnitParam(Strings.get().get(R.string.period_units), mark.getPeriodUnit(), false));
 
         Param[] paramsArray = params.values().toArray(new Param[params.size()]);

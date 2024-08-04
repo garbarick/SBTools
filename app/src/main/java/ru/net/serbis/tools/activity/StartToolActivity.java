@@ -43,6 +43,10 @@ public class StartToolActivity extends ToolsActivity
             finish();
         }
         tool.tool();
+        if (tool.closeParent())
+        {
+            finish();
+        }
     }
 
     @Override

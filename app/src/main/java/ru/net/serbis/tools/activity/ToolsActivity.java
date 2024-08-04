@@ -19,7 +19,6 @@ public abstract class ToolsActivity extends Activity
     protected void onCreate(Bundle state)
     {
         super.onCreate(state);
-
         init();
     }
 

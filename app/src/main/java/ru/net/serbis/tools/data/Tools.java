@@ -23,6 +23,7 @@ public interface Tools
     Tool PREFERENCES_TOOL = new PreferencesTool();
     CopySourceCode COPY_SOURCE_CODE = new CopySourceCode();
     Tool ZIP_SOURCE_CODE = new ZipSourceCode();;
+    Tool SCREEN_FILTER = new ScreenFilter();
 
     Tool[] MAIN_TOOLS = new Tool[]{
         ZIP_DIR,
@@ -38,7 +39,8 @@ public interface Tools
         MARKS_TOOL,
         PREFERENCES_TOOL,
         COPY_SOURCE_CODE,
-        ZIP_SOURCE_CODE
+        ZIP_SOURCE_CODE,
+        SCREEN_FILTER
     };
     
     Tool[] SYS_RESOURCES_TOOLS = new Tool[]{
