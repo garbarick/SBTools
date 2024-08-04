@@ -4,6 +4,7 @@ import android.content.*;
 import android.graphics.*;
 import android.net.*;
 import android.provider.*;
+import android.util.*;
 import android.view.*;
 import android.view.WindowManager.*;
 import ru.net.serbis.tools.*;
@@ -75,9 +76,48 @@ public class ScreenFilter extends Tool
         params.flags = LayoutParams.FLAG_NOT_TOUCHABLE |
             LayoutParams.FLAG_LAYOUT_NO_LIMITS |
             LayoutParams.FLAG_NOT_FOCUSABLE |
-            LayoutParams.FLAG_NOT_TOUCH_MODAL;
+            LayoutParams.FLAG_NOT_TOUCH_MODAL |
+            LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
         params.format = PixelFormat.TRANSLUCENT;
         params.type = LayoutParams.TYPE_APPLICATION_OVERLAY;
+
+        int barsSize = getNavigationBarHeight() + getStatusBarHeight();
+        Point size = getSize();
+        params.x = 0;
+        params.y = 0;
+        params.width = size.x + barsSize;
+        params.height = size.y + barsSize;
+
         return params;
+    }
+
+    private Point getSize()
+    {
+        WindowManager manager = context.getWindowManager();
+        Display display = manager.getDefaultDisplay();
+        Point result = new Point();
+        display.getRealSize(result);
+        return result;
+    }
+
+    public int getStatusBarHeight()
+    {
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0)
+        {
+            return context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return 0;
+    }
+
+    public int getNavigationBarHeight()
+    {
+        boolean hasMenuKey = ViewConfiguration.get(context).hasPermanentMenuKey();
+        int resourceId = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+        if (resourceId > 0 && !hasMenuKey)
+        {
+            return context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return 0;
     }
 }
