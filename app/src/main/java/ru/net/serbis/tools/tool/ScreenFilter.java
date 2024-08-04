@@ -65,7 +65,7 @@ public class ScreenFilter extends Tool
     private View createView()
     {
         View view = LayoutInflater.from(context).inflate(R.layout.filter, null);
-        ViewTool.get().setColorTransparent(view, Params.BRIGHTNESS.getValue());
+        ViewTool.get().setColorTransparent(view, Params.BRIGHTNESS.getValue(), Params.COLOR_FILTER.getValue());
         return view;
     }
 

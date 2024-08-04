@@ -87,5 +87,7 @@
     <string name="release_apk">Release APK</string>
     <string name="release_jar">Release JAR</string>
     <string name="brightness">Brightness</string>
+    <string name="color_picker">Color picker</string>
+    <string name="color_filter">Color filter</string>
 
 </resources>

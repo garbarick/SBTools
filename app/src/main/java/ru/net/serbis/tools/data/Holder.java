@@ -12,7 +12,7 @@ public class Holder<K, V> implements Serializable
         data.put(key, value);
     }
 
-    public V get(String key)
+    public V get(K key)
     {
         return data.get(key);
     }

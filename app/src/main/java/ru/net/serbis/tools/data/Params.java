@@ -1,10 +1,9 @@
 package ru.net.serbis.tools.data;
 
+import android.graphics.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.utils.*;
-
-import ru.net.serbis.tools.R;
 
 public interface Params
 {
@@ -34,7 +33,8 @@ public interface Params
     BooleanParam RELEASE_APK = new BooleanParam(R.string.release_apk, true);
     BooleanParam RELEASE_JAR = new BooleanParam(R.string.release_jar, false);
     SeekBarParam BRIGHTNESS = new SeekBarParam(R.string.brightness, 60, 180, 120);
-
+    ColorParam COLOR_FILTER = new ColorParam(R.string.color_filter, Color.GRAY);
+    
     Param[] ZIP_DIR_PARAMS = new Param[]{
         DIRECTORY,
         ZIP_NAME,
@@ -84,6 +84,7 @@ public interface Params
     };
 
     Param[] SCREEN_FILTER_PARAMS = new Param[]{
-        BRIGHTNESS
+        BRIGHTNESS,
+        COLOR_FILTER
     };
 }

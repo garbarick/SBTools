@@ -24,24 +24,24 @@ public class ViewTool extends Util
         button.setCompoundDrawables(sandwitch, null, null, null);
     }
 
-    public void setColorTransparent(Activity context, int transparent)
+    public void setColorTransparent(Activity context, int transparent, int color)
     {
         Window window = context.getWindow();
-        window.setBackgroundDrawable(getDrawableTransparent(transparent));
+        window.setBackgroundDrawable(getDrawableTransparent(transparent, color));
     }
 
-    public void setColorTransparent(View view, int transparent)
+    public void setColorTransparent(View view, int transparent, int color)
     {
-        view.setBackgroundDrawable(getDrawableTransparent(transparent));
+        view.setBackgroundDrawable(getDrawableTransparent(transparent, color));
     }
 
-    public Drawable getDrawableTransparent(int transparent)
+    public Drawable getDrawableTransparent(int transparent, int color)
     {
-        return new ColorDrawable(getColorTransparent(transparent));
+        return new ColorDrawable(getColorTransparent(transparent, color));
     }
 
-    public int getColorTransparent(int transparent)
+    public int getColorTransparent(int transparent, int color)
     {
-        return Color.argb(255 - transparent, 50, 50, 50);
+        return Color.argb(255 - transparent, Color.red(color), Color.green(color), Color.blue(color));
     }
 }
