@@ -76,8 +76,7 @@ public class ScreenFilter extends Tool
         params.flags = LayoutParams.FLAG_NOT_TOUCHABLE |
             LayoutParams.FLAG_LAYOUT_NO_LIMITS |
             LayoutParams.FLAG_NOT_FOCUSABLE |
-            LayoutParams.FLAG_NOT_TOUCH_MODAL |
-            LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
+            LayoutParams.FLAG_NOT_TOUCH_MODAL;
         params.format = PixelFormat.TRANSLUCENT;
         params.type = LayoutParams.TYPE_APPLICATION_OVERLAY;
 
