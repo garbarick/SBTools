@@ -64,8 +64,7 @@ public class FilesParam extends StringsParam
         }
         else
         {
-            String format = Strings.get().get(R.string.chosen_files);
-            String text = String.format(format, values.size());
+            String text = Strings.get().get(R.string.chosen_files, values.size());
             button.setText(text);
         }
     }

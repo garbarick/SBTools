@@ -9,8 +9,6 @@ import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.result.*;
 import ru.net.serbis.utils.*;
 
-import ru.net.serbis.tools.R;
-
 public class Sources
 {
     private static final Pattern PACKAGE = Pattern.compile("package\\s+?(\\S+?);", Pattern.MULTILINE);
@@ -81,7 +79,7 @@ public class Sources
     {
         CopyResult result = new CopyResult(progress, sourcePackage, targetPackage);
         copy(new File(source), new File(target), result);
-        String count = String.format(Strings.get().get(R.string.files_count), result.getCountFiles());
+        String count = Strings.get().get(R.string.files_count, result.getCountFiles());
         UITool.get().toast(count);
     }
 

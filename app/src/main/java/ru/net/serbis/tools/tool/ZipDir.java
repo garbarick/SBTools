@@ -43,10 +43,7 @@ public class ZipDir extends Tool implements TaskCallback<Boolean>
     @Override
     public void onResult(Boolean result, TaskError error)
     {
-        if (!result)
-        {
-            UITool.get().toast(error);
-        }
+        UITool.get().toast(error);
         notification.cancel();
         enable();
         context.closeTool();

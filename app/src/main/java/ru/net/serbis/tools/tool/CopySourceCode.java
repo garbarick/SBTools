@@ -58,10 +58,7 @@ public class CopySourceCode extends NoImageTool
     {
         notification.cancel();
         enable();
-        if (error != null)
-        {
-            UITool.get().toast(error);
-        }
+        UITool.get().toast(error);
     }
 
     @Override

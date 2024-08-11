@@ -42,14 +42,11 @@ public class MoveFileToShare extends Tool implements TaskCallback<Boolean>
     @Override
     public void onResult(Boolean result, TaskError error)
     {
+        UITool.get().toast(error);
         if (result)
         {
             String filePath = Params.FILE.getValue();
             new File(filePath).delete();
-        }
-        else
-        {
-            UITool.get().toast(error);
         }
         notification.cancel();
         enable();

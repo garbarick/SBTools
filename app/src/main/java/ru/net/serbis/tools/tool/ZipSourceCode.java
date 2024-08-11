@@ -76,10 +76,7 @@ public class ZipSourceCode extends NoImageTool implements TaskCallback<Boolean>
     synchronized
     public void onResult(Boolean result, TaskError error)
     {
-        if (!result)
-        {
-            UITool.get().toast(error);
-        }
+        UITool.get().toast(error);
         currenTask ++;
         if (currenTask < countTask)
         {

@@ -2,20 +2,21 @@ package ru.net.serbis.tools.dialog;
 
 import android.app.*;
 import android.content.*;
-import android.content.pm.*;
 import android.widget.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
+import ru.net.serbis.utils.*;
 
-public class Permissions extends AlertDialog.Builder implements DialogInterface.OnClickListener
+public class PermissionsDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener
 {
     private ListView list;
     private PermisssionsAdapter adapter;
     private Activity context;
+    private Permissions permissions = new Permissions();
 
-    public Permissions(Activity context)
+    public PermissionsDialog(Activity context)
     {
         super(context);
         this.context = context;
@@ -36,14 +37,8 @@ public class Permissions extends AlertDialog.Builder implements DialogInterface.
         for (int i = 0; i < adapter.getCount(); i ++)
         {
             String permission = adapter.getItem(i);
-            list.setItemChecked(i, isGranted(permission));
+            list.setItemChecked(i, permissions.isGrantedPermission(context, permission));
         }
-    }
-    
-    private boolean isGranted(String permission)
-    {
-        return context.checkCallingOrSelfPermission(permission) == 
-            PackageManager.PERMISSION_GRANTED;
     }
 
     @Override
@@ -62,7 +57,7 @@ public class Permissions extends AlertDialog.Builder implements DialogInterface.
         for (int i = 0; i < adapter.getCount(); i ++)
         {
             String permission = adapter.getItem(i);
-            if (list.isItemChecked(i) && !isGranted(permission))
+            if (list.isItemChecked(i) && !permissions.isGrantedPermission(context, permission))
             {
                 context.requestPermissions(new String[]{permission}, 200);
             }

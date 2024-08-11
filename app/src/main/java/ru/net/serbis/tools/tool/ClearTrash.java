@@ -52,14 +52,10 @@ public class ClearTrash extends Tool implements TaskCallback<Integer>
     {
         notification.cancel();
         enable();
-        if (error != null)
+        UITool.get().toast(error);
+        if (error == null)
         {
-            UITool.get().toast(error);
-        }
-        else
-        {
-            String format = Strings.get().get(R.string.files_deleted);
-            String text = String.format(format, result);
+            String text = Strings.get().get(R.string.files_deleted, result);
             UITool.get().toast(text);
         }
         Params.LAST_CLEAN_UP.saveValue(new Date());

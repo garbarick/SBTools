@@ -10,8 +10,6 @@ import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.utils.*;
 
-import ru.net.serbis.tools.R;
-
 public class ZipTool
 {
     private Context context;
@@ -219,9 +217,9 @@ public class ZipTool
 
     private void showResult()
     {
-        String text = String.format(Strings.get().get(R.string.zip_size), getFileSize(params.result));
+        String text = Strings.get().get(R.string.zip_size, getFileSize(params.result));
         text += ", ";
-        text += String.format(Strings.get().get(R.string.files_count), entryCount);
+        text += Strings.get().get(R.string.files_count, entryCount);
         UITool.get().toast(text);
     }
 

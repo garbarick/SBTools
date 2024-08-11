@@ -8,7 +8,7 @@ import ru.net.serbis.utils.*;
 
 public class PermissionsFragment extends DialogFragment
 {
-    private Permissions dialog;
+    private PermissionsDialog dialog;
 
     public PermissionsFragment()
     {
@@ -22,7 +22,7 @@ public class PermissionsFragment extends DialogFragment
     @Override
     public Dialog onCreateDialog(Bundle state)
     {
-        dialog = new Permissions(getActivity());
+        dialog = new PermissionsDialog(getActivity());
         Holder<Integer, Boolean> values = UITool.get().getBundle(state, "values", new Holder<Integer, Boolean>());
         dialog.setValues(values);
         return dialog.create();

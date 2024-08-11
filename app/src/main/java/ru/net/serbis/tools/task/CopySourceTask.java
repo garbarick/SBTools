@@ -53,7 +53,7 @@ public class CopySourceTask extends AsyncTask<Void, Integer, Boolean> implements
     {
         if (TextUtils.isEmpty(param.getValue()))
         {
-            String error = String.format(Strings.get().get(R.string.can_not_by_empty), param.getName());
+            String error = Strings.get().get(R.string.can_not_by_empty, param.getName());
             throw new RuntimeException(error);
         }
     }

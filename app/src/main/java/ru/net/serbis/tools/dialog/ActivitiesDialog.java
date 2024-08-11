@@ -159,9 +159,9 @@ public class ActivitiesDialog extends AlertDialog.Builder implements AdapterView
     public void onResult(Collection<ActivityItem> result, TaskError error)
     {
         UITool.get().enableAll(view);
+        UITool.get().toast(error);
         if (error != null)
         {
-            UITool.get().toast(error);
             return;
         }
         if (itemsReady)
