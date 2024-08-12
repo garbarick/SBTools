@@ -4,13 +4,13 @@ import android.content.*;
 import android.graphics.*;
 import android.net.*;
 import android.provider.*;
-import android.util.*;
 import android.view.*;
 import android.view.WindowManager.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.util.*;
+import ru.net.serbis.tools.view.*;
 
 public class ScreenFilter extends Tool
 {
@@ -47,7 +47,7 @@ public class ScreenFilter extends Tool
         if (view == null)
         {
             view = createView();
-            LayoutParams params = createParams();
+            LayoutParams params = createParams((FilterLayout) view);
             manager.addView(view, params);
         }
         else
@@ -70,7 +70,7 @@ public class ScreenFilter extends Tool
         return view;
     }
 
-    private LayoutParams createParams()
+    private LayoutParams createParams(FilterLayout view)
     {
         LayoutParams params = new LayoutParams();
         params.flags = LayoutParams.FLAG_NOT_TOUCHABLE |
@@ -80,43 +80,12 @@ public class ScreenFilter extends Tool
         params.format = PixelFormat.TRANSLUCENT;
         params.type = LayoutParams.TYPE_APPLICATION_OVERLAY;
 
-        int barsSize = getNavigationBarHeight() + getStatusBarHeight();
-        Point size = getSize();
+        Point size = view.getSize();
         params.x = 0;
         params.y = 0;
-        params.width = size.x + barsSize;
-        params.height = size.y + barsSize;
+        params.width = size.x;
+        params.height = size.y;
 
         return params;
-    }
-
-    private Point getSize()
-    {
-        WindowManager manager = context.getWindowManager();
-        Display display = manager.getDefaultDisplay();
-        Point result = new Point();
-        display.getRealSize(result);
-        return result;
-    }
-
-    public int getStatusBarHeight()
-    {
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0)
-        {
-            return context.getResources().getDimensionPixelSize(resourceId);
-        }
-        return 0;
-    }
-
-    public int getNavigationBarHeight()
-    {
-        boolean hasMenuKey = ViewConfiguration.get(context).hasPermanentMenuKey();
-        int resourceId = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
-        if (resourceId > 0 && !hasMenuKey)
-        {
-            return context.getResources().getDimensionPixelSize(resourceId);
-        }
-        return 0;
     }
 }
