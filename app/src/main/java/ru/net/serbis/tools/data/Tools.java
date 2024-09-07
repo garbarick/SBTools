@@ -24,6 +24,7 @@ public interface Tools
     CopySourceCode COPY_SOURCE_CODE = new CopySourceCode();
     Tool ZIP_SOURCE_CODE = new ZipSourceCode();;
     Tool SCREEN_FILTER = new ScreenFilter();
+    Tool SWITCH_LAUNCHER = new SwitchLauncher();
 
     Tool[] MAIN_TOOLS = new Tool[]{
         ZIP_DIR,
@@ -40,7 +41,8 @@ public interface Tools
         PREFERENCES_TOOL,
         COPY_SOURCE_CODE,
         ZIP_SOURCE_CODE,
-        SCREEN_FILTER
+        SCREEN_FILTER,
+        SWITCH_LAUNCHER
     };
     
     Tool[] SYS_RESOURCES_TOOLS = new Tool[]{

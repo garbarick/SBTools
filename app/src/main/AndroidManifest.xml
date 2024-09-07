@@ -56,6 +56,16 @@
             android:theme="@style/transparent"
             android:launchMode="singleTask"/>
 
+        <activity
+            android:name=".activity.FakeLauncher"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.HOME"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
         <receiver
             android:name=".widget.StartTool"
             android:label="@string/start_tool">
