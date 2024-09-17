@@ -10,6 +10,8 @@ import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public abstract class Tool implements View.OnClickListener, PopupMenu.OnMenuItemClickListener
 {
     protected int iconId;

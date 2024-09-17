@@ -9,6 +9,8 @@ import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public class TextActivity extends Activity implements View.OnClickListener
 {
     protected EditText edit;

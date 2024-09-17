@@ -9,6 +9,8 @@ import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public class ParamsAdapter
 {
     private Activity context;
@@ -28,14 +30,11 @@ public class ParamsAdapter
         }
     }
 
-    public View getView(Param param, View parent, int position)
+    private View getView(Param param, View parent, int position)
     {
         LinearLayout layout = UITool.get().findView(parent, R.id.params);
-        View view = LayoutInflater.from(context).inflate(param.getLayoutId(), layout, false);
+        View view = param.getView(layout);
         layout.addView(view);
-        param.setAdapter(this);
-        param.initNameView(view);
-        param.initViewValue(view);
         return view;
     }
 

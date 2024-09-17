@@ -9,6 +9,8 @@ import ru.net.serbis.tools.task.*;
 import ru.net.serbis.utils.*;
 import ru.net.serbis.utils.bean.*;
 
+import ru.net.serbis.tools.R;
+
 public class ZipDir extends Tool implements TaskCallback<Boolean>
 {
     @Override

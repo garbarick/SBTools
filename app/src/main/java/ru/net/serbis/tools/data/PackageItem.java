@@ -6,6 +6,8 @@ import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public class PackageItem extends ActivityItem
 {
     private List<ActivityItem> children = new ArrayList<ActivityItem>();

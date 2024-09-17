@@ -9,6 +9,8 @@ import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.resource.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public abstract class ResoursesAdapter extends ArrayAdapter<Resource>
 {
     private int rowLayout;

@@ -12,6 +12,8 @@ import ru.net.serbis.tools.task.*;
 import ru.net.serbis.utils.*;
 import ru.net.serbis.utils.bean.*;
 
+import ru.net.serbis.tools.R;
+
 public class ActivitiesDialog extends AlertDialog.Builder implements AdapterView.OnItemClickListener, View.OnClickListener, TaskCallback<Collection<ActivityItem>>
 {
     private AlertDialog dialog;

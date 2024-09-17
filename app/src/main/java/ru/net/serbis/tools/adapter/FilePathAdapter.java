@@ -8,6 +8,8 @@ import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public class FilePathAdapter extends ArrayAdapter<String> implements AdapterView.OnItemClickListener
 {
     private class StringComparator implements Comparator<String>

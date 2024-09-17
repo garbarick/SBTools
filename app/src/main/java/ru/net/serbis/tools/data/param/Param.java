@@ -4,7 +4,6 @@ import android.app.*;
 import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.*;
-import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.utils.*;
 
 import ru.net.serbis.tools.R;
@@ -16,7 +15,6 @@ public abstract class Param<T, V extends View>
     protected int nameId;
     protected T defaultValue;
     protected Activity context;
-    protected ParamsAdapter adapter;
     protected boolean stored;
 
     public Param(int nameId, String paramName, T defaultValue, boolean stored)
@@ -48,6 +46,14 @@ public abstract class Param<T, V extends View>
         return name;
     }
 
+    public View getView(ViewGroup parent)
+    {
+        View view = LayoutInflater.from(context).inflate(getLayoutId(), parent, false);
+        initNameView(view);
+        initViewValue(view);
+        return view;
+    }
+
     public abstract int getLayoutId();
 
     public void initName()
@@ -59,18 +65,13 @@ public abstract class Param<T, V extends View>
         }
     }
 
-    public void setAdapter(ParamsAdapter adapter)
-    {
-        this.adapter = adapter;
-    }
-
-    public void initNameView(View parent)
+    protected void initNameView(View parent)
     {
         TextView view = UITool.get().findView(parent, R.id.name);
         view.setText(name);
     }
 
-    public abstract void initViewValue(View parent);
+    protected abstract void initViewValue(View parent);
 
     public V getViewValue(View parent)
     {

@@ -11,6 +11,8 @@ import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.dialog.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public class ExportImport extends NoImageTool
 {
     private PopupMenu menu;

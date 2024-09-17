@@ -8,6 +8,8 @@ import ru.net.serbis.tools.dialog.*;
 import ru.net.serbis.tools.listener.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public class FilesParam extends StringsParam
 {
     private boolean onlyFolder;

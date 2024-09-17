@@ -4,6 +4,8 @@ import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public enum Compression
 {
     ZERO(R.string.level_0, 0),

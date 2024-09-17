@@ -9,6 +9,8 @@ import ru.net.serbis.tools.util.*;
 import ru.net.serbis.utils.*;
 import ru.net.serbis.utils.bean.*;
 
+import ru.net.serbis.tools.R;
+
 public class CopySourceTask extends AsyncTask<Void, Integer, Boolean> implements Progress
 {
     private TaskCallback<Boolean> callback;

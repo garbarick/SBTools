@@ -9,6 +9,8 @@ import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public class PermissionsDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener
 {
     private ListView list;

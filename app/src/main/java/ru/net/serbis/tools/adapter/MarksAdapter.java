@@ -9,6 +9,8 @@ import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.mark.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public class MarksAdapter extends ArrayAdapter<Mark>
 {
     public MarksAdapter(Context context)

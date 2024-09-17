@@ -4,6 +4,8 @@ import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public enum Unit
 {
     DAYS(R.string.days, Calendar.DAY_OF_YEAR),

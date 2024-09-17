@@ -9,6 +9,8 @@ import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.result.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public class Sources
 {
     private static final Pattern PACKAGE = Pattern.compile("package\\s+?(\\S+?);", Pattern.MULTILINE);

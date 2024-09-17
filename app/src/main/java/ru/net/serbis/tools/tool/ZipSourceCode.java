@@ -9,6 +9,8 @@ import ru.net.serbis.tools.task.*;
 import ru.net.serbis.utils.*;
 import ru.net.serbis.utils.bean.*;
 
+import ru.net.serbis.tools.R;
+
 public class ZipSourceCode extends NoImageTool implements TaskCallback<Boolean>
 {
     private int countTask;
@@ -55,12 +57,12 @@ public class ZipSourceCode extends NoImageTool implements TaskCallback<Boolean>
         params.bufferSize = Constants.BUFFER_SIZE;
         params.addExclude("release/.*");
         params.addExclude("\\.git/.*");
-        params.addExclude("app/build/bin/classesdebug/.*");
-        params.addExclude("app/build/bin/classesrelease/.*");
-        params.addExclude("app/build/bin/jardex/.*");
-        params.addExclude("app/build/bin/res/.*");
-        params.addExclude("app/build/bin/classes\\.dex");
-        params.addExclude("app/build/bin/resources\\.ap_");
+        params.addExclude(".*/build/bin/classesdebug/.*");
+        params.addExclude(".*/build/bin/classesrelease/.*");
+        params.addExclude(".*/build/bin/jardex/.*");
+        params.addExclude(".*/build/bin/res/.*");
+        params.addExclude(".*/build/bin/classes\\.dex");
+        params.addExclude(".*/build/bin/resources\\.ap_");
 
         new ZipTask(context, this).execute(params);
     }

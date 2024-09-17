@@ -11,8 +11,9 @@ import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.mark.*;
 import ru.net.serbis.tools.data.param.*;
-import ru.net.serbis.tools.util.*;
 import ru.net.serbis.utils.*;
+
+import ru.net.serbis.tools.R;
 
 public class MarksDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener, View.OnClickListener, PopupMenu.OnMenuItemClickListener, DialogInterface.OnDismissListener
 {
@@ -52,7 +53,7 @@ public class MarksDialog extends AlertDialog.Builder implements DialogInterface.
     {
         Button neutral = dialog.getButton(Dialog.BUTTON_NEUTRAL);
         neutral.setId(Dialog.BUTTON_NEUTRAL);
-        ViewTool.get().setSandwitchView(neutral);
+        UITool.get().setSandwitchView(neutral);
         neutral.setOnClickListener(this);
 
         menu = new PopupMenu(getContext(), neutral);

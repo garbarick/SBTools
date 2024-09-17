@@ -8,6 +8,8 @@ import android.widget.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public class ViewTool
 {
     private static ViewTool instance = new ViewTool();
@@ -15,11 +17,6 @@ public class ViewTool
     public static ViewTool get()
     {
         return instance;
-    }
-
-    public void setSandwitchView(Button button)
-    {
-        UITool.get().setSandwitchView(button, R.drawable.sandwitch);
     }
 
     public void setColorTransparent(Activity context, int transparent, int color)

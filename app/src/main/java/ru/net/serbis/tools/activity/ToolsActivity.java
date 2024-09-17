@@ -10,6 +10,8 @@ import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.tool.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public abstract class ToolsActivity extends Activity
 {
     private LinearLayout main;

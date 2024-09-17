@@ -9,6 +9,8 @@ import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public class PreferencesTool extends NoImageTool
 {
     @Override

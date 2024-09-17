@@ -7,6 +7,8 @@ import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public class HideTools extends NoImageTool
 {
     @Override

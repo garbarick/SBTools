@@ -5,6 +5,8 @@ import java.util.concurrent.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public enum Period
 {
     DISABLED(R.string.period_disabled, 0),

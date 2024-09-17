@@ -11,6 +11,8 @@ import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.tool.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.tools.R;
+
 public class HideToolsDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener
 {
     private ListView list;
