@@ -145,6 +145,7 @@ public class MarksDialog extends AlertDialog.Builder implements DialogInterface.
             return;
         }
         adapter.remove(adapter.getItem(checked));
+        adapter.save();
     }
 
     private void update(ParamsAdapter paramsAdapter, Mark mark, boolean add, Map<Integer, Param> params)
