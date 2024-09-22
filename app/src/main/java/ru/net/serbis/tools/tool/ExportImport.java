@@ -7,9 +7,9 @@ import java.util.*;
 import org.json.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.data.param.*;
-import ru.net.serbis.tools.dialog.*;
 import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.dialog.*;
+import ru.net.serbis.utils.param.*;
 
 import ru.net.serbis.tools.R;
 

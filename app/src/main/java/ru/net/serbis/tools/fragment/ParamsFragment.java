@@ -2,10 +2,10 @@ package ru.net.serbis.tools.fragment;
 
 import android.app.*;
 import android.os.*;
-import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.data.param.*;
-import ru.net.serbis.tools.dialog.*;
 import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.bean.*;
+import ru.net.serbis.utils.dialog.*;
+import ru.net.serbis.utils.param.*;
 
 public class ParamsFragment extends DialogFragment
 {

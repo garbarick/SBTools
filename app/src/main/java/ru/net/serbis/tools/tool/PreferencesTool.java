@@ -8,6 +8,7 @@ import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.fragment.*;
 import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.param.*;
 
 import ru.net.serbis.tools.R;
 
@@ -43,9 +44,9 @@ public class PreferencesTool extends NoImageTool
         if (paramsDialog != null &&
             requestCode == Constants.DELETE_PROPERTY &&
             resultCode == Activity.RESULT_OK &&
-            data.hasExtra(Constants.TITLE))
+            data.hasExtra(UtilsConstants.TITLE))
         {
-            String name = data.getStringExtra(Constants.TITLE);
+            String name = data.getStringExtra(UtilsConstants.TITLE);
             paramsDialog.deleteParam(name);
         }
     }

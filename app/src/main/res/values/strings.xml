@@ -32,14 +32,12 @@
     <string name="dir">Directory</string>
     <string name="zip_name">Zip name</string>
     <string name="compression">Compression</string>
-    <string name="choose_dir">Choose directory</string>
     <string name="choose_file">Choose file</string>
     <string name="delete_source_files">Delete source files</string>
     <string name="resource_clip_label">Resource clip label</string>
     <string name="type">Type</string>
     <string name="file">File</string>
     <string name="share_dir">Share Directory</string>
-    <string name="reset">Reset</string>
     <string name="view">View</string>
     <string name="formatter">Formatter</string>
     <string name="progress">Progress</string>
@@ -48,16 +46,12 @@
     <string name="back">Back</string>
     <string name="open">Open</string>
     <string name="buffer_size">Buffer size</string>
-    <string name="add">Add</string>
-    <string name="delete">Delete</string>
-    <string name="edit">Edit</string>
     <string name="notify_type">Notify type</string>
     <string name="notify_icon">Notify icon</string>
     <string name="auto_clean_up">Auto clean up</string>
     <string name="trash_files">Trash files</string>
     <string name="dirs_to_files">Dirs to files</string>
     <string name="choose_files">Choose files</string>
-    <string name="chosen_files">Chosen files (%d)</string>
     <string name="files_deleted">Files were deleted: %d</string>
     <string name="last_clean_up">Last clean up</string>
     <string name="zip_size">Zip size: %s</string>
@@ -88,7 +82,6 @@
     <string name="release_apk">Release APK</string>
     <string name="release_jar">Release JAR</string>
     <string name="brightness">Brightness</string>
-    <string name="color_picker">Color picker</string>
     <string name="color_filter">Color filter</string>
 
 </resources>

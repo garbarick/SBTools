@@ -5,6 +5,7 @@ import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.resource.*;
+import ru.net.serbis.utils.param.*;
 
 public class NotifyIconParam extends SpinnerParam<Resource>
 {
@@ -14,11 +15,11 @@ public class NotifyIconParam extends SpinnerParam<Resource>
     }
 
     @Override
-    public void initName()
+    public String getName()
     {
-        super.initName();
         values = ResourceLoader.get().get(ResType.LOCAL_DRAWABLE).toArray(new Resource[0]);
-        defaultValue = values[0];
+        value = values[0];
+        return super.getName();
     }
 
     @Override

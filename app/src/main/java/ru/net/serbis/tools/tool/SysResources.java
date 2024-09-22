@@ -4,7 +4,7 @@ import android.content.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.activity.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.data.param.*;
+import ru.net.serbis.utils.param.*;
 
 public class SysResources extends NoImageTool
 {

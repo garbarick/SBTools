@@ -1,6 +1,7 @@
 package ru.net.serbis.tools.data;
 
 import ru.net.serbis.tools.tool.*;
+import ru.net.serbis.utils.bean.*;
 
 public interface Tools
 {

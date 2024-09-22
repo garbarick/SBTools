@@ -4,11 +4,11 @@ import android.widget.*;
 import java.util.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.notification.*;
 import ru.net.serbis.tools.task.*;
 import ru.net.serbis.utils.*;
 import ru.net.serbis.utils.bean.*;
+import ru.net.serbis.utils.param.*;
 
 import ru.net.serbis.tools.R;
 

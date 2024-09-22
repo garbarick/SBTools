@@ -3,13 +3,14 @@ package ru.net.serbis.tools.data.param;
 import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.extension.share.*;
-import ru.net.serbis.tools.listener.*;
+import ru.net.serbis.utils.listener.*;
+import ru.net.serbis.utils.param.*;
 
 public class ShareDirParam extends TextViewParam
 {
-    public ShareDirParam(int nameId, String defaultValue)
+    public ShareDirParam(int nameId, String value)
     {
-        super(nameId, defaultValue);
+        super(nameId, value);
     }
 
     @Override

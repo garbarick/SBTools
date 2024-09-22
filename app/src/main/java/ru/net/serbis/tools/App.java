@@ -4,10 +4,11 @@ import android.app.*;
 import android.content.*;
 import ru.net.serbis.tools.connection.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.extension.share.*;
 import ru.net.serbis.tools.tool.*;
 import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.param.*;
+import ru.net.serbis.tools.activity.*;
 
 public class App extends Application
 {
@@ -33,10 +34,10 @@ public class App extends Application
 
         initTools();
         initEnums();
-        initParams();
         shareConnection.bind();
 
-        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(context));
+        ExceptionHandler.get().set(context);
+        ExceptionHandler.get().setErrorActivity(ExceptionReport.class);
     }
 
     private void initTools()
@@ -54,14 +55,6 @@ public class App extends Application
         NotifyType.initNames();
         Period.initNames();
         Unit.initNames();
-    }
-
-    private void initParams()
-    {
-        for (Param param : Reflection.get().getValues(Params.class, Param.class).values())
-        {
-            param.initName();
-        }
     }
 
     @Override

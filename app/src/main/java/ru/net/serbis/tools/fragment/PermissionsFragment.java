@@ -2,9 +2,9 @@ package ru.net.serbis.tools.fragment;
 
 import android.app.*;
 import android.os.*;
-import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.dialog.*;
 import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.bean.*;
 
 public class PermissionsFragment extends DialogFragment
 {

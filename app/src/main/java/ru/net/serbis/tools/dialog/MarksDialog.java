@@ -12,6 +12,9 @@ import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.mark.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.adapter.*;
+import ru.net.serbis.utils.dialog.*;
+import ru.net.serbis.utils.param.*;
 
 import ru.net.serbis.tools.R;
 

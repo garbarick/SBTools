@@ -2,8 +2,10 @@ package ru.net.serbis.tools.data;
 
 import android.graphics.*;
 import ru.net.serbis.tools.*;
+import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.param.*;
 
 import ru.net.serbis.tools.R;
 
@@ -20,7 +22,7 @@ public interface Params
     NotifyTypeParam NOTIFY_TYPE = new NotifyTypeParam();
     NotifyIconParam NOTIFY_ICON = new NotifyIconParam();
     PeriodParam AUTO_CLEAN_UP = new PeriodParam(R.string.auto_clean_up);
-    FilesParam TRASH_FILES = new FilesParam(R.string.trash_files, "clearTrash", false, false);
+    FilesParam TRASH_FILES = new FilesParam(R.string.trash_files, false, false);
     FilesParam DIRS_TO_FILES = new FilesParam(R.string.dirs_to_files, true, false);
     DateTimeViewParam LAST_CLEAN_UP = new DateTimeViewParam(R.string.last_clean_up, null);
     FileParam EXPORT_IMPORT_DIR = new FileParam(R.string.export_import_dir, IOTool.get().getExternalFile("backups"), true, false);
@@ -34,7 +36,7 @@ public interface Params
     FileParam ZIP_RESULT_DIR = new FileParam(R.string.zip_result_dir, IOTool.get().getDownloadPath(), true, false);
     BooleanParam RELEASE_APK = new BooleanParam(R.string.release_apk, true);
     BooleanParam RELEASE_JAR = new BooleanParam(R.string.release_jar, false);
-    SeekBarParam BRIGHTNESS = new SeekBarParam(R.string.brightness, 60, 180, 120);
+    SeekBarParam BRIGHTNESS = new SeekBarParam(R.string.brightness, 60, 180, 120, false);
     ColorParam COLOR_FILTER = new ColorParam(R.string.color_filter, Color.GRAY);
     
     Param[] ZIP_DIR_PARAMS = new Param[]{

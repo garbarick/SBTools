@@ -2,6 +2,7 @@ package ru.net.serbis.tools.data.param;
 
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
+import ru.net.serbis.utils.param.*;
 
 public class NotifyTypeParam extends SpinnerParam<NotifyType>
 {

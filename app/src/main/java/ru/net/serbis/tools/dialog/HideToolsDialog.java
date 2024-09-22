@@ -10,6 +10,7 @@ import ru.net.serbis.tools.adapter.*;
 import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.tool.*;
 import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.bean.*;
 
 import ru.net.serbis.tools.R;
 

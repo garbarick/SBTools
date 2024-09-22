@@ -1,12 +1,13 @@
 package ru.net.serbis.tools.data.param;
 
 import ru.net.serbis.tools.data.*;
+import ru.net.serbis.utils.param.*;
 
 public class UnitParam extends SpinnerParam<Unit>
 {
-    public UnitParam(String paramName, Unit defaultValue, boolean stored)
+    public UnitParam(String name, Unit value, boolean stored)
     {
-        super(paramName, defaultValue, stored, Unit.class.getEnumConstants());
+        super(name, value, stored, Unit.class.getEnumConstants());
     }
 
     @Override

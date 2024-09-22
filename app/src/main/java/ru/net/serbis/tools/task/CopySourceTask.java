@@ -4,10 +4,10 @@ import android.os.*;
 import android.text.*;
 import ru.net.serbis.tools.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.data.param.*;
 import ru.net.serbis.tools.util.*;
 import ru.net.serbis.utils.*;
 import ru.net.serbis.utils.bean.*;
+import ru.net.serbis.utils.param.*;
 
 import ru.net.serbis.tools.R;
 
