@@ -192,10 +192,20 @@ public class ZipTool
 
     private ZipEntry createEntry(File file)
     {
-        String path = params.dir.toPath().relativize(file.toPath()).toString();
+        String path = getRelative(params.dir, file);
         ZipEntry entry = new ZipEntry(path);
-        entry.setLastModifiedTime(FileTime.fromMillis(file.lastModified()));
+        setLastTime(entry, file);
         return entry;
+    }
+
+    private void setLastTime(ZipEntry entry, File file)
+    {
+        try
+        {
+            entry.setLastModifiedTime(FileTime.fromMillis(file.lastModified()));
+        }
+        catch (Throwable e)
+        {}
     }
 
     private void clearFiles(List<File> files)
@@ -251,7 +261,8 @@ public class ZipTool
     
     private boolean isExclude(File file)
     {
-        String path = params.dir.toPath().relativize(file.toPath()).toString();
+        String path = getRelative(params.dir, file);
+        Log.info(this, "path:" + path);
         for (Pattern exclude : params.excludes)
         {
             if (exclude.matcher(path).matches())
@@ -260,5 +271,10 @@ public class ZipTool
             }
         }
         return false;
+    }
+
+    private String getRelative(File dir, File file)
+    {
+        return file.getAbsolutePath().replace(dir.getAbsolutePath() + "/", "");
     }
 }
