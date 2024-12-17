@@ -10,6 +10,7 @@ import ru.net.serbis.utils.*;
 import ru.net.serbis.utils.bean.*;
 
 import ru.net.serbis.tools.R;
+import android.os.*;
 
 public class PermissionsDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener
 {
@@ -56,6 +57,11 @@ public class PermissionsDialog extends AlertDialog.Builder implements DialogInte
 
     private void positive()
     {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
+        {
+            UITool.get().notImplementedYet();
+            return;
+        }
         for (int i = 0; i < adapter.getCount(); i ++)
         {
             String permission = adapter.getItem(i);

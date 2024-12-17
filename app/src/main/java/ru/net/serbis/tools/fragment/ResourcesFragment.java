@@ -23,7 +23,7 @@ public abstract class ResourcesFragment extends DialogFragment
     @Override
     public Dialog onCreateDialog(Bundle state)
     {
-        dialog = createDialog(getContext());
+        dialog = createDialog(getActivity());
         initTop(state);
         return dialog.create();
     }
