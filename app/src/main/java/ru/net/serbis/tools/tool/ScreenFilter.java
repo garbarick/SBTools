@@ -11,6 +11,7 @@ import ru.net.serbis.tools.data.*;
 import ru.net.serbis.tools.util.*;
 import ru.net.serbis.tools.view.*;
 import ru.net.serbis.utils.param.*;
+import android.os.*;
 
 public class ScreenFilter extends Tool
 {
@@ -78,7 +79,15 @@ public class ScreenFilter extends Tool
             LayoutParams.FLAG_NOT_FOCUSABLE |
             LayoutParams.FLAG_NOT_TOUCH_MODAL;
         params.format = PixelFormat.TRANSLUCENT;
-        params.type = LayoutParams.TYPE_APPLICATION_OVERLAY;
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M)
+        {
+            params.type = LayoutParams.TYPE_APPLICATION_OVERLAY;            
+        }
+        else
+        {
+            params.type = LayoutParams.TYPE_APPLICATION_PANEL;            
+        }
 
         Point size = view.getSize();
         params.x = 0;
