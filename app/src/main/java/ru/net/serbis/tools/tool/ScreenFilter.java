@@ -38,7 +38,8 @@ public class ScreenFilter extends Tool
     @Override
     public void tool()
     {
-        if (!Settings.canDrawOverlays(context))
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1 &&
+            !Settings.canDrawOverlays(context))
         {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + context.getPackageName()));
             context.startActivityForResult(intent, 1234);
