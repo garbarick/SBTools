@@ -78,6 +78,8 @@
                 android:resource="@xml/widget_start_tool"/>
         </receiver>
 
+        <service android:name=".service.ScreenFilterService"/>
+
     </application>
 
 </manifest>

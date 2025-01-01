@@ -18,4 +18,6 @@ public interface Constants
     String VALUE = "VALUE";
     String WIDGET = "WIDGET";
     String START = "START";
+    int FILTER_ON = 600;
+    int FILTER_OFF = 601;
 }

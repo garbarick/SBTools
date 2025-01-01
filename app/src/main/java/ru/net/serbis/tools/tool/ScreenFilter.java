@@ -1,21 +1,20 @@
 package ru.net.serbis.tools.tool;
 
 import android.content.*;
-import android.graphics.*;
 import android.net.*;
-import android.provider.*;
-import android.view.*;
-import android.view.WindowManager.*;
-import ru.net.serbis.tools.*;
-import ru.net.serbis.tools.data.*;
-import ru.net.serbis.tools.util.*;
-import ru.net.serbis.tools.view.*;
-import ru.net.serbis.utils.param.*;
 import android.os.*;
+import android.provider.*;
+import ru.net.serbis.tools.*;
+import ru.net.serbis.tools.connection.*;
+import ru.net.serbis.tools.data.*;
+import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.param.*;
+
+import ru.net.serbis.tools.R;
 
 public class ScreenFilter extends Tool
 {
-    private View view;
+    private boolean on;
 
     @Override
     public int getNameId()
@@ -45,17 +44,22 @@ public class ScreenFilter extends Tool
             context.startActivityForResult(intent, 1234);
             return;
         }
-        WindowManager manager = context.getWindowManager();
-        if (view == null)
+
+        App app = (App) context.getApplicationContext();
+        ExtConnection connection = app.getScreenFilterConnection();
+        if (connection.isBound())
         {
-            view = createView();
-            LayoutParams params = createParams((FilterLayout) view);
-            manager.addView(view, params);
-        }
-        else
-        {
-            manager.removeView(view);
-            view = null;
+            int action = on ? Constants.FILTER_OFF : Constants.FILTER_ON;
+            Message msg = Message.obtain(null, action, 0, 0);
+            try
+            {
+                connection.getService().send(msg);
+                on = !on;
+            }
+            catch (RemoteException e)
+            {
+                Log.error(this, e);
+            }
         }
     }
 
@@ -63,39 +67,5 @@ public class ScreenFilter extends Tool
     public boolean closeParent()
     {
         return true;
-    }
-
-    private View createView()
-    {
-        View view = LayoutInflater.from(context).inflate(R.layout.filter, null);
-        ViewTool.get().setColorTransparent(view, Params.BRIGHTNESS.getValue(), Params.COLOR_FILTER.getValue());
-        return view;
-    }
-
-    private LayoutParams createParams(FilterLayout view)
-    {
-        LayoutParams params = new LayoutParams();
-        params.flags = LayoutParams.FLAG_NOT_TOUCHABLE |
-            LayoutParams.FLAG_LAYOUT_NO_LIMITS |
-            LayoutParams.FLAG_NOT_FOCUSABLE |
-            LayoutParams.FLAG_NOT_TOUCH_MODAL;
-        params.format = PixelFormat.TRANSLUCENT;
-
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M)
-        {
-            params.type = LayoutParams.TYPE_APPLICATION_OVERLAY;            
-        }
-        else
-        {
-            params.type = LayoutParams.TYPE_APPLICATION_PANEL;            
-        }
-
-        Point size = view.getSize();
-        params.x = 0;
-        params.y = 0;
-        params.width = size.x;
-        params.height = size.y;
-
-        return params;
     }
 }
