@@ -14,8 +14,6 @@ import ru.net.serbis.tools.R;
 
 public class ScreenFilter extends Tool
 {
-    private boolean on;
-
     @Override
     public int getNameId()
     {
@@ -49,12 +47,10 @@ public class ScreenFilter extends Tool
         ExtConnection connection = app.getScreenFilterConnection();
         if (connection.isBound())
         {
-            int action = on ? Constants.FILTER_OFF : Constants.FILTER_ON;
-            Message msg = Message.obtain(null, action, 0, 0);
             try
             {
+                Message msg = Message.obtain(null, 0, 0, 0);
                 connection.getService().send(msg);
-                on = !on;
             }
             catch (RemoteException e)
             {

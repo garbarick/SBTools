@@ -18,15 +18,7 @@ public class ScreenFilterService extends Service
         @Override
         public void handleMessage(Message msg)
         {
-            switch (msg.what)
-            {
-                case Constants.FILTER_ON:
-                    filterOn();
-                    break;
-                case Constants.FILTER_OFF:
-                    filterOff();
-                    break;
-            }
+            switchFilter();
         }
     }
 
@@ -52,12 +44,20 @@ public class ScreenFilterService extends Service
         super.onDestroy();
     }
 
+    private void switchFilter()
+    {
+        if (view == null)
+        {
+            filterOn();
+        }
+        else
+        {
+            filterOff();
+        }
+    }
+
     private void filterOn()
     {
-        if (view != null)
-        {
-            return;
-        }
         WindowManager manager = SysTool.get().getService(WINDOW_SERVICE);
         view = createView();
         LayoutParams params = createParams((FilterLayout) view);
@@ -67,10 +67,6 @@ public class ScreenFilterService extends Service
 
     private void filterOff()
     {
-        if (view == null)
-        {
-            return;
-        }
         WindowManager manager = SysTool.get().getService(WINDOW_SERVICE);
         manager.removeView(view);
         view = null;
