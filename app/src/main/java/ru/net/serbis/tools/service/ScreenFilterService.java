@@ -46,13 +46,13 @@ public class ScreenFilterService extends Service
 
     private void switchFilter()
     {
-        if (view == null)
+        if (view != null && view.isShown())
         {
-            filterOn();
+            filterOff();
         }
         else
         {
-            filterOff();
+            filterOn();
         }
     }
 
