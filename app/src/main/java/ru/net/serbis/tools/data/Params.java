@@ -38,6 +38,7 @@ public interface Params
     BooleanParam RELEASE_JAR = new BooleanParam(R.string.release_jar, false);
     SeekBarParam BRIGHTNESS = new SeekBarParam(R.string.brightness, 60, 180, 120, false);
     ColorParam COLOR_FILTER = new ColorParam(R.string.color_filter, Color.GRAY);
+    BooleanParam SHOW_BRIGHTNESS = new BooleanParam(R.string.show_brightness, true);
     
     Param[] ZIP_DIR_PARAMS = new Param[]{
         DIRECTORY,
@@ -89,6 +90,7 @@ public interface Params
 
     Param[] SCREEN_FILTER_PARAMS = new Param[]{
         BRIGHTNESS,
-        COLOR_FILTER
+        COLOR_FILTER,
+        SHOW_BRIGHTNESS
     };
 }

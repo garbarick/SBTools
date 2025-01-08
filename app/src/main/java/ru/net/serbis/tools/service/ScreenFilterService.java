@@ -7,6 +7,7 @@ import android.os.*;
 import android.view.*;
 import android.view.WindowManager.*;
 import ru.net.serbis.tools.data.*;
+import ru.net.serbis.tools.popup.*;
 import ru.net.serbis.tools.util.*;
 import ru.net.serbis.tools.view.*;
 import ru.net.serbis.utils.*;
@@ -23,7 +24,7 @@ public class ScreenFilterService extends Service
     }
 
     private Messenger messenger;
-    private View view;
+    private View filter;
 
     @Override
     public IBinder onBind(Intent intent)
@@ -46,7 +47,7 @@ public class ScreenFilterService extends Service
 
     private void switchFilter()
     {
-        if (view != null && view.isShown())
+        if (filter != null && filter.isShown())
         {
             filterOff();
         }
@@ -59,17 +60,17 @@ public class ScreenFilterService extends Service
     private void filterOn()
     {
         WindowManager manager = SysTool.get().getService(WINDOW_SERVICE);
-        view = createView();
-        LayoutParams params = createParams((FilterLayout) view);
-        manager.addView(view, params);
-        return;
+        filter = createView();
+        LayoutParams params = createParams((FilterLayout) filter);
+        manager.addView(filter, params);
+        showBrightnessWindow();
     }
 
     private void filterOff()
     {
         WindowManager manager = SysTool.get().getService(WINDOW_SERVICE);
-        manager.removeView(view);
-        view = null;
+        manager.removeView(filter);
+        filter = null;
     }
 
     private View createView()
@@ -104,5 +105,21 @@ public class ScreenFilterService extends Service
         params.height = size.y;
 
         return params;
+    }
+
+    private void showBrightnessWindow()
+    {
+        if (Params.SHOW_BRIGHTNESS.getValue())
+        {
+            filter.post(
+                new Runnable()
+                {
+                    public void run()
+                    {
+                        new BrightnessPopup(filter).show();
+                    }
+                }
+            );
+        }
     }
 }
