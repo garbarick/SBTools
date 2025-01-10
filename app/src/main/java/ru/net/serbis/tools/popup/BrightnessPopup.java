@@ -1,6 +1,6 @@
 package ru.net.serbis.tools.popup;
 
-import android.os.*;
+import android.graphics.drawable.*;
 import android.view.*;
 import android.widget.*;
 import ru.net.serbis.tools.*;
@@ -9,14 +9,11 @@ import ru.net.serbis.tools.util.*;
 import ru.net.serbis.utils.*;
 
 import ru.net.serbis.tools.R;
-import android.graphics.drawable.*;
 
 public class BrightnessPopup extends PopupWindow
 {
     private View parent;
     private SeekBar value;
-    private int min = 60;
-    private int max = 180;
 
     public BrightnessPopup(View parent)
     {
@@ -32,25 +29,17 @@ public class BrightnessPopup extends PopupWindow
     private void initValue()
     {
         value = UITool.get().findView(getContentView(), R.id.value);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M)
-        {
-            value.setMin(min);
-        }
-        value.setMax(max);
+        value.setMax(100);
         value.setOnSeekBarChangeListener(
             new SeekBar.OnSeekBarChangeListener()
             {
                 @Override
                 public void onProgressChanged(SeekBar seek, int progress, boolean byUser)
                 {
-                    if(progress < min)
-                    {
-                        progress = min;
-                        seek.setProgress(progress);
-                    }
                     if (byUser)
                     {
-                        Params.BRIGHTNESS.saveValue(progress);
+                        Params.BRIGHTNESS.saveValue(
+                            Params.BRIGHTNESS.fromProgress(progress));
                         ViewTool.get().setColorTransparent(parent, Params.BRIGHTNESS.getValue(), Params.COLOR_FILTER.getValue());
                     }
                 }
@@ -70,7 +59,9 @@ public class BrightnessPopup extends PopupWindow
 
     public void show()
     {
-        value.setProgress(Params.BRIGHTNESS.getValue());
+        int progress = Params.BRIGHTNESS.toProgress(
+            Params.BRIGHTNESS.getValue());
+        value.setProgress(progress);
         showAtLocation(parent, Gravity.CENTER, 0, 0);
     }
 }
