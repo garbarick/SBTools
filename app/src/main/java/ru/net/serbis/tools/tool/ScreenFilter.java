@@ -5,12 +5,8 @@ import android.net.*;
 import android.os.*;
 import android.provider.*;
 import ru.net.serbis.tools.*;
-import ru.net.serbis.tools.connection.*;
 import ru.net.serbis.tools.data.*;
-import ru.net.serbis.utils.*;
 import ru.net.serbis.utils.param.*;
-
-import ru.net.serbis.tools.R;
 
 public class ScreenFilter extends Tool
 {
@@ -44,19 +40,7 @@ public class ScreenFilter extends Tool
         }
 
         App app = (App) context.getApplicationContext();
-        ExtConnection connection = app.getScreenFilterConnection();
-        if (connection.isBound())
-        {
-            try
-            {
-                Message msg = Message.obtain(null, 0, 0, 0);
-                connection.getService().send(msg);
-            }
-            catch (RemoteException e)
-            {
-                Log.error(this, e);
-            }
-        }
+        app.sendToScreenFilter();
     }
 
     @Override

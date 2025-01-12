@@ -13,7 +13,7 @@ import ru.net.serbis.utils.*;
 public class App extends Application
 {
     private ExtConnection shareConnection = new ShareConnection(this);
-    private ExtConnection screenFilterConnection = new ScreenFilterConnection(this);
+    private ScreenFilterConnection screenFilterConnection = new ScreenFilterConnection(this);
     private boolean progress;
 
     @Override
@@ -73,10 +73,9 @@ public class App extends Application
         return shareConnection;
 	}
 
-    public ExtConnection getScreenFilterConnection()
+    public void sendToScreenFilter()
     {
-        screenFilterConnection.bind();
-        return screenFilterConnection;
+        screenFilterConnection.bindAndSend();
 	}
 
     public void setProgress(boolean progress)
